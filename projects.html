@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Projects | Rhishikanya Batswa</title>
+  <meta content="Projects and research areas of Rhishikanya Batswa" name="description" />
+  <meta content="Rhishikanya Batswa, Research, Assamese Cinema, Character Networks, Film Shots" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="rhi2.jpg" rel="icon" />
+  <link href="rhi2.jpg" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link href="bootstrap-icons.css" rel="stylesheet" />
+  <link href="aos.css" rel="stylesheet" />
+  <link href="glightbox.min.css" rel="stylesheet" />
+  <link href="swiper-bundle.min.css" rel="stylesheet" />
+
+  <!-- Main CSS File -->
+  <link href="main.css" rel="stylesheet" />
+
+  <style>
+    /* Typography */
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #343a40;
+    }
+
+    h2.section-title,
+    h4.card-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: #0d6efd;
+    }
+
+    h2.section-title {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Header / Logo */
+    .sitename {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.25rem;
+      color: #ffffff;
+    }
+
+    /* Navigation */
+    .navmenu ul li a {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .navmenu .active {
+      background-color: rgba(13, 110, 253, 0.1);
+      border-radius: 0.25rem;
+    }
+
+    /* Badge */
+    .badge-ongoing {
+      font-size: 0.75rem;
+      vertical-align: middle;
+    }
+
+    /* Card */
+    .card-research {
+      border-left: 4px solid #0d6efd;
+    }
+
+    .card-header-research {
+      background-color: #0d6efd;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-bottom: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-header-research i {
+      font-size: 1.25rem;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .card-body p {
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+    .card-body ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Button styling */
+    .card-body .btn-learn {
+      margin-top: 1rem;
+    }
+
+    /* Hover effect */
+    .card-research:hover {
+      transform: translateY(-4px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Section background */
+    #projects {
+      background-color: #f8f9fa;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      background-color: #fff;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .footer .credits a {
+      color: #0d6efd;
+      text-decoration: none;
+    }
+
+    /* Responsive spacing */
+    @media (max-width: 768px) {
+      .card-header-research {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body class="index-page">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+    <div class="profile-img mt-4">
+      <img src="rhi2.jpg" alt="Profile Image" class="img-fluid rounded-circle" />
+    </div>
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center mt-3 mb-4">
+      <h1 class="sitename">Rhishikanya Batswa</h1>
+    </a>
+    <div class="social-links text-center mb-4">
+      <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+    </div>
+    <nav id="navmenu" class="navmenu">
+      <ul class="pt-2">
+        <li><a href="index.html"><i class="bi bi-house navicon"></i> Home</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Education</a></li>
+        <li><a href="index.html#portfolio"><i class="bi bi-images navicon"></i> Publications</a></li>
+        <li>
+          <a href="projects.html" class="active"><i class="bi bi-folder navicon"></i> Projects</a>
+        </li>
+        <li><a href="index.html#services"><i class="bi bi-hdd-stack navicon"></i> Awards &amp; Achievements</a></li>
+        <li class="dropdown">
+          <a href="#"><i class="bi bi-menu-button navicon"></i> <span>Blog</span>
+            <i class="bi bi-chevron-down toggle-dropdown"></i>
+          </a>
+        </li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- End Header -->
+
+  <main id="main">
+    <!-- ======= Projects Section ======= -->
+    <section id="projects" class="projects section">
+      <div class="container" data-aos="fade-up">
+        <div class="text-center mb-4">
+          <h2 class="section-title"><i class="bi bi-journal-text"></i> Projects &amp; Related Publications</h2>
+          <p class="text-muted">
+            My area of research broadly includes semiotic analysis of Assamese cinema employing advanced digital methodologies, as well as computational linguistics. Some of my ongoing research works are listed below:
+          </p>
+        </div>
+
+        <div class="row gy-4">
+          <!-- Project #1 -->
+          <div class="col-lg-6">
+            <div class="card card-research shadow-sm border-0 h-100">
+              <div class="card-header-research">
+                <i class="bi bi-diagram-3"></i>
+                <h4 class="card-title mb-0">Character Networks in Assamese Cinema</h4>
+                <span class="badge bg-info text-white badge-ongoing ms-auto">Ongoing</span>
+              </div>
+              <div class="card-body">
+                <p>
+                  <strong>Title:</strong> Character Networks in Assamese Cinema
+                </p>
+                <p>
+                  The study of character networks provides a systematic approach towards an understanding of the dynamics and relations that drive plots and hence derives considerable insight into the core elements forming the fabric of narration. The work focuses on a thorough exploration of the character network in Assamese films.The primary goal is to visualize narrative dynamics and uncover how character relationships evolve over time.
+                </p>
+                
+                <p>
+                  <strong>Related Publications:</strong>
+                </p>
+                <ul>
+                  <li>
+                    R. Batswa, P. Borah, S. J. Neog,
+                    <em>“Exploring Character Networks in Assamese Cinema: A Graph-Based Analysis,”</em>
+                    2025 International Conference on Innovation in Computing and Engineering (IEEE ICE 2025).
+                  </li>
+                </ul>
+               
+                <a href="CN.html" class="btn btn-primary btn-sm btn-learn">Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project #2 -->
+          <div class="col-lg-6">
+            <div class="card card-research shadow-sm border-0 h-100">
+              <div class="card-header-research">
+                <i class="bi bi-camera-reels-fill"></i>
+                <h4 class="card-title mb-0">AI-Driven Film Shot Analysis and Classification</h4>
+                <span class="badge bg-info text-white badge-ongoing ms-auto">Ongoing</span>
+              </div>
+              <div class="card-body">
+                <p>
+                  <strong>Title:</strong> AI-Driven Film Shot Analysis and Classification
+                </p>
+                <p>
+                
+                </p>
+                
+                <p>
+                  <strong>Related Publications:</strong>
+                </p>
+                <ul>
+                  <li>
+                     R. Batswa, P. Borah, S. J. Neog,
+                    <em>“Exploring Shot Types and Approaches:
+Understanding Film Language with Machine
+Learning,”</em>
+                    International Conference on Computing Systems & Intelligent Applications (ComSIA 2025).
+                  </li>
+                </ul>
+                
+                <a href="" class="btn btn-primary btn-sm btn-learn">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Projects Section -->
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer"> 
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <div class="copyright mb-2">
+            <p>
+              &copy; <span>Copyright</span>
+              <strong>Rhishikanya Batswa</strong> <span>All Rights Reserved</span>
+            </p>
+          </div>
+          <div class="credits">
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+  <!-- End Scroll Top -->
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="bootstrap.bundle.min.js"></script>
+  <script src="validate.js"></script>
+  <script src="aos.js"></script>
+  <script src="typed.umd.js"></script>
+  <script src="noframework.waypoints.js"></script>
+  <script src="glightbox.min.js"></script>
+  <script src="imagesloaded.pkgd.min.js"></script>
+  <script src="isotope.pkgd.min.js"></script>
+  <script src="swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="main.js"></script>
+</body>
+
+</html>
