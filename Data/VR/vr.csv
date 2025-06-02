@@ -1,0 +1,14 @@
+Characters A,Characters B,Role (Characters A),Role (Characters B),Weight
+Dhunu,Dhunu's Mother,Protagonist (Round or Dynamic),Deuteragonist (Round or Dynamic),63
+Dhunu,Dhunu's Bother,Protagonist (Round or Dynamic),Minor (Flat),9
+Dhunu,Bogi,Protagonist (Round or Dynamic),Minor (Flat),3
+Dhunu,Bolo,Protagonist (Round or Dynamic),Minor (Flat),24
+Dhunu,Bhaskar,Protagonist (Round or Dynamic),Minor (Flat),23
+Dhunu,Old Men,Protagonist (Round or Dynamic),Minor (Flat),5
+Dhunu,Village Women,Protagonist (Round or Dynamic),"Minor (Flat, Antagonistic Force)",7
+Dhunu,Friend Group,Protagonist (Round or Dynamic),Minor (Flat),23
+Dhunu's Mother,Dhunu's Bother,Deuteragonist (Round or Dynamic),Minor (Flat),2
+Dhunu's Mother,Bolo,Deuteragonist (Round or Dynamic),Minor (Flat),3
+Dhunu's Mother,Village Women,Deuteragonist (Round or Dynamic),"Minor (Flat, Antagonistic Force)",5
+Dhunu's Mother,Shopkeeper,Deuteragonist (Round or Dynamic),Minor (Flat),0
+Dhunu's Bother,Bolo,Minor (Flat),Minor (Flat),7

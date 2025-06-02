@@ -1,0 +1,23 @@
+Characters A,Characters B,Role (Characters A),Role (Characters B),Weight
+Bulbul,Sum,Protagonist (Round or Dynamic),Deuteragonist (Round or Dynamic),90
+Bulbul,Bony,Protagonist (Round or Dynamic),Deuteragonist (Round or Dynamic),25
+Bulbul,Gunjan,Protagonist (Round or Dynamic),Minor (Flat),13
+Bulbul,Bulbul's Father,Protagonist (Round or Dynamic),Minor (Flat),6
+Bulbul,Bulbul's Mother,Protagonist (Round or Dynamic),Minor (Flat),15
+Bulbul,Parag,Protagonist (Round or Dynamic),Deutarogonist (Flat),24
+Bulbul,Bony's Mother,Protagonist (Round or Dynamic),Minor (Flat),8
+Bulbul,English Teacher,Protagonist (Round or Dynamic),Minor (Flat),5
+Bulbul,Music Teacher,Protagonist (Round or Dynamic),Minor (Flat),4
+Bulbul,Bony+Sum,Protagonist (Round or Dynamic),Deuteragonist (Round or Dynamic),19
+Sum,Bony,Deuteragonist (Round or Dynamic),Deuteragonist (Round or Dynamic),35
+Sum,Parag,Deuteragonist (Round or Dynamic),Deutarogonist (Flat),16
+Sum,Bony's Mother,Deuteragonist (Round or Dynamic),Minor (Flat),5
+Sum,Bulbul's Mother,Deuteragonist (Round or Dynamic),Minor (Flat),4
+Sum,Photographer,Deuteragonist (Round or Dynamic),Minor (Flat),3
+Sum,Music Teacher,Deuteragonist (Round or Dynamic),Minor (Flat),1
+Bony,Bony's Mother,Deuteragonist (Round or Dynamic),Minor (Flat),12
+Bony,Music Teacher,Deuteragonist (Round or Dynamic),Minor (Flat),7
+Bony,Dip,Deuteragonist (Round or Dynamic),Minor (Flat),7
+Bulbul's Mother,Gunjan,Minor (Flat),Minor (Flat),7
+Bulbul's Mother,Bulbul's Father,Minor (Flat),Minor (Flat),5
+Boy's Group,Sum,"Minor (Flat, Antagonistic Forces)",Deuteragonist (Round or Dynamic),7

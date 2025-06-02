@@ -1,0 +1,11 @@
+Character,Local Degree,Degree Centrality,Betweenness Centrality,Closeness Centrality,Eigenvector Centrality
+Dhunu,8,0.888889,0.75,0.9,0.56423
+Dhunu's Mother,5,0.555556,0.25,0.692308,0.462015
+Dhunu's Bother,3,0.333333,0.0,0.6,0.377264
+Bogi,1,0.111111,0.0,0.5,0.151666
+Bolo,3,0.333333,0.0,0.6,0.377264
+Bhaskar,1,0.111111,0.0,0.5,0.151666
+Old Men,1,0.111111,0.0,0.5,0.151666
+Village Women,2,0.222222,0.0,0.5625,0.275856
+Friend Group,1,0.111111,0.0,0.5,0.151666
+Shopkeeper,1,0.111111,0.0,0.428571,0.124189
