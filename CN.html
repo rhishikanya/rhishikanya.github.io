@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Character Networks | Rhishikanya Batswa</title>
+  <meta content="Interactive character network visualizations with filters for Assamese films" name="description" />
+  <meta content="Rhishikanya Batswa, Assamese Cinema, Character Networks, Interactive Filters" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="rhi2.jpg" rel="icon" />
+  <link href="rhi2.jpg" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Pacifico&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link href="bootstrap-icons.css" rel="stylesheet" />
+  <link href="aos.css" rel="stylesheet" />
+  <link href="glightbox.min.css" rel="stylesheet" />
+  <link href="swiper-bundle.min.css" rel="stylesheet" />
+
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- D3.js & chromatic scales -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+  <!-- Main CSS File -->
+  <link href="main.css" rel="stylesheet" />
+
+  <style>
+    /* Typography & Colors */
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #343a40;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2.page-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: #0d6efd;
+      margin-bottom: 1rem;
+    }
+
+    /* Header / Logo */
+    .sitename {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.25rem;
+      color: #ffffff;
+    }
+
+    /* Navigation */
+    .navmenu ul li a {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .navmenu .active {
+      background-color: rgba(13, 110, 253, 0.1);
+      border-radius: 0.25rem;
+    }
+
+    /* Section Background */
+    #network-section {
+      background-color: #f8f9fa;
+      padding: 3rem 0;
+    }
+
+    /* Movie Buttons */
+    .movie-buttons .btn {
+      margin: 0.5rem;
+    }
+
+    /* Controls Panel */
+    #controls {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background-color: #ffffff;
+      border: 1px solid #dee2e6;
+      border-radius: 0.25rem;
+    }
+
+    #controls label {
+      margin-right: 0.5rem;
+      font-weight: 500;
+    }
+
+    #controls input[type="range"] {
+      vertical-align: middle;
+      margin: 0 0.5rem 0 0.2rem;
+    }
+
+    #controls select,
+    #controls input[type="text"] {
+      margin-right: 1rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      border: 1px solid #ced4da;
+    }
+
+    #controls .role-checkbox {
+      margin-right: 0.5rem;
+    }
+
+    /* Network Container */
+    #network-container {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #dee2e6;
+      border-radius: 0.25rem;
+      background-color: #ffffff;
+      position: relative;
+      margin-top: 1.5rem;
+      overflow: hidden;
+    }
+
+    /* Zoomable group */
+    #graph-g {
+      cursor: grab;
+    }
+
+    /* Particles.js canvas */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    /* Centered cinematic quote */
+    .center-quote {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: #333333;
+      text-shadow:
+        3px 3px 6px rgba(0, 0, 0, 0.2),
+        -2px -2px 4px rgba(255, 255, 255, 0.6);
+      z-index: 2;
+      text-align: center;
+      padding: 0 1rem;
+      line-height: 1.3;
+    }
+
+    /* Stats Overlay (inside network box) */
+    .stats-overlay {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      color: #0d6efd;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      pointer-events: none;
+      z-index: 3;
+      width: 200px;
+      line-height: 1.3;
+    }
+
+    .stats-overlay strong {
+      color: #0d6efd;
+    }
+
+    .stats-overlay ul {
+      list-style: decimal inside;
+      margin: 4px 0;
+      padding-left: 16px;
+    }
+
+    .stats-overlay ul li {
+      margin-bottom: 2px;
+    }
+
+    /* Tooltip */
+    .tooltip-node {
+      position: absolute;
+      pointer-events: none;
+      background-color: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.25rem;
+      font-size: 0.85rem;
+      font-family: 'Roboto', sans-serif;
+      z-index: 4;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      max-width: 220px;
+      word-wrap: break-word;
+    }
+
+    /* Highlighted node animation */
+    @keyframes pulse {
+      0% {
+        stroke-width: 2;
+      }
+      50% {
+        stroke-width: 6;
+      }
+      100% {
+        stroke-width: 2;
+      }
+    }
+
+    .highlighted {
+      stroke: #ff0000 !important;
+      animation: pulse 1s infinite;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      background-color: #fff;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .footer .credits a {
+      color: #0d6efd;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #network-container {
+        height: 400px;
+      }
+
+      .center-quote {
+        font-size: 1.5rem;
+      }
+
+      .movie-buttons {
+        text-align: center;
+      }
+
+      #controls {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      #controls > * {
+        margin-bottom: 0.5rem;
+      }
+
+      .stats-overlay {
+        width: 150px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="index-page">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+    <div class="profile-img mt-4">
+      <img src="rhi2.jpg" alt="Profile Image" class="img-fluid rounded-circle" />
+    </div>
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center mt-3 mb-4">
+      <h1 class="sitename">Rhishikanya Batswa</h1>
+    </a>
+    <div class="social-links text-center mb-4">
+      <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+    </div>
+    <nav id="navmenu" class="navmenu">
+      <ul class="pt-2">
+        <li><a href="index.html"><i class="bi bi-house navicon"></i> Home</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Education</a></li>
+        <li><a href="index.html#portfolio"><i class="bi bi-images navicon"></i> Publications</a></li>
+        <li>
+          <a href="projects.html" class="active"><i class="bi bi-folder navicon"></i> Projects</a>
+        </li>
+        <li><a href="index.html#services"><i class="bi bi-hdd-stack navicon"></i> Awards &amp; Achievements</a></li>
+        <li class="dropdown">
+          <a href="#"><i class="bi bi-menu-button navicon"></i> <span>Blog</span>
+            <i class="bi bi-chevron-down toggle-dropdown"></i>
+          </a>
+        </li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- End Header -->
+
+  <main id="main">
+    <!-- ======= Network Visualization Section ======= -->
+    <section id="network-section" class="projects section">
+      <div class="container" data-aos="fade-up">
+        <div class="text-center mb-4">
+          <h2 class="page-title"><i class="bi bi-diagram-3"></i> Interactive Character Networks</h2>
+          <p class="text-muted">
+            Select a movie below to explore its interactive character network. 
+          </p>
+        </div>
+
+        <!-- Movie Selection Buttons -->
+        <div class="movie-buttons text-center mb-3">
+          <button class="btn btn-outline-primary" data-movie="bulbul">Bulbul Can Sing</button>
+          <button class="btn btn-outline-primary" data-movie="vr">Village Rockstar</button>
+          <button class="btn btn-outline-primary" data-movie="beautiful">Adomyo</button>
+          <button class="btn btn-outline-primary" data-movie="mission_china">Kothanodi</button>
+          <button class="btn btn-outline-primary" data-movie="local_kung_fu">Jetuka Pator Dore</button>
+          <button class="btn btn-outline-primary" data-movie="qatl_e_aam">Calendar</button>
+        </div>
+
+        <!-- Controls Panel -->
+        <div id="controls" class="d-flex align-items-center flex-wrap">
+          <!-- Degree Threshold -->
+          <label for="degreeThreshold">Degree ≥ <span id="degreeValue">0</span>:</label>
+          <input type="range" id="degreeThreshold" min="0" max="10" value="0" />
+
+          <!-- Centrality Selector -->
+          <label for="centralitySelect">Color by:</label>
+          <select id="centralitySelect">
+            <option value="degree">Degree</option>
+            <option value="betweenness">Betweenness</option>
+            <option value="closeness">Closeness</option>
+            <option value="eigenvector">Eigenvector</option>
+          </select>
+
+          <!-- Role Filters (checkboxes inserted dynamically) -->
+          <div id="roleFilters" class="d-flex align-items-center"></div>
+
+          <!-- Search Box -->
+          <label for="searchBox">Search:</label>
+          <input type="text" id="searchBox" placeholder="Character name..." />
+          <button id="searchBtn" class="btn btn-sm btn-secondary">Go</button>
+        </div>
+
+        <!-- Network Container -->
+        <div id="network-container">
+          <!-- Placeholder area: particles.js and quote -->
+          <div id="particles-js"></div>
+          <div class="center-quote">“Every frame tells a story.”</div>
+        </div>
+
+        <!-- Tooltip for nodes -->
+        <div class="tooltip-node" id="tooltip-node"></div>
+      </div>
+    </section>
+    <!-- End Network Visualization Section -->
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <div class="copyright mb-2">
+            <p>
+              &copy; <span>Copyright</span>
+              <strong>Rhishikanya Batswa</strong> <span>All Rights Reserved</span>
+            </p>
+          </div>
+          <div class="credits">
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+  <!-- End Scroll Top -->
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="bootstrap.bundle.min.js"></script>
+  <script src="validate.js"></script>
+  <script src="aos.js"></script>
+  <script src="typed.umd.js"></script>
+  <script src="noframework.waypoints.js"></script>
+  <script src="glightbox.min.js"></script>
+  <script src="imagesloaded.pkgd.min.js"></script>
+  <script src="isotope.pkgd.min.js"></script>
+  <script src="swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="main.js"></script>
+
+  <script>
+    // References
+    const containerElem = document.getElementById('network-container');
+    const degreeSlider = document.getElementById('degreeThreshold');
+    const degreeValueLabel = document.getElementById('degreeValue');
+    const centralitySelect = document.getElementById('centralitySelect');
+    const roleFiltersContainer = document.getElementById('roleFilters');
+    const searchBox = document.getElementById('searchBox');
+    const searchBtn = document.getElementById('searchBtn');
+
+    let width = containerElem.clientWidth;
+    let height = containerElem.clientHeight;
+    let svg, simulation, graphGroup;
+    let linkElements, nodeElements, labelElements;
+    let allData = null; // { nodes: [...], links: [...] }
+    let zoomBehavior;
+
+    // Initialize Particles.js
+    function initParticles() {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: ['#ff1493', '#32cd32', '#ff69b4', '#008000'] },
+          shape: { type: "circle" },
+          opacity: { value: 0.7, random: true, anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false } },
+          size: { value: 4, random: true, anim: { enable: true, speed: 3, size_min: 1, sync: false } },
+          line_linked: { enable: true, distance: 120, color: "#ffffff", opacity: 0.2, width: 1 },
+          move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "bounce", bounce: false, attract: { enable: false } }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 200, line_linked: { opacity: 0.5 } },
+            bubble: { distance: 200, size: 6, duration: 2, opacity: 0.8, speed: 3 },
+            repulse: { distance: 100, duration: 0.4 },
+            push: { particles_nb: 4 },
+            remove: { particles_nb: 2 }
+          }
+        },
+        retina_detect: true
+      });
+    }
+
+    // Initialize SVG, simulation, and zoom
+    function initNetworkCanvas() {
+      // Remove particles/quote
+      if (window.pJSDom && window.pJSDom.length > 0) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+      containerElem.innerHTML = '';
+
+      // Stats overlay
+      const overlay = document.createElement('div');
+      overlay.classList.add('stats-overlay');
+      overlay.id = 'stats-overlay';
+      overlay.textContent = 'Loading stats...';
+      containerElem.appendChild(overlay);
+
+      // SVG
+      svg = d3.select('#network-container')
+        .append('svg')
+        .attr('width', width = containerElem.clientWidth)
+        .attr('height', height = containerElem.clientHeight);
+
+      // Zoomable group
+      graphGroup = svg.append('g').attr('id', 'graph-g');
+
+      // Zoom behavior
+      zoomBehavior = d3.zoom()
+        .scaleExtent([0.5, 4])
+        .on('zoom', (event) => {
+          graphGroup.attr('transform', event.transform);
+        });
+      svg.call(zoomBehavior).on('dblclick.zoom', null);
+
+      // Force simulation
+      simulation = d3.forceSimulation()
+        .force('link', d3.forceLink().id(d => d.id).distance(120))
+        .force('charge', d3.forceManyBody().strength(-300))
+        .force('center', d3.forceCenter(width / 2, height / 2));
+
+      // Prepare empty selections
+      linkElements = graphGroup.append('g').selectAll('line');
+      nodeElements = graphGroup.append('g').selectAll('circle');
+      labelElements = graphGroup.append('g').selectAll('text');
+    }
+
+    // Update stats overlay, including top 5 characters by degree
+    function updateStats(nodes, links) {
+      const numNodes = nodes.length;
+      const numEdges = links.length;
+      const totalDegree = nodes.reduce((sum, d) => sum + d.degree, 0);
+      const avgDegree = (totalDegree / numNodes).toFixed(1);
+
+      // Compute top 5 by degree
+      const top5 = nodes.slice()
+        .sort((a, b) => b.degree - a.degree)
+        .slice(0, 5);
+
+      let html = `
+        <strong>Network Stats</strong><br/>
+        Nodes: <strong>${numNodes}</strong><br/>
+        Edges: <strong>${numEdges}</strong><br/>
+        Avg. Degree: <strong>${avgDegree}</strong><br/><br/>
+        <strong>Top 5 Characters:</strong><br/>
+        <ul>
+      `;
+      top5.forEach((d, i) => {
+        html += `<li>${d.id} (Deg: ${d.degree})</li>`;
+      });
+      html += `</ul>`;
+
+      document.getElementById('stats-overlay').innerHTML = html;
+    }
+
+    // Render graph: layout, animate nodes/edges, then restart simulation
+    function renderGraph(graph, nodeColorScale, edgeColorScale) {
+      // Attach tick handler
+      simulation.nodes(graph.nodes).on('tick', () => {
+        linkElements
+          .attr('x1', d => d.source.x)
+          .attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x)
+          .attr('y2', d => d.target.y);
+
+        nodeElements
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y);
+
+        labelElements
+          .attr('x', d => d.x)
+          .attr('y', d => d.y);
+      });
+
+      simulation.force('link').links(graph.links);
+
+      // Initial run to settle
+      simulation.alpha(1).restart();
+      for (let i = 0; i < 200; i++) simulation.tick();
+      simulation.stop();
+
+      // Calculate edge priorities
+      graph.links.forEach(l => {
+        l.priority = l.source.degree + l.target.degree;
+      });
+      const sortedLinks = graph.links.slice().sort((a, b) => b.priority - a.priority);
+
+      // Draw edges (initially hidden)
+      linkElements = graphGroup.select('g:nth-of-type(1)').selectAll('line')
+        .data(graph.links)
+        .join('line')
+        .attr('x1', d => d.source.x)
+        .attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x)
+        .attr('y2', d => d.target.y)
+        .attr('stroke', d => edgeColorScale(d.value))
+        .attr('stroke-width', d => Math.sqrt(d.value) * 2)
+        .attr('opacity', 0);
+
+      // Draw nodes (initially hidden)
+      nodeElements = graphGroup.select('g:nth-of-type(2)').selectAll('circle')
+        .data(graph.nodes)
+        .join('circle')
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y)
+        .attr('r', 0)                                /* initial radius 0 */
+        .attr('fill', d => nodeColorScale(d.centralityValue))
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 1.5)
+        .attr('opacity', 0)
+        .call(d3.drag()
+          .on('start', (event, d) => {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+          })
+          .on('drag', (event, d) => {
+            d.fx = event.x;
+            d.fy = event.y;
+          })
+          .on('end', (event, d) => {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+          })
+        );
+
+      // Draw labels (initially hidden)
+      labelElements = graphGroup.select('g:nth-of-type(3)').selectAll('text')
+        .data(graph.nodes)
+        .join('text')
+        .text(d => d.name)
+        .attr('x', d => d.x)
+        .attr('y', d => d.y)
+        .attr('font-size', '0.75rem')
+        .attr('dx', 12)
+        .attr('dy', 4)
+        .attr('opacity', 0);
+
+      // Tooltip
+      const tooltip = d3.select('#tooltip-node');
+      nodeElements.on('mouseover', (event, d) => {
+          let html = `<strong>${d.name}</strong><br/>Role: ${d.role}<br/>Degree: ${d.degree}`;
+          if (d['Betweenness Centrality'] !== undefined) html += `<br/>Betweenness: ${(+d['Betweenness Centrality']).toFixed(3)}`;
+          if (d['Closeness Centrality'] !== undefined) html += `<br/>Closeness: ${(+d['Closeness Centrality']).toFixed(3)}`;
+          if (d['Eigenvector Centrality'] !== undefined) html += `<br/>Eigenvector: ${(+d['Eigenvector Centrality']).toFixed(3)}`;
+          tooltip.style('left', (event.pageX + 10) + 'px')
+            .style('top', (event.pageY + 10) + 'px')
+            .html(html)
+            .transition().duration(200).style('opacity', 1);
+        })
+        .on('mouseout', () => {
+          tooltip.transition().duration(200).style('opacity', 0);
+        })
+        .on('click', (event, d) => {
+          let alertText = `Character: ${d.name}\nRole: ${d.role}\nDegree: ${d.degree}`;
+          if (d['Betweenness Centrality'] !== undefined) alertText += `\nBetweenness: ${(+d['Betweenness Centrality']).toFixed(3)}`;
+          if (d['Closeness Centrality'] !== undefined) alertText += `\nCloseness: ${(+d['Closeness Centrality']).toFixed(3)}`;
+          if (d['Eigenvector Centrality'] !== undefined) alertText += `\nEigenvector: ${(+d['Eigenvector Centrality']).toFixed(3)}`;
+          alert(alertText);
+        });
+
+      // Animate nodes in descending degree
+      const nodesSorted = graph.nodes.slice().sort((a, b) => b.degree - a.degree);
+      nodesSorted.forEach((d, i) => {
+        const delay = i * 100;
+        nodeElements.filter(n => n.id === d.id)
+          .transition().delay(delay).duration(600)
+          .attr('opacity', 1)
+          .attr('r', 5 + (d.degree * 2));
+        labelElements.filter(n => n.id === d.id)
+          .transition().delay(delay + 500).duration(300)
+          .attr('opacity', 1);
+      });
+
+      // Animate edges after nodes finish
+      const nodeAnimationEnd = nodesSorted.length * 100 + 600;
+      sortedLinks.forEach((linkData, i) => {
+        const delay = nodeAnimationEnd + i * 100;
+        linkElements.filter(l => {
+            const src = (typeof l.source === 'object' ? l.source.id : l.source);
+            const tgt = (typeof l.target === 'object' ? l.target.id : l.target);
+            return src === linkData.source.id && tgt === linkData.target.id;
+          })
+          .transition().delay(delay).duration(400)
+          .attr('opacity', 1);
+      });
+
+      // Restart simulation after all animations
+      const allAnimationEnd = nodeAnimationEnd + sortedLinks.length * 100 + 400;
+      setTimeout(() => {
+        simulation.alpha(0.5).restart();
+      }, allAnimationEnd);
+    }
+
+    // Apply filters: degree threshold, roles
+    function applyFilters() {
+      if (!allData) return;
+      const threshold = +degreeSlider.value;
+      const selectedRoles = new Set([...roleFiltersContainer.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value));
+
+      // Filter nodes
+      nodeElements.each(function(d) {
+        const passDegree = d.degree >= threshold;
+        const passRole = selectedRoles.size === 0 || selectedRoles.has(d.role);
+        const visible = passDegree && passRole;
+        d.visible = visible;
+        d3.select(this).attr('display', visible ? null : 'none');
+      });
+      labelElements.each(function(d) {
+        const visible = d.visible;
+        d3.select(this).attr('display', visible ? null : 'none');
+      });
+
+      // Filter edges: show only if both endpoints visible
+      linkElements.each(function(d) {
+        const visible = d.source.visible && d.target.visible;
+        d3.select(this).attr('display', visible ? null : 'none');
+      });
+    }
+
+    // Update node colors based on selected centrality metric (size stays based on degree)
+    function updateCentralityVisuals() {
+      if (!allData) return;
+      const metric = centralitySelect.value; // 'degree','betweenness','closeness','eigenvector'
+      allData.nodes.forEach(d => {
+        if (metric === 'degree') {
+          d.centralityValue = d.degree;
+        } else if (metric === 'betweenness') {
+          d.centralityValue = +d['Betweenness Centrality'];
+        } else if (metric === 'closeness') {
+          d.centralityValue = +d['Closeness Centrality'];
+        } else if (metric === 'eigenvector') {
+          d.centralityValue = +d['Eigenvector Centrality'];
+        }
+      });
+      const values = allData.nodes.map(d => d.centralityValue);
+      const maxC = d3.max(values), minC = d3.min(values);
+      const colorScale = d3.scaleSequential(d3.interpolateViridis).domain([minC, maxC]);
+
+      nodeElements.transition().duration(500)
+        .attr('fill', d => colorScale(d.centralityValue));
+      // Node radius remains 5 + degree*2, unchanged during centrality switch
+    }
+
+    // Populate role filter checkboxes
+    function populateRoleFilters() {
+      if (!allData) return;
+      const roles = Array.from(new Set(allData.nodes.map(d => d.role))).sort();
+      roleFiltersContainer.innerHTML = '';
+      roles.forEach(role => {
+        const id = `role-${role.replace(/\s+/g, '_')}`;
+        const label = document.createElement('label');
+        label.classList.add('role-checkbox');
+        label.innerHTML = `<input type="checkbox" id="${id}" value="${role}" /> ${role}`;
+        roleFiltersContainer.appendChild(label);
+        label.querySelector('input').addEventListener('change', () => {
+          applyFilters();
+        });
+      });
+    }
+
+    // Search and highlight
+    function performSearch() {
+      const name = searchBox.value.trim().toLowerCase();
+      if (!name) return;
+      nodeElements.classed('highlighted', false);
+      const match = allData.nodes.find(d => d.id.toLowerCase() === name);
+      if (!match) {
+        alert('Character not found.');
+        return;
+      }
+      const transform = d3.zoomTransform(svg.node());
+      const scale = 2;
+      const x = match.x * scale;
+      const y = match.y * scale;
+      svg.transition().duration(750).call(
+        zoomBehavior.transform,
+        d3.zoomIdentity.translate(width / 2 - x, height / 2 - y).scale(scale)
+      );
+      nodeElements.filter(d => d.id === match.id)
+        .classed('highlighted', true);
+      setTimeout(() => {
+        nodeElements.filter(d => d.id === match.id)
+          .classed('highlighted', false);
+      }, 3000);
+    }
+
+    // Load a network given movie identifier
+    function loadNetwork(movie) {
+      initNetworkCanvas();
+      let centralityFile, edgeFile;
+      if (movie === 'bulbul') {
+        centralityFile = 'Data/Bulbul/bulbul_centrality.csv';
+        edgeFile = 'Data/Bulbul/Bulbul.csv';
+      } else if (movie === 'vr') {
+        centralityFile = 'Data/VR/vr_centrality.csv';
+        edgeFile = 'Data/VR/vr.csv';
+      } else {
+        d3.json(`data/${movie}.json`).then(graph => {
+          graph.nodes.forEach(n => {
+            n.degree = 0;
+            n['Betweenness Centrality'] = +n['Betweenness Centrality'] || 0;
+            n['Closeness Centrality'] = +n['Closeness Centrality'] || 0;
+            n['Eigenvector Centrality'] = +n['Eigenvector Centrality'] || 0;
+          });
+          graph.links.forEach(l => {
+            const src = graph.nodes.find(n => n.id === l.source);
+            const tgt = graph.nodes.find(n => n.id === l.target);
+            if (src) src.degree++;
+            if (tgt) tgt.degree++;
+            l.source = src;
+            l.target = tgt;
+            l.value = +l.value || 1;
+          });
+          allData = { nodes: graph.nodes, links: graph.links };
+          degreeSlider.max = d3.max(allData.nodes, d => d.degree);
+          degreeValueLabel.textContent = '0';
+          populateRoleFilters();
+          updateCentralityVisuals();
+          renderGraph(allData,
+            d3.scaleSequential(d3.interpolateViridis).domain([0, d3.max(allData.nodes, d => d.centralityValue)]),
+            d3.scaleSequential(d3.interpolatePlasma).domain([0, d3.max(allData.links, l => l.value)])
+          );
+          updateStats(allData.nodes, allData.links);
+        }).catch(err => {
+          console.error(`Error loading ${movie}.json:`, err);
+          d3.select('#network-container')
+            .append('text')
+            .attr('x', width / 2)
+            .attr('y', height / 2)
+            .attr('text-anchor', 'middle')
+            .attr('fill', '#888')
+            .text(`No data for ${movie}`);
+          document.getElementById('stats-overlay').textContent = 'No data';
+        });
+        return;
+      }
+
+      // CSV-based loader
+      d3.csv(centralityFile).then(nodeRows => {
+        const centralityMap = new Map();
+        nodeRows.forEach(r => {
+          centralityMap.set(r['Character'], {
+            'Degree Centrality': r['Degree Centrality'],
+            'Betweenness Centrality': r['Betweenness Centrality'],
+            'Closeness Centrality': r['Closeness Centrality'],
+            'Eigenvector Centrality': r['Eigenvector Centrality']
+          });
+        });
+
+        d3.csv(edgeFile).then(rows => {
+          const nodesMap = new Map();
+          const links = [];
+
+          rows.forEach(row => {
+            const a = row['Characters A'], b = row['Characters B'];
+            const weight = +row['Weight'] || 1;
+            const roleA = row['Role (Characters A)'] || 'Unknown';
+            const roleB = row['Role (Characters B)'] || 'Unknown';
+
+            if (!nodesMap.has(a)) {
+              const base = {
+                id: a,
+                name: a,
+                role: roleA,
+                degree: 0,
+                'Betweenness Centrality': +centralityMap.get(a)?.['Betweenness Centrality'] || 0,
+                'Closeness Centrality': +centralityMap.get(a)?.['Closeness Centrality'] || 0,
+                'Eigenvector Centrality': +centralityMap.get(a)?.['Eigenvector Centrality'] || 0
+              };
+              nodesMap.set(a, base);
+            }
+            if (!nodesMap.has(b)) {
+              const base = {
+                id: b,
+                name: b,
+                role: roleB,
+                degree: 0,
+                'Betweenness Centrality': +centralityMap.get(b)?.['Betweenness Centrality'] || 0,
+                'Closeness Centrality': +centralityMap.get(b)?.['Closeness Centrality'] || 0,
+                'Eigenvector Centrality': +centralityMap.get(b)?.['Eigenvector Centrality'] || 0
+              };
+              nodesMap.set(b, base);
+            }
+            nodesMap.get(a).degree++;
+            nodesMap.get(b).degree++;
+            links.push({
+              source: a,
+              target: b,
+              value: weight
+            });
+          });
+
+          const nodes = Array.from(nodesMap.values());
+          const degrees = nodes.map(n => n.degree);
+          const maxDeg = d3.max(degrees);
+
+          const preparedLinks = links.map(l => {
+            return {
+              source: nodesMap.get(l.source),
+              target: nodesMap.get(l.target),
+              value: l.value
+            };
+          });
+
+          nodes.forEach(n => {
+            n.centralityValue = n.degree;
+          });
+
+          allData = { nodes: nodes, links: preparedLinks };
+
+          degreeSlider.max = maxDeg;
+          degreeValueLabel.textContent = '0';
+
+          populateRoleFilters();
+          updateCentralityVisuals();
+
+          renderGraph(allData,
+            d3.scaleSequential(d3.interpolateViridis).domain([0, d3.max(nodes, d => d.centralityValue)]),
+            d3.scaleSequential(d3.interpolatePlasma).domain([0, d3.max(preparedLinks, l => l.value)])
+          );
+          updateStats(nodes, preparedLinks);
+        }).catch(err => {
+          console.error(`Error loading ${edgeFile}:`, err);
+          d3.select('#network-container')
+            .append('text')
+            .attr('x', width / 2)
+            .attr('y', height / 2)
+            .attr('text-anchor', 'middle')
+            .attr('fill', '#888')
+            .text(`Error loading edges.`);
+          document.getElementById('stats-overlay').textContent = 'No data';
+        });
+      }).catch(err => {
+        console.error(`Error loading ${centralityFile}:`, err);
+        d3.select('#network-container')
+          .append('text')
+          .attr('x', width / 2)
+          .attr('y', height / 2)
+          .attr('text-anchor', 'middle')
+          .attr('fill', '#888')
+          .text(`Error loading centrality.`);
+        document.getElementById('stats-overlay').textContent = 'No data';
+      });
+    }
+
+    // Event listeners for controls
+    degreeSlider.addEventListener('input', () => {
+      degreeValueLabel.textContent = degreeSlider.value;
+      applyFilters();
+    });
+    centralitySelect.addEventListener('change', () => {
+      updateCentralityVisuals();
+    });
+    searchBtn.addEventListener('click', () => {
+      performSearch();
+    });
+    searchBox.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    // Movie buttons
+    document.querySelectorAll('.movie-buttons .btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const movie = button.getAttribute('data-movie');
+        loadNetwork(movie);
+      });
+    });
+
+    // On load, init particles
+    window.addEventListener('DOMContentLoaded', () => {
+      initParticles();
+    });
+  </script>
+</body>
+
+</html>
