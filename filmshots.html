@@ -1085,12 +1085,12 @@ h3.movie-title::before {
         }
 
         // Open modal at given index
-        function openModal(index, filename) {
-            modalOverlay.style.display = 'flex';
-            modalImage.src = currentImageList[index];
-            modalImage.dataset.currentIndex = index;
-            modalTitle.innerText = filename;
-        }
+       function openModal(index, filename) {
+    modalOverlay.style.display = 'flex';
+    modalImage.src = currentImageList[index];
+    modalImage.dataset.currentIndex = index;
+    document.getElementById('modal-title').innerText = filename; // Set the title
+}
 
         // Close modal
         function closeModal() {
@@ -1120,51 +1120,54 @@ h3.movie-title::before {
         modalNext.addEventListener('click', showNextImage);
 
         // Load and display shots for chosen category/movie
-        async function displayShots(category, movie) {
-            shotsGallery.innerHTML = '';
-            placeholder.style.display = 'none';
-            particlesContainer.style.display = 'none';
-            quoteContainer.style.display = 'none';
+       async function displayShots(category, movie) {
+    shotsGallery.innerHTML = '';
+    placeholder.style.display = 'none';
+    // Hide particles & quote so images are fully clickable
+    particlesContainer.style.display = 'none';
+    quoteContainer.style.display = 'none';
 
-            const filenames = await fetchImageManifest(category, movie);
-            if (!filenames || filenames.length === 0) {
-                shotsGallery.innerHTML = '<p style="color: blue; text-align: center; padding: 2rem;">No shots available </p>';
-                return;
-            }
-            
-            currentImageNames = filenames;
-            currentImageList = filenames.map(fname => `shots/${category}/${movie}/${fname}`);
+    const filenames = await fetchImageManifest(category, movie);
+    if (!filenames || filenames.length === 0) {
+        shotsGallery.innerHTML = '<p>No shots available for this selection.</p>';
+        return;
+    }
 
-            filenames.forEach((filename, idx) => {
-                const src = `shots/${category}/${movie}/${filename}`;
+    // Build full URLs list for modal navigation
+    currentImageList = filenames.map(fname => `shots/${category}/${movie}/${fname}`);
 
-                const shotItem = document.createElement('div');
-                shotItem.className = 'shot-item';
-                shotItem.style.animationDelay = `${idx * 100}ms`;
+    filenames.forEach((filename, idx) => {
+        const src = `shots/${category}/${movie}/${filename}`;
 
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = `${movie} shot ${filename}`;
-                img.className = 'shot-img';
+        // Create the wrapper div
+        const shotItem = document.createElement('div');
+        shotItem.className = 'shot-item';
+        shotItem.dataset.index = idx;
 
-                const overlay = document.createElement('div');
-                overlay.className = 'shot-overlay';
-                overlay.innerHTML = `
-                    <h4>${filename}</h4>
-                    <div class="view-icon"><i class="bi bi-arrows-fullscreen"></i></div>
-                `;
+        // Create the image
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `${movie} shot ${filename}`;
+        img.className = 'shot-img';
+        
+        // Create the overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'shot-overlay';
+        overlay.innerHTML = `
+            <h4>${filename}</h4>
+            <div class="view-icon"><i class="bi bi-arrows-fullscreen"></i></div>
+        `;
 
-                shotItem.appendChild(img);
-                shotItem.appendChild(overlay);
+        shotItem.appendChild(img);
+        shotItem.appendChild(overlay);
 
-                shotItem.addEventListener('click', () => {
-                    openModal(idx, filename);
-                });
-
-                shotsGallery.appendChild(shotItem);
-            });
-        }
-
+        shotItem.addEventListener('click', () => {
+            openModal(idx, filename);
+        });
+        
+        shotsGallery.appendChild(shotItem);
+    });
+}
 
         // Compute stats: count images per movie in the category, then draw pie chart
         async function computeStats(category) {
