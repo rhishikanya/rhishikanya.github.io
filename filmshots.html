@@ -58,7 +58,7 @@ h3.movie-title {
     color: #495057;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
-    text-decoration: none;        /* no underlines */
+    text-decoration: none; !important;     /* no underlines */
 }
 
 
@@ -799,21 +799,6 @@ h3.movie-title {
 }
 
 /* remove any unexpected underlines on those headings/buttons */
-h3.category-title,
-h3.movie-title,
-.category-buttons .btn,
-.movie-buttons .btn,
-.category-buttons .btn a,
-.movie-buttons .btn a {
-  text-decoration: none !important;
-}
-
-/* if you used <a> instead of <button>, also ensure links are clean */
-.category-buttons a,
-.movie-buttons a {
-  text-decoration: none !important;
-  color: inherit;   /* keep your button text color */
-}
 
     </style>
 </head>
