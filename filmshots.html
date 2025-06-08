@@ -58,9 +58,16 @@ h3.movie-title {
     color: #495057;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
-    text-decoration: none; !important;     /* no underlines */
+  text-decoration: none   !important;
+  border-bottom: 0        !important;  /* no underlines */
 }
-
+h3.category-title::after,
+h3.category-title::before,
+h3.movie-title::after,
+h3.movie-title::before {
+  content: none           !important;
+  display: none           !important;
+}
 
 
         /* Header / Logo */
