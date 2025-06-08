@@ -796,6 +796,22 @@
   text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 }
 
+/* remove any unexpected underlines on those headings/buttons */
+h3.category-title,
+h3.movie-title,
+.category-buttons .btn,
+.movie-buttons .btn,
+.category-buttons .btn a,
+.movie-buttons .btn a {
+  text-decoration: none !important;
+}
+
+/* if you used <a> instead of <button>, also ensure links are clean */
+.category-buttons a,
+.movie-buttons a {
+  text-decoration: none !important;
+  color: inherit;   /* keep your button text color */
+}
 
     </style>
 </head>
