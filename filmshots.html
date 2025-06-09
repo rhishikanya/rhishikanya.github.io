@@ -784,7 +784,37 @@ h3.movie-title::before {
   text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 }
 
-/* remove any unexpected underlines on those headings/buttons */
+/* make the SVG fill available width but not exceed its native size */
+.pie-svg {
+  width: 100%;
+  height: auto;
+  max-width: 300px;    /* same as your original width */
+}
+
+/* flex container stacks on small screens */
+#stats-container {
+  display: flex;
+  flex-wrap: wrap;       /* allow wrapping */
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+/* on phones, put legend below chart and shrink chart */
+@media (max-width: 576px) {
+  #stats-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .pie-svg {
+    max-width: 250px;    /* slightly smaller on phones */
+  }
+  .chart-legend {
+    margin-top: 0.5rem;  /* ensure breathing room */
+  }
+}
+
 
     </style>
 </head>
@@ -1208,11 +1238,14 @@ function drawPieChart(data) {
   const total = d3.sum(sorted, d => d.count);
 
   // 5) build SVG + group
-  const svg = container.append('svg')
-      .attr('width',  width)
-      .attr('height', height)
-    .append('g')
-      .attr('transform', `translate(${width/2},${height/2})`);
+ const svgRoot = container.append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .classed('pie-svg', true);
+
+const svg = svgRoot.append('g')
+    .attr('transform', `translate(${width/2},${height/2})`);
+
 
   // 6) pie & arc generators
   const pie = d3.pie().value(d => d.count).sort(null);
