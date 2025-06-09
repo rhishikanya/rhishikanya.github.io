@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Film Shots | Rhishikanya Batswa</title>
-  <meta content="Interactive character network visualizations with filters for Assamese films" name="description" />
-  <meta content="Rhishikanya Batswa, Assamese Cinema, Character Networks, Interactive Filters" name="keywords" />
+  <title>Film Shot Catalog</title>
+  <meta content="A professional and elegant catalog of film shots, filterable by category and movie, with subtle animations." name="description" />
+  <meta content="Film Shots, Cinematography, Shot Catalog, Interactive Gallery, Elegant Design, Particle.js" name="keywords" />
 
   <!-- Favicons -->
   <link href="rhi2.jpg" rel="icon" />
@@ -15,1327 +15,584 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Pacifico&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Vendor CSS Files -->
-  <link href="bootstrap.min.css" rel="stylesheet" />
-  <link href="bootstrap-icons.css" rel="stylesheet" />
-  <link href="aos.css" rel="stylesheet" />
-  <link href="glightbox.min.css" rel="stylesheet" />
-  <link href="swiper-bundle.min.css" rel="stylesheet" />
-
-  <!-- Particles.js Library -->
+  <!-- Vendor CSS Files (Bootstrap Icons) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  
+  <!-- Libraries for Animations & Charts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-  <!-- D3.js & chromatic scales -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
-  <!-- Main CSS File -->
-  <link href="main.css" rel="stylesheet" />
-
-    <style>
-        /* Typography & Colors */
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #343a40;
-            margin: 0;
-            padding: 0;
-        }
-
-        h2.page-title {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #0d6efd;
-            margin-bottom: 1rem;
-        }
-h3.category-title,
-h3.movie-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    color: #495057;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-  text-decoration: none   !important;
-  border-bottom: 0        !important;  /* no underlines */
-}
-h3.category-title::after,
-h3.category-title::before,
-h3.movie-title::after,
-h3.movie-title::before {
-  content: none           !important;
-  display: none           !important;
-}
-
-
-        /* Header / Logo */
-        .sitename {
-            font-family: 'Pacifico', cursive;
-            font-size: 2.25rem;
-            color: #ffffff;
-        }
-
-        /* Navigation */
-        .navmenu ul li a {
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .navmenu .active {
-            background-color: rgba(13, 110, 253, 0.1);
-            border-radius: 0.25rem;
-        }
-
-        /* Section Background */
-        #shots-section {
-            background-color: #f8f9fa;
-            padding: 3rem 0;
-        }
-
-        /* Central “Show Shots” Button */
-        #show-shots-btn {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            border: none;
-            color: #ffffff;
-            background: linear-gradient(90deg, #0d6efd, #6610f2);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-        }
-
-        #show-shots-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Container for categories & movies */
-        #category-container,
-        #movie-container {
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            display: none;
-            margin-top: 1rem;
-        }
-
-        #category-container.visible,
-        #movie-container.visible {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .category-buttons .btn,
-        .movie-buttons .btn {
-            margin: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 500;
-            border: 2px solid #0d6efd;
-            background-color: #ffffff;
-            color: #0d6efd;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-            transition: background 0.3s, color 0.3s, transform 0.2s;
-        }
-
-        .category-buttons .btn:hover,
-        .movie-buttons .btn:hover {
-            background: #0d6efd;
-            color: #ffffff;
-            transform: scale(1.05);
-        }
-
-        .category-buttons .btn.active,
-        .movie-buttons .btn.active {
-            background: #0d6efd;
-            color: #ffffff;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
-        }
-
-
-        /* Stats Container */
-        #stats-container {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #pie-chart {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Gallery Container */
-        
-
-        /* Placeholder */
-        #gallery-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: #6c757d;
-            text-align: center;
-            padding: 0 1rem;
-        }
-        
-        /* Asymmetrical Masonry Grid Gallery */
-        #shots-gallery {
-            position: relative;
-            z-index: 3;
-            column-count: 5;
-            column-gap: 1.5em;
-            margin-top: 0; /* Adjusted margin */
-            height: 100%; /* Take full height of parent */
-            
-            /* --- NEW --- Scroller functionality */
-            overflow-y: auto;  /* Show vertical scrollbar only when needed */
-            padding-right: 15px; /* Add space to prevent scrollbar overlap */
-        }
-        
-        /* --- NEW --- Custom Scrollbar for Webkit browsers (Chrome, Safari, Edge) */
-        #shots-gallery::-webkit-scrollbar {
-            width: 8px; 
-        }
-
-        #shots-gallery::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-
-        #shots-gallery::-webkit-scrollbar-thumb {
-            background-color: rgba(13, 110, 253, 0.7);
-            border-radius: 4px;
-        }
-
-        #shots-gallery::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(13, 110, 253, 1);
-        }
-        
-        /* --- NEW --- Custom scrollbar for Firefox */
-        #shots-gallery {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(13, 110, 253, 0.7) rgba(255, 255, 255, 0.1);
-        }
-
-
-        .shot-item {
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 1.5em;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .shot-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .shot-item:hover .shot-img {
-            transform: scale(1.1);
-        }
-
-        .shot-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .shot-item:hover .shot-overlay {
-            opacity: 1;
-        }
-
-        .shot-overlay h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
-            margin: 0;
-            font-weight: 500;
-            transform: translateY(10px);
-            transition: transform 0.4s ease;
-        }
-        
-        .shot-item:hover .shot-overlay h4 {
-            transform: translateY(0);
-        }
-
-        .shot-overlay .view-icon {
-            font-size: 2rem;
-            margin-top: 0.5rem;
-            transform: translateY(10px);
-            transition: transform 0.4s ease 0.1s;
-        }
-        
-         .shot-item:hover .shot-overlay .view-icon {
-            transform: translateY(0);
-        }
-
-
-        /* Particles & Quote Overlay */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .center-quote {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            color: #ffffff;
-            text-shadow:
-                4px 4px 8px rgba(0, 0, 0, 0.5),
-                -3px -3px 6px rgba(255, 255, 255, 0.6);
-            z-index: 2;
-            text-align: center;
-            padding: 0 1rem;
-            line-height: 1.3;
-            opacity: 0.9;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(-50%, -48%);
-            }
-            50% {
-                transform: translate(-50%, -52%);
-            }
-            100% {
-                transform: translate(-50%, -48%);
-            }
-        }
-		/* ===== Neon-Glow Gradient Text ===== */
-/* ===== Refined Gallery Background ===== */
-.gallery-container {
-  position: relative;
-  width: 100%;
-  height: 600px;
-  background: 
-    /* splash layers */
-    radial-gradient(circle 300px at var(--p1,20% 30%), rgba(13,110,253,0.15), transparent 80%),
-    radial-gradient(circle 300px at var(--p2,80% 70%), rgba(102,16,242,0.15), transparent 80%),
-    /* base card style */
-    linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
-  border-radius: 0.75rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0,0,0,0.05);
-  padding: 1.5rem;
-  margin-top: 2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-
-  /* animate the splash positions */
-  animation: splash 20s ease-in-out infinite;
-}
-
-/* keyframes move the two gradients around */
-@keyframes splash {
-  0%   { --p1: 10% 20%; --p2: 90% 80%; }
-  25%  { --p1: 30% 80%; --p2: 70% 20%; }
-  50%  { --p1: 80% 30%; --p2: 20% 70%; }
-  75%  { --p1: 60% 60%; --p2: 40% 40%; }
-  100% { --p1: 10% 20%; --p2: 90% 80%; }
-}
-
-
-/* ===== Polished Neon Text ===== */
-.neon-text {
-  font-family: 'Cinzel', serif;
-  font-size: 2.5rem;
-  line-height: 1.2;
-  background: linear-gradient(
-    90deg,
-    #dbe9ff,      /* soft sky blue */
-    #0d6efd,      /* bootstrap blue */
-    #6610f2,      /* deep purple */
-    #dbe9ff
-  );
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* dual-tone glow */
-  text-shadow:
-    0 0 8px rgba(13, 110, 253, 0.6),
-    0 0 16px rgba(102, 16, 242, 0.4);
-  /* slow hue shift for subtle movement */
-  animation:
-    gradientBG 8s ease infinite,
-    hueShift 15s linear infinite;
-}
-
-@keyframes gradientBG {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes hueShift {
-  from { filter: hue-rotate(0deg); }
-  to   { filter: hue-rotate(360deg); }
-}
-
-
-
-        /* Redesigned Modal Overlay */
-        #modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            animation: fadeInModal 0.4s;
-        }
-        
-        @keyframes fadeInModal {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-
-        #modal-content {
-            position: relative;
-            max-width: 85vw;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            transform: scale(0.95);
-            animation: zoomInModal 0.4s forwards;
-        }
-
-        @keyframes zoomInModal {
-            to { transform: scale(1); }
-        }
-
-        #modal-content img {
-            width: 100%;
-            height: auto;
-            max-height: 75vh;
-            object-fit: contain;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        #modal-title {
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            padding: 0.75rem 0;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-        
-        #modal-prev,
-        #modal-close,
-        #modal-next {
-            position: absolute;
-            background-color: rgba(30, 30, 30, 0.7);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0;
-            font-size: 1.5rem;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-            z-index: 11;
-        }
-
-        #modal-prev:hover,
-        #modal-next:hover,
-        #modal-close:hover {
-            background-color: rgba(0, 0, 0, 1);
-            transform: scale(1.1);
-        }
-
-        #modal-close {
-            top: -20px;
-            right: -20px;
-            font-size: 2rem;
-        }
-
-        #modal-prev {
-            left: -70px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        #modal-next {
-            right: -70px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 2rem 0;
-            font-size: 0.9rem;
-            background-color: #fff;
-            border-top: 1px solid #dee2e6;
-        }
-
-        .footer .credits a {
-            color: #0d6efd;
-            text-decoration: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            #shots-gallery {
-                column-count: 2;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #shots-gallery {
-                column-count: 1;
-                padding-right: 10px;
-            }
-
-            .gallery-container {
-                /* Adjust height for smaller screens */
-                height: 500px;
-                padding: 1rem;
-            }
-
-            #show-shots-btn {
-                width: 100%;
-                text-align: center;
-            }
-            
-            #modal-close {
-                top: 10px;
-                right: 10px;
-                background-color: rgba(0,0,0,0.5);
-            }
-
-            #modal-prev,
-            #modal-next {
-                top: auto;
-                bottom: -70px; /* Position below image */
-                transform: translateY(0);
-            }
-
-            #modal-prev {
-                left: 25%;
-                transform: translateX(-50%);
-            }
-
-            #modal-next {
-                right: 25%;
-                transform: translateX(50%);
-            }
-
-            #pie-chart {
-                width: 250px;
-                height: 250px;
-            }
-
-            .center-quote {
-                font-size: 1.5rem;
-            }
-        }
-		/* ===== Professional Donut Chart Styles ===== */
-/* Container holds both SVG and legend */
-/* ===== Stats Container: flex row ===== */
-/* ======= STYLES ======= */
-
-/* Container holds chart + legend side-by-side, legend centered vertically */
-#stats-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;      /* vertical centering */
-  justify-content: center;
-  gap: 3rem;                /* space between pie & legend */
-  margin-top: 2rem;
-}
-
-/* Legend box */
-.chart-legend {
-  display: flex;
-  flex-direction: column;
-  font-family: 'Poppins', sans-serif;
-  gap: 0.5rem;              /* space between items */
-  background: #fff;
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  /* multi-column support */
-  column-gap: 1.5rem;       /* gap between columns */
-  break-inside: avoid-column;
-}
-
-/* Legend items */
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  break-inside: avoid;      /* don’t split across columns */
-}
-.legend-swatch {
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-}
-.legend-label {
-  font-size: 0.95rem;
-  color: #333;
-  font-weight: 500;
-}
-.legend-stats {
-  font-size: 0.85rem;
-  color: #666;
-}
-
-/* Donut slices hover “pop” */
-#stats-container path.slice {
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-#stats-container path.slice:hover {
-  transform: scale(1.05);
-}
-
-/* Center text */
-#stats-container text.center-text {
-  font-family: 'Poppins', sans-serif;
-  fill: #222;
-}
-#stats-container text.center-text.total {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-#stats-container text.center-text.label {
-  font-size: 1rem;
-  fill: #555;
-}
-/* ===== No-Data Placeholder ===== */
-.no-data-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
-  color: #777;
-  font-size: 1rem;
-  padding: 2rem;
-}
-.no-data-text i {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: #ddd;
-}
-.no-data-text p {
-  margin: 0;
-}
-
-/* ==============================
-   Category & Movie Toggle Buttons
-   ============================== */
-.category-buttons .btn,
-.movie-buttons .btn {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-transform: capitalize;
-  padding: 0.6rem 1.4rem;
-
-  /* Use your primary blue  */
-  background: transparent;
-  color: #0d6efd;
-  border: 2px solid #0d6efd;
-
-  border-radius: 50px;
-  box-shadow: none;
-  transition: 
-    background 0.3s ease, 
-    color 0.3s ease, 
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  cursor: pointer;
-}
-
-/* Hover: fill blue, white text */
-.category-buttons .btn:hover,
-.movie-buttons .btn:hover {
-  background: #0d6efd;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(13,110,253,0.3);
-  transform: scale(1.05);
-}
-
-/* Active: gradient pill */
-.category-buttons .btn.active,
-.movie-buttons .btn.active {
-  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
-  color: #ffffff;
-  border-color: transparent;
-  box-shadow: 0 6px 14px rgba(78, 84, 200, 0.4);
-}
-
-/* Disabled / greyed (if you ever need it) */
-.category-buttons .btn:disabled,
-.movie-buttons .btn:disabled {
-  background: #e9ecef;
-  color: #6c757d;
-  border-color: #dee2e6;
-  cursor: not-allowed;
-}
-
-/* Elegant Hero Title */
-.elegant-title {
-  font-family: 'Cinzel', serif;
-  font-size: 2.75rem;               /* larger, more impactful */
-  text-transform: uppercase;        /* crisp, professional feel */
-  letter-spacing: 0.15em;           /* breathing room between letters */
-  background: linear-gradient(90deg, #0d6efd, #6610f2);
-  -webkit-background-clip: text;    /* gradient text */
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-/* Underline accent */
-.elegant-title::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -8px;
-  width: 60%;
-  height: 3px;
-  background: linear-gradient(90deg, #0d6efd, #6610f2);
-  border-radius: 2px;
-}
-
-/* Icon styling */
-.elegant-title i {
-  margin-right: 0.5rem;
-  color: #0d6efd;                   /* solid accent color */
-  font-size: 1.2em;                 /* slightly larger than normal icon */
-  vertical-align: middle;
-}
-
-/* Optional: subtle drop-shadow for contrast on dark backgrounds */
-.elegant-title span {
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-}
-
-/* make the SVG fill available width but not exceed its native size */
-.pie-svg {
-  width: 100%;
-  height: auto;
-  max-width: 300px;    /* same as your original width */
-}
-
-/* flex container stacks on small screens */
-#stats-container {
-  display: flex;
-  flex-wrap: wrap;       /* allow wrapping */
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  margin-top: 2rem;
-}
-
-/* on phones, put legend below chart and shrink chart */
-@media (max-width: 576px) {
-  #stats-container {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .pie-svg {
-    max-width: 250px;    /* slightly smaller on phones */
-  }
-  .chart-legend {
-    margin-top: 0.5rem;  /* ensure breathing room */
-  }
-}
-
-
-    </style>
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+  <style>
+    /* ===================================================================
+       Base & Typography
+       =================================================================== */
+    :root {
+      --bg-color: #0c0c14;
+      --card-bg: rgba(17, 24, 39, 0.4);
+      --text-dark: #1f2937;
+      --text-light: #a0aec0;
+      --text-bright: #f7fafc;
+      --primary-color: #3b82f6;
+      --accent-color: #8b5cf6;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --dark-gallery-bg: #000000;
+      --glitch-color-1: #00ffff;
+      --glitch-color-2: #ff00ff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: var(--bg-color);
+    }
+    
+    #page-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===================================================================
+       Hero Title & Section Header
+       =================================================================== */
+    #shots-section {
+      padding: 4rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .elegant-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-bright);
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.1);
+      animation: text-flicker 5s linear infinite alternate;
+    }
+
+    .elegant-title .title-text { position: relative; }
+    .elegant-title .title-text::before, .elegant-title .title-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); overflow: hidden; clip-path: inset(50% 0 50% 0); }
+    .elegant-title .title-text::before { left: -2px; text-shadow: -1px 0 var(--glitch-color-1); animation: glitch-anim-1 4s linear infinite alternate; }
+    .elegant-title .title-text::after { left: 2px; text-shadow: -1px 0 var(--glitch-color-2); animation: glitch-anim-2 5s linear infinite alternate; }
+    .elegant-title .title-text span { display: inline-block; opacity: 0; transform: translateY(-20px); animation: reveal-letter 0.5s forwards; }
+    .elegant-title .title-icon { font-size: 0.7em; color: var(--text-bright); opacity: 0.7; }
+    .elegant-title .line-decorator { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 100%; height: 2px; background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); border-radius: 2px; opacity: 0.8; }
+    .section-description { color: var(--text-bright); font-size: 1.1rem; margin-top: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 3px rgba(0,0,0,0.1); opacity: 0.9; }
+    
+    @keyframes reveal-letter { to { opacity: 1; transform: translateY(0); } }
+    @keyframes text-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); } }
+    @keyframes glitch-anim-1 { 0%, 20%, 25%, 100% { clip-path: inset(50% 0 50% 0); } 21% { clip-path: inset(10% 0 85% 0); } 22% { clip-path: inset(80% 0 5% 0); } 23% { clip-path: inset(40% 0 42% 0); } 24% { clip-path: inset(60% 0 25% 0); } }
+    @keyframes glitch-anim-2 { 0%, 40%, 45%, 100% { clip-path: inset(50% 0 50% 0); } 41% { clip-path: inset(20% 0 75% 0); } 42% { clip-path: inset(70% 0 15% 0); } 43% { clip-path: inset(30% 0 52% 0); } 44% { clip-path: inset(50% 0 35% 0); } }
+
+    /* ===================================================================
+       Deep Galaxy Background
+       =================================================================== */
+    .gallery-parent-container { position: relative; margin-top: 3rem; background-color: #000; border-radius: 12px; padding: 2rem; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    #stars1, #stars2, #stars3 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-repeat: repeat; }
+    #stars1 { background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)), radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)), radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)), radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0)); background-size: 200px 200px; animation: move-twink-back 200s linear infinite; }
+    #stars2 { background-image: radial-gradient(1px 1px at 10px 90px, #eee, rgba(0,0,0,0)), radial-gradient(2px 2px at 30px 50px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 80px 30px, #ddd, rgba(0,0,0,0)), radial-gradient(1px 1px at 120px 140px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 170px 180px, #fff, rgba(0,0,0,0)); background-size: 250px 250px; animation: move-twink-back 150s linear infinite; }
+    #stars3 { background-image: radial-gradient(2px 2px at 5px 150px, #eee, rgba(0,0,0,0)), radial-gradient(1px 1px at 25px 60px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 100px 100px, #ddd, rgba(0,0,0,0)), radial-gradient(2px 2px at 130px 20px, #fff, rgba(0,0,0,0)); background-size: 300px 300px; animation: move-twink-back 100s linear infinite; }
+    @keyframes move-twink-back { from { background-position: 0 0; } to { background-position: -10000px 5000px; } }
+
+    /* ===================================================================
+       Buttons & Controls
+       =================================================================== */
+    .initial-controls { text-align: center; padding: 2rem 0; margin-bottom: 2rem; position: relative; }
+    .initial-controls::before, .initial-controls::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 40%; max-width: 500px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); }
+    .initial-controls::before { top: 0; } .initial-controls::after { bottom: 0; }
+    #show-shots-container .bi-diamond-fill { color: rgba(255,255,255,0.3); margin: 0 1rem; font-size: 0.6rem; }
+
+    .controls-container { position: relative; background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); transition: all 0.4s ease; overflow: hidden; }
+    .controls-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at top left, hsla(214, 98%, 56%, 0.15), transparent 40%), radial-gradient(circle at bottom right, hsla(264, 91%, 64%, 0.15), transparent 40%); animation: aurora-anim 10s ease-in-out infinite alternate; z-index: -1; }
+    @keyframes aurora-anim { from { transform: rotate(0deg) scale(1.5); } to { transform: rotate(360deg) scale(1.5); } }
+    
+    #show-shots-btn, .btn { font-family: 'Poppins', sans-serif; font-weight: 500; padding: 0.8rem 2rem; border-radius: 50px; border: 2px solid transparent; transition: all 0.3s ease; cursor: pointer; }
+    #show-shots-btn { font-size: 1.1rem; color: #fff; background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3); align-self: center; }
+    #show-shots-btn:hover { transform: translateY(-3px); box-shadow: 0 7px 20px rgba(13, 110, 253, 0.4); }
+    
+    #category-container, #movie-container { opacity: 0; transform: translateY(-10px); transition: opacity 0.4s ease, transform 0.4s ease; display: none; margin-top: 1.5rem; }
+    #category-container.visible, #movie-container.visible { display: block; opacity: 1; transform: translateY(0); }
+
+    h3.control-title { font-weight: 600; color: var(--text-bright); margin-bottom: 1rem; font-size: 1.2rem; text-align: center;}
+    .category-buttons { text-align: center; }
+    .category-buttons .btn { background: rgba(255, 255, 255, 0.1); color: var(--text-bright); border-color: var(--border-color); margin: 0.3rem; }
+    .category-buttons .btn:hover { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+    .category-buttons .btn.active { background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); border-color: transparent; color: #fff; transform: scale(1.05); box-shadow: 0 0 15px var(--accent-color), 0 0 25px var(--primary-color); }
+
+    /* ===================================================================
+       Film Strip Navigator
+       =================================================================== */
+    #movie-container { padding: 1.5rem 0; }
+    .film-strip-container { position: relative; padding: 10px 40px; }
+    .film-strip-viewport { overflow-x: auto; scroll-behavior: smooth; padding-bottom: 20px; scrollbar-width: none; -ms-overflow-style: none; }
+    .film-strip-viewport::-webkit-scrollbar { display: none; }
+    .film-strip-track { display: flex; gap: 1.5rem; padding: 0 2rem; width: max-content; }
+    .film-strip-container::before, .film-strip-container::after { content: ''; position: absolute; left: 0; right: 0; height: 10px; background-image: repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(255,255,255,0.2) 4px, rgba(255,255,255,0.2) 8px); z-index: 1; }
+    .film-strip-container::before { top: 0; } .film-strip-container::after { bottom: 10px; }
+    .film-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(30, 30, 30, 0.7); color: #fff; border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; z-index: 2; }
+    .film-nav-btn:hover { background-color: rgba(0, 0, 0, 1); transform: translateY(-50%) scale(1.1); }
+    #film-strip-prev { left: 0; } #film-strip-next { right: 0; }
+
+    .film-frame { flex: 0 0 180px; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; cursor: pointer; transition: transform 0.3s ease; }
+    .film-frame:hover { transform: scale(1.05); }
+    .film-frame-image { width: 100%; height: 100px; background-color: #222; border: 2px solid var(--border-color); border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s; }
+    .film-frame-image img { width: 100%; height: 100%; object-fit: cover; }
+    .film-frame-title { font-size: 0.9rem; font-weight: 500; color: var(--text-light); text-align: center; transition: color 0.3s; }
+    .film-frame.active .film-frame-image { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(143, 68, 253, 0.6); }
+    .film-frame.active .film-frame-title { color: var(--text-bright); font-weight: 600; }
+
+    /* ===================================================================
+       Stats & Chart
+       =================================================================== */
+    #stats-container { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem 3rem; margin-top: 2.5rem; padding: 1.5rem 0; min-height: 250px; }
+    .pie-svg { width: 100%; height: auto; max-width: 250px; }
+    .chart-legend { display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem; }
+    .legend-item { display: flex; align-items: center; gap: 0.6rem; }
+    .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+    .legend-label { font-weight: 500; color: var(--text-bright); }
+    .legend-stats { color: var(--text-light); font-size: 0.85rem; }
+    path.slice { transition: transform 0.3s ease; cursor: pointer; }
+    path.slice:hover { transform: scale(1.05); }
+    text.center-text { font-family: 'Poppins', sans-serif; }
+    text.center-text.label { font-size: 1rem; fill: var(--text-light); }
+    text.center-text.total { font-size: 1.5rem; font-weight: 600; fill: var(--text-bright); }
+    .no-data-text { color: var(--text-light); font-style: italic; }
+
+    /* ===================================================================
+       Gallery & Placeholders
+       =================================================================== */
+    #gallery-placeholder { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; text-align: center; width: 90%; max-width: 600px; pointer-events: none; }
+    #cinematic-quote { font-family: 'Cinzel', serif; letter-spacing: 0.05em; font-size: clamp(1.2rem, 3vw, 1.8rem); color: #fff; text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px var(--primary-color), 0 0 82px var(--primary-color), 0 0 92px var(--primary-color), 0 0 102px var(--primary-color), 0 0 151px var(--primary-color); animation: pulse-quote 4s ease-in-out infinite; }
+    @keyframes pulse-quote { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.03); opacity: 1; } }
+    #shots-gallery { position: relative; z-index: 2; width: 100%; height: 100%; column-count: 4; column-gap: 1.5rem; overflow-y: auto; padding-right: 15px; }
+    #shots-gallery::-webkit-scrollbar { width: 8px; } #shots-gallery::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; } #shots-gallery::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.3); border-radius: 4px; } #shots-gallery::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.5); }
+    #shots-gallery { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05); }
+    .shot-item { display: inline-block; width: 100%; margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; cursor: pointer; opacity: 0; transform: translateY(20px); animation: fadeIn 0.5s forwards; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+    .shot-img { width: 100%; height: auto; display: block; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .shot-item:hover .shot-img { transform: scale(1.1); }
+    .shot-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%); color: #fff; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; text-align: center; padding: 1.5rem 1rem; transform: translateY(20px); }
+    .shot-item:hover .shot-overlay { opacity: 1; transform: translateY(0); box-shadow: inset 0 0 15px rgba(255,255,255,0.2); }
+    .shot-overlay h4 { font-weight: 500; font-size: 1rem; margin: 0; transform: translateY(10px); transition: transform 0.4s 0.1s ease; }
+    .shot-item:hover .shot-overlay h4 { transform: translateY(0); }
+    .shot-overlay .view-icon { font-size: 2rem; margin-bottom: 0.5rem; transform: translateY(10px); transition: transform 0.4s ease; }
+    .shot-item:hover .shot-overlay .view-icon { transform: translateY(0); }
+
+    /* ===================================================================
+       Modal
+       =================================================================== */
+    #modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 22, 41, 0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
+    #modal-overlay.visible { opacity: 1; }
+    #modal-content { position: relative; max-width: 85vw; max-height: 85vh; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.3s ease; }
+    #modal-overlay.visible #modal-content { transform: scale(1); }
+    #modal-content img { width: 100%; height: auto; max-height: 75vh; object-fit: contain; border-radius: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+    #modal-title { color: #fff; text-align: center; padding-top: 1rem; font-size: 1.1rem; font-weight: 500; }
+    .modal-nav-btn { position: absolute; background-color: rgba(30, 30, 30, 0.7); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 0; font-size: 1.5rem; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; z-index: 11; }
+    .modal-nav-btn:hover { background-color: rgba(0, 0, 0, 1); transform: scale(1.1); }
+    #modal-close { top: -20px; right: -20px; font-size: 2rem; }
+    #modal-prev { left: -70px; top: 50%; transform: translateY(-50%); }
+    #modal-next { right: -70px; top: 50%; transform: translateY(-50%); }
+    
+    /* ===================================================================
+       Footer
+       =================================================================== */
+    .footer { padding: 4rem 0 2rem 0; background-color: transparent; color: var(--text-light); text-align: center; border-top: 1px solid var(--border-color); margin-top: 4rem; }
+    .footer .social-links a { color: var(--text-light); font-size: 1.2rem; margin: 0 1rem; transition: color 0.3s, transform 0.3s; display: inline-block; }
+    .footer .social-links a:hover { color: var(--text-bright); transform: translateY(-3px); }
+    .footer .copyright { margin-top: 1.5rem; font-size: 0.9rem; }
+    .footer .copyright strong { color: var(--text-bright); font-weight: 500; }
+    .footer .credits { margin-top: 0.5rem; font-size: 0.85rem; }
+    .footer .credits a { color: var(--primary-color); text-decoration: none; transition: color 0.3s; }
+    .footer .credits a:hover { color: var(--accent-color); }
+
+    /* ===================================================================
+       Responsive Design
+       =================================================================== */
+    @media (max-width: 1200px) { #shots-gallery { column-count: 3; } }
+    @media (max-width: 992px) { #shots-gallery { column-count: 2; } .container { padding: 0 1rem; } }
+    @media (max-width: 768px) { .elegant-title { font-size: 2rem; gap: 1rem; } #modal-close { top: 10px; right: 10px; background-color: rgba(0,0,0,0.5); } #modal-prev, #modal-next { bottom: -60px; top: auto; transform: translateY(0); } #modal-prev { left: 30%; transform: translateX(-50%); } #modal-next { right: 30%; transform: translateX(50%); } }
+    @media (max-width: 576px) { #shots-gallery { column-count: 1; } .controls-container { padding: 1.5rem; } }
+  </style>
 </head>
 
-<body class="index-page">
-    <header id="header" class="header dark-background d-flex flex-column">
-        <i class="header-toggle d-xl-none bi bi-list"></i>
-        <div class="profile-img mt-4">
-            <img src="rhi2.jpg" alt="Profile Image" class="img-fluid rounded-circle" />
+<body>
+  <div id="page-background"></div>
+  <main id="main">
+    <section id="shots-section">
+      <div class="container">
+
+        <div class="section-header">
+          <h2 class="elegant-title">
+             <i class="bi bi-film title-icon"></i>
+             <span class="title-text">Film Shot Catalog</span>
+             <i class="bi bi-film title-icon"></i>
+             <div class="line-decorator"></div>
+          </h2>
+          <p class="section-description">
+            An interactive archive of cinematic shots from Assamese films.
+          </p>
         </div>
-        <a href="index.html" class="logo d-flex align-items-center justify-content-center mt-3 mb-4">
-            <h1 class="sitename">Rhishikanya Batswa</h1>
-        </a>
-        <div class="social-links text-center mb-4">
+        
+        <div class="initial-controls">
+            <div id="show-shots-container">
+                <i class="bi bi-diamond-fill"></i>
+                <button id="show-shots-btn">Show Shot Categories</button>
+                <i class="bi bi-diamond-fill"></i>
+            </div>
+        </div>
+
+        <div id="controls-wrapper" style="display: none;">
+            <div class="controls-container">
+              <div id="category-container" class="text-center">
+                <h3 class="control-title">Shot Category</h3>
+                <div class="category-buttons">
+                  <button class="btn" data-category="closeup">Close-up</button>
+                  <button class="btn" data-category="medium">Medium</button>
+                  <button class="btn" data-category="long">Long</button>
+                </div>
+              </div>
+              
+              <div id="stats-container"></div>
+              
+              <div id="movie-container">
+                <h3 class="control-title">Films in This Category</h3>
+                <div class="film-strip-container">
+                    <button id="film-strip-prev" class="film-nav-btn"><i class="bi bi-chevron-left"></i></button>
+                    <div class="film-strip-viewport">
+                        <div class="film-strip-track">
+                            <!-- Film frames will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <button id="film-strip-next" class="film-nav-btn"><i class="bi bi-chevron-right"></i></button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="gallery-parent-container">
+          <div id="stars1"></div>
+          <div id="stars2"></div>
+          <div id="stars3"></div>
+          <div id="gallery-placeholder">
+            <span id="cinematic-quote"></span>
+          </div>
+          <div id="shots-gallery"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer id="footer" class="footer">
+    <div class="container">
+        <div class="social-links">
             <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
-        <nav id="navmenu" class="navmenu">
-            <ul class="pt-2">
-                <li><a href="index.html"><i class="bi bi-house navicon"></i> Home</a></li>
-                <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About</a></li>
-                <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Education</a></li>
-                <li><a href="index.html#portfolio"><i class="bi bi-images navicon"></i> Publications</a></li>
-                <li>
-                    <a href="projects.html"><i class="bi bi-folder navicon"></i> Projects</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#"><i class="bi bi-menu-button navicon"></i> <span>Blog</span>
-                        <i class="bi bi-chevron-down toggle-dropdown"></i>
-                    </a>
-                </li>
-                <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main id="main">
-        <section id="shots-section" class="projects section">
-            <div class="container" data-aos="fade-up">
-                <div class="text-center mb-4">
-                    <h2 class="page-title elegant-title">
-  <i class="bi bi-camera-reels"></i>
-  <span>Film Shot Catalog</span>
-</h2>
-
-                    <p class="text-muted">
-                        Explore Shot Categories
-                    </p>
-                </div>
-
-                <div class="text-center mb-3">
-                    <button id="show-shots-btn">Show Shot Categories</button>
-                </div>
-
-                <div id="category-container" class="text-center category-buttons">
-                    <h3 class="category-title">Select Shot Category</h3>
-                    <button class="btn" data-category="closeup">Close-up</button>
-                    <button class="btn" data-category="medium">Medium</button>
-                    <button class="btn" data-category="long">Long</button>
-                </div>
-
-                <div id="stats-container"></div>
-
-                <div id="movie-container" class="text-center movie-buttons">
-                    <h3 class="movie-title">Films in This Category</h3>
-                    </div>
-
-                <div class="gallery-container" id="gallery-container">
-                    <div id="particles-js"></div>
-                    <div class="center-quote">
-  <span id="typed-quote" class="neon-text"></span>
-</div>
-
-                    <div id="gallery-placeholder">
-                        
-                    </div>
-
-                    <div id="shots-gallery"></div>
-
-                    <div id="modal-overlay">
-                        <div id="modal-content">
-                            <button id="modal-close">&times;</button>
-                            <button id="modal-prev">&#9664;</button>
-                            <img id="modal-image" src="" alt="Large shot" />
-                            <h4 id="modal-title"></h4>
-                            <button id="modal-next">&#9654;</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        </main>
-
-    <footer id="footer" class="footer">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <div class="copyright mb-2">
-                        <p>
-                            &copy; <span>Copyright</span>
-                            <strong>Rhishikanya Batswa</strong> <span>All Rights Reserved</span>
-                        </p>
-                    </div>
-                    <div class="credits">
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                    </div>
-                </div>
-            </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Rhishikanya Batswa</span></strong>. All Rights Reserved
         </div>
-    </footer>
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
+        <div class="credits">
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </div>
+  </footer>
 
-    <script src="bootstrap.bundle.min.js"></script>
-    <script src="validate.js"></script>
-    <script src="aos.js"></script>
-    <script src="typed.umd.js"></script>
-    <script src="noframework.waypoints.js"></script>
-    <script src="glightbox.min.js"></script>
-    <script src="imagesloaded.pkgd.min.js"></script>
-    <script src="isotope.pkgd.min.js"></script>
-    <script src="swiper-bundle.min.js"></script>
+  <div id="modal-overlay">
+    <div id="modal-content">
+      <button id="modal-close" class="modal-nav-btn">&times;</button>
+      <button id="modal-prev" class="modal-nav-btn">&#9664;</button>
+      <img id="modal-image" src="" alt="Large shot" />
+      <h4 id="modal-title"></h4>
+      <button id="modal-next" class="modal-nav-btn">&#9654;</button>
+    </div>
+  </div>
 
-    <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      const titleElement = document.querySelector('.elegant-title .title-text');
+      if (titleElement) {
+          const titleText = titleElement.textContent;
+          titleElement.setAttribute('data-text', titleText);
+          titleElement.innerHTML = '';
+          titleText.split('').forEach((letter, index) => {
+              const span = document.createElement('span');
+              span.textContent = letter;
+              if (letter.trim() === '') { span.innerHTML = '&nbsp;'; }
+              span.style.animationDelay = `${index * 50}ms`;
+              titleElement.appendChild(span);
+          });
+      }
 
-    <script>
-        // Mapping of categories to movies
-        const categoryMovies = {
-            closeup: [
-                { key: 'bulbul', label: 'Bulbul Can Sing' },
-                { key: 'Aamis', label: 'Aamis' },
-				{ key: 'Bandhun', label: 'Bandhun' },
-				{ key: 'Calendar', label: 'Calendar' },
-				{ key: 'Maj Rati Keteki', label: 'Maj Rati Keteki' }
-				
-            ],
-            medium: [
-                { key: 'vr', label: 'VR' },
-                { key: 'Kothanodi', label: 'Kothanodi' }
-            ],
-            long: [
-                { key: 'JPD', label: 'JPD' },
-                { key: 'VR', label: 'VR' }
-            ]
-        };
+      particlesJS('page-background', {
+        particles: { number: { value: 100, density: { enable: true, value_area: 800 } }, color: { value: ["#0d6efd", "#8f44fd", "#ffffff"] }, shape: { type: 'circle' }, opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } }, size: { value: 2, random: true, anim: { enable: true, speed: 2, size_min: 0.5, sync: false } }, line_linked: { enable: false }, move: { enable: true, speed: 1, direction: 'none', random: true, straight: false, out_mode: 'out' } },
+        interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: false } }, modes: { repulse: { distance: 60, duration: 0.4 } } },
+        retina_detect: true
+      });
+      
+      new Typed('#cinematic-quote', {
+        strings: [ '“Every frame tells a story.”', '“Cinema is a matter of what\'s in the frame and what\'s out.”', '“The lens is the painter\'s brush.”', '“Filmmaking is a chance to live many lifetimes.”' ],
+        typeSpeed: 50, backSpeed: 25, backDelay: 3000, startDelay: 500, loop: true, showCursor: false,
+      });
 
-        /**
-         * Fetches a JSON manifest from:
-         * shots/{category}/{movie}/images.json
-         * Returns array of filenames or null.
-         */
-        async function fetchImageManifest(category, movie) {
-            const manifestUrl = `shots/${category}/${movie}/images.json`;
-            try {
-                const response = await fetch(manifestUrl);
-                if (!response.ok) throw new Error('Manifest not found');
-                const fileList = await response.json();
-                if (!Array.isArray(fileList)) throw new Error('Invalid manifest format');
-                return fileList; // e.g. ["sceneA.jpg", "shotB.png", ...]
-            } catch {
-                return null;
+      const showShotsBtn = document.getElementById('show-shots-btn');
+      const showShotsContainer = document.getElementById('show-shots-container');
+      const controlsWrapper = document.getElementById('controls-wrapper');
+      const categoryContainer = document.getElementById('category-container');
+      const movieContainer = document.getElementById('movie-container');
+      const filmStripViewport = movieContainer.querySelector('.film-strip-viewport');
+      const filmStripTrack = movieContainer.querySelector('.film-strip-track');
+      const filmStripPrevBtn = document.getElementById('film-strip-prev');
+      const filmStripNextBtn = document.getElementById('film-strip-next');
+      const shotsGallery = document.getElementById('shots-gallery');
+      const galleryPlaceholder = document.getElementById('gallery-placeholder');
+      const statsContainer = document.getElementById('stats-container');
+      
+      const modalOverlay = document.getElementById('modal-overlay');
+      const modalImage = document.getElementById('modal-image');
+      const modalTitle = document.getElementById('modal-title');
+      const modalPrev = document.getElementById('modal-prev');
+      const modalNext = document.getElementById('modal-next');
+      const modalClose = document.getElementById('modal-close');
+
+      let currentCategory = null;
+      let currentMovie = null;
+      let currentImageList = [];
+      let currentImageNames = [];
+      
+      const categoryMovies = {
+        closeup: [ { key: 'bulbul', label: 'Bulbul Can Sing' }, { key: 'Aamis', label: 'Aamis' }, { key: 'Bandhun', label: 'Bandhun' }, { key: 'Calendar', label: 'Calendar' }, { key: 'Maj Rati Keteki', label: 'Maj Rati Keteki' } ],
+        medium: [ { key: 'vr', label: 'VR' }, { key: 'Kothanodi', label: 'Kothanodi' } ],
+        long: [ { key: 'JPD', label: 'JPD' }, { key: 'VR', label: 'VR' } ]
+      };
+      
+      showShotsBtn.addEventListener('click', () => {
+        showShotsContainer.parentElement.style.display = 'none';
+        controlsWrapper.style.display = 'block';
+        categoryContainer.classList.add('visible');
+      });
+
+      categoryContainer.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const category = btn.getAttribute('data-category');
+          if (currentCategory === category) return;
+          
+          currentCategory = category;
+          currentMovie = null;
+
+          categoryContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          populateMovies(category);
+          movieContainer.classList.add('visible');
+          clearGallery();
+          await computeStats(category);
+        });
+      });
+      
+      filmStripPrevBtn.addEventListener('click', () => {
+        filmStripViewport.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+      filmStripNextBtn.addEventListener('click', () => {
+        filmStripViewport.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modalPrev.addEventListener('click', showPrevImage);
+      modalNext.addEventListener('click', showNextImage);
+      modalOverlay.addEventListener('click', (e) => {
+          if (e.target === modalOverlay) closeModal();
+      });
+
+      async function fetchImageManifest(category, movie) {
+        const manifestUrl = `shots/${category}/${movie}/images.json`;
+        try {
+          const response = await fetch(manifestUrl);
+          if (!response.ok) throw new Error('Manifest not found');
+          const fileList = await response.json();
+          return Array.isArray(fileList) ? fileList : null;
+        } catch {
+          console.error(`Could not fetch manifest for ${category}/${movie}`);
+          return null;
+        }
+      }
+
+      function populateMovies(category) {
+        filmStripTrack.innerHTML = '';
+        const movies = categoryMovies[category] || [];
+        movies.forEach(movie => {
+          const filmFrame = document.createElement('div');
+          filmFrame.className = 'film-frame';
+          filmFrame.dataset.movieKey = movie.key;
+
+          const placeholderImgUrl = `https://placehold.co/180x100/0c0c14/a0aec0?text=${movie.label.replace(/\s/g, '+')}`;
+          
+          filmFrame.innerHTML = `
+            <div class="film-frame-image">
+                <img src="${placeholderImgUrl}" alt="${movie.label} Poster" loading="lazy">
+            </div>
+            <div class="film-frame-title">${movie.label}</div>
+          `;
+
+          filmFrame.addEventListener('click', async () => {
+            const movieKey = movie.key;
+            if (currentMovie === movieKey) {
+              clearGallery();
+              currentMovie = null;
+              filmFrame.classList.remove('active');
+            } else {
+              filmStripTrack.querySelectorAll('.film-frame').forEach(f => f.classList.remove('active'));
+              filmFrame.classList.add('active');
+              currentMovie = movieKey;
+              filmFrame.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+              await displayShots(category, movieKey);
             }
-        }
-
-        const showShotsBtn = document.getElementById('show-shots-btn');
-        const categoryContainer = document.getElementById('category-container');
-        const movieContainer = document.getElementById('movie-container');
-        const shotsGallery = document.getElementById('shots-gallery');
-        const placeholder = document.getElementById('gallery-placeholder');
-        const modalOverlay = document.getElementById('modal-overlay');
-        const modalImage = document.getElementById('modal-image');
-        const modalTitle = document.getElementById('modal-title');
-        const modalPrev = document.getElementById('modal-prev');
-        const modalNext = document.getElementById('modal-next');
-        const modalClose = document.getElementById('modal-close');
-        const statsContainer = document.getElementById('stats-container');
-        const particlesContainer = document.getElementById('particles-js');
-        const quoteContainer = document.querySelector('.center-quote');
-
-        let currentCategory = null;
-        let currentMovie = null; 
-        let currentImageList = [];
-        let currentImageNames = [];
-
-        // Initialize Particles.js for gallery background
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 60, density: { enable: true, value_area: 800 } },
-                color: { value: ['#ffffff', '#0d6efd', '#6610f2'] },
-                shape: { type: 'circle' },
-                opacity: { value: 0.7, random: true, anim: { enable: true, speed: 1, opacity_min: 0.2, sync: false } },
-                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
-                line_linked: { enable: true, distance: 120, color: '#ffffff', opacity: 0.3, width: 1 },
-                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'bounce', bounce: false }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'grab' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                },
-                modes: {
-                    grab: { distance: 180, line_linked: { opacity: 0.5 } },
-                    repulse: { distance: 100, duration: 0.4 },
-                    push: { particles_nb: 4 }
-                }
-            },
-            retina_detect: true
+          });
+          filmStripTrack.appendChild(filmFrame);
         });
+      }
 
-        // Initialize Typed.js for cinematic quote
-        document.addEventListener('DOMContentLoaded', () => {
-  new Typed('#typed-quote', {
-    strings: [
-      '“Every frame tells its own story.”',
-      '“Cinema is the art of whispering through frames.”',
-      '“Between every cut lies a universe of emotion.”'
-    ],
-    typeSpeed: 60,
-    backSpeed: 40,
-    backDelay: 2000,
-    startDelay: 500,
-    loop: true,
-    showCursor: true,
-    cursorChar: '▌'
-  });
-});
+      async function displayShots(category, movie) {
+        shotsGallery.innerHTML = '';
+        galleryPlaceholder.style.display = 'none';
+        const filenames = await fetchImageManifest(category, movie);
 
+        if (!filenames || filenames.length === 0) {
+          galleryPlaceholder.style.display = 'block';
+          galleryPlaceholder.querySelector('#cinematic-quote').textContent = 'No shots available for this selection.';
+          return;
+        }
         
-        // Reveal categories and hide the initial button permanently
-        showShotsBtn.addEventListener('click', () => {
-            showShotsBtn.style.display = 'none';
-            categoryContainer.classList.add('visible');
+        currentImageNames = [...filenames];
+        currentImageList = filenames.map(fname => `shots/${category}/${movie}/${fname}`);
+
+        filenames.forEach((filename, idx) => {
+          const src = `shots/${category}/${movie}/${filename}`;
+          const shotItem = document.createElement('div');
+          shotItem.className = 'shot-item';
+          shotItem.style.animationDelay = `${idx * 50}ms`;
+
+          shotItem.innerHTML = `
+            <img src="${src}" alt="${movie} shot ${filename}" class="shot-img" loading="lazy">
+            <div class="shot-overlay">
+              <div class="view-icon"><i class="bi bi-arrows-fullscreen"></i></div>
+              <h4>${filename}</h4>
+            </div>
+          `;
+
+          shotItem.addEventListener('click', () => openModal(idx));
+          shotsGallery.appendChild(shotItem);
         });
+      }
+      
+      function clearGallery() {
+        shotsGallery.innerHTML = '';
+        galleryPlaceholder.style.display = 'block';
+        closeModal();
+      }
 
-        // When a category is selected, it stays selected. No more collapsing.
-        categoryContainer.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const category = btn.getAttribute('data-category');
+      function openModal(index) {
+        modalOverlay.style.display = 'flex';
+        setTimeout(() => modalOverlay.classList.add('visible'), 10);
+        updateModalImage(index);
+      }
 
-                if (currentCategory !== category) {
-                    currentCategory = category;
-                    currentMovie = null; 
+      function closeModal() {
+        modalOverlay.classList.remove('visible');
+        setTimeout(() => modalOverlay.style.display = 'none', 300);
+      }
+      
+      function updateModalImage(index){
+        modalImage.src = currentImageList[index];
+        modalTitle.innerText = currentImageNames[index];
+        modalImage.dataset.currentIndex = index;
+      }
 
-                    categoryContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
+      function showPrevImage() {
+        let index = parseInt(modalImage.dataset.currentIndex, 10);
+        index = (index - 1 + currentImageList.length) % currentImageList.length;
+        updateModalImage(index);
+      }
 
-                    populateMovies(category);
-                    movieContainer.classList.add('visible');
-                    clearGallery(); 
-                    await computeStats(category);
-                }
-            });
+      function showNextImage() {
+        let index = parseInt(modalImage.dataset.currentIndex, 10);
+        index = (index + 1) % currentImageList.length;
+        updateModalImage(index);
+      }
+
+      async function computeStats(category) {
+        statsContainer.innerHTML = ''; 
+        const movies = categoryMovies[category] || [];
+        const counts = await Promise.all(movies.map(async (m) => {
+          const files = await fetchImageManifest(category, m.key);
+          return { label: m.label, count: files ? files.length : 0 };
+        }));
+
+        const total = counts.reduce((sum, c) => sum + c.count, 0);
+        if (total === 0) {
+          statsContainer.innerHTML = `<div class="no-data-text" style="color: var(--text-bright);">No shot data available for this category.</div>`;
+          return;
+        }
+        drawDonutChart(counts.filter(c => c.count > 0));
+      }
+
+      function drawDonutChart(data) {
+        data.sort((a,b) => b.count - a.count);
+        const width = 250, height = 250, radius = Math.min(width, height) / 2;
+        const color = d3.scaleOrdinal().domain(data.map(d => d.label)).range(d3.quantize(t => d3.interpolateCool(t * 0.8 + 0.1), data.length));
+        d3.select('#stats-container').selectAll('*').remove();
+        const svgRoot = d3.select('#stats-container').append('svg').attr('viewBox', `0 0 ${width} ${height}`).attr('preserveAspectRatio', 'xMidYMid meet').classed('pie-svg', true);
+        const svg = svgRoot.append('g').attr('transform', `translate(${width / 2},${height / 2})`);
+        const pie = d3.pie().value(d => d.count).sort(null);
+        const arc = d3.arc().innerRadius(radius * 0.6).outerRadius(radius * 0.9);
+        svg.selectAll('path.slice').data(pie(data)).enter().append('path').attr('class', 'slice').attr('fill', d => color(d.data.label)).attr('stroke', '#fff').attr('stroke-width', 2).attr('d', d => arc({ ...d, startAngle: d.startAngle, endAngle: d.startAngle })).transition().duration(800).delay((d, i) => i * 80).attrTween('d', d => { const interpolate = d3.interpolate({ startAngle: d.startAngle, endAngle: d.startAngle }, d); return t => arc(interpolate(t)); });
+        const total = d3.sum(data, d => d.count);
+        svg.append('text').attr('class', 'center-text label').attr('dy', '-0.4em').attr('text-anchor', 'middle').text('Total Shots').style('fill', 'var(--text-light)');
+        svg.append('text').attr('class', 'center-text total').attr('dy', '0.8em').attr('text-anchor', 'middle').text(total).style('fill', 'var(--text-bright)');
+        const legend = d3.select('#stats-container').append('div').attr('class', 'chart-legend');
+        data.forEach(d => {
+          const pct = total > 0 ? (d.count / total * 100).toFixed(1) + '%' : '0.0%';
+          const item = legend.append('div').attr('class', 'legend-item');
+          item.append('div').attr('class', 'legend-swatch').style('background', color(d.label));
+          const textWrapper = item.append('div');
+          textWrapper.append('div').attr('class', 'legend-label').text(d.label);
+          textWrapper.append('div').attr('class', 'legend-stats').text(`${d.count} shots (${pct})`);
         });
-        
-        // Populate movie buttons with new toggle logic
-        function populateMovies(category) {
-            movieContainer.innerHTML = '<h3 class="movie-title">Select Movie</h3>';
-            const movies = categoryMovies[category] || [];
-            movies.forEach(movie => {
-                const mb = document.createElement('button');
-                mb.className = 'btn';
-                mb.textContent = movie.label;
-                mb.setAttribute('data-category', category);
-                mb.setAttribute('data-movie', movie.key);
-
-                mb.addEventListener('click', async () => {
-                    const movieKey = movie.key;
-                    
-                    if (currentMovie === movieKey) {
-                        clearGallery();
-                        currentMovie = null; 
-                        mb.classList.remove('active');
-                    } else {
-                        movieContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-                        mb.classList.add('active');
-
-                        await displayShots(category, movieKey);
-                        currentMovie = movieKey; 
-                    }
-                });
-                movieContainer.appendChild(mb);
-            });
-        }
-
-
-        // Clear the gallery and reset placeholder
-        function clearGallery() {
-            shotsGallery.innerHTML = '';
-            placeholder.style.display = 'flex';
-            particlesContainer.style.display = 'block';
-            quoteContainer.style.display = 'block';
-            closeModal();
-        }
-
-        // Open modal at given index
-       function openModal(index, filename) {
-    modalOverlay.style.display = 'flex';
-    modalImage.src = currentImageList[index];
-    modalImage.dataset.currentIndex = index;
-    document.getElementById('modal-title').innerText = filename; // Set the title
-}
-
-        // Close modal
-        function closeModal() {
-            modalOverlay.style.display = 'none';
-        }
-
-        // Show previous image
-        function showPrevImage() {
-            let index = parseInt(modalImage.dataset.currentIndex, 10);
-            index = (index - 1 + currentImageList.length) % currentImageList.length;
-            modalImage.src = currentImageList[index];
-            modalTitle.innerText = currentImageNames[index];
-            modalImage.dataset.currentIndex = index;
-        }
-
-        // Show next image
-        function showNextImage() {
-            let index = parseInt(modalImage.dataset.currentIndex, 10);
-            index = (index + 1) % currentImageList.length;
-            modalImage.src = currentImageList[index];
-            modalTitle.innerText = currentImageNames[index];
-            modalImage.dataset.currentIndex = index;
-        }
-
-        modalClose.addEventListener('click', closeModal);
-        modalPrev.addEventListener('click', showPrevImage);
-        modalNext.addEventListener('click', showNextImage);
-
-        // Load and display shots for chosen category/movie
-       async function displayShots(category, movie) {
-    shotsGallery.innerHTML = '';
-    placeholder.style.display = 'none';
-    // Hide particles & quote so images are fully clickable
-    particlesContainer.style.display = 'none';
-    quoteContainer.style.display = 'none';
-
-    const filenames = await fetchImageManifest(category, movie);
-    if (!filenames || filenames.length === 0) {
-        shotsGallery.innerHTML = '<p>No shots available for this selection.</p>';
-        return;
-    }
-
-    // Build full URLs list for modal navigation
-    currentImageList = filenames.map(fname => `shots/${category}/${movie}/${fname}`);
-
-    filenames.forEach((filename, idx) => {
-        const src = `shots/${category}/${movie}/${filename}`;
-
-        // Create the wrapper div
-        const shotItem = document.createElement('div');
-        shotItem.className = 'shot-item';
-        shotItem.dataset.index = idx;
-
-        // Create the image
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `${movie} shot ${filename}`;
-        img.className = 'shot-img';
-        
-        // Create the overlay
-        const overlay = document.createElement('div');
-        overlay.className = 'shot-overlay';
-        overlay.innerHTML = `
-            <h4>${filename}</h4>
-            <div class="view-icon"><i class="bi bi-arrows-fullscreen"></i></div>
-        `;
-
-        shotItem.appendChild(img);
-        shotItem.appendChild(overlay);
-
-        shotItem.addEventListener('click', () => {
-            openModal(idx, filename);
-        });
-        
-        shotsGallery.appendChild(shotItem);
+      }
     });
-}
-
-        // Compute stats: count images per movie in the category, then draw pie chart
-        async function computeStats(category) {
-            statsContainer.innerHTML = ''; // clear previous
-            const movies = categoryMovies[category] || [];
-            const counts = await Promise.all(movies.map(async (m) => {
-                const files = await fetchImageManifest(category, m.key);
-                return { label: m.label, count: files ? files.length : 0 };
-            }));
-
-            drawPieChart(counts);
-        }
-
-        // Draw pie chart in #stats-container
-   // ======= JS: drawPieChart =======
-// Requires: D3.js v6+
-
-// ======= FULL JS drawPieChart FUNCTION =======
-// Requires D3.js v6+
-
-function drawPieChart(data) {
-  // 1) sort descending by count
-  const sorted = data.slice().sort((a, b) => b.count - a.count);
-
-  // 2) dimensions & color scale
-  const width  = 300;
-  const height = 300;
-  const radius = Math.min(width, height) / 2;
-  const color  = d3.scaleOrdinal()
-    .domain(sorted.map(d => d.label))
-    .range(sorted.map((_, i) => d3.interpolateTurbo(i / sorted.length)));
-
-  // 3) clear container
-  const container = d3.select('#stats-container');
-  container.selectAll('*').remove();
-
-  // 4) compute total
-  const total = d3.sum(sorted, d => d.count);
-
-  // 5) build SVG + group
- const svgRoot = container.append('svg')
-    .attr('viewBox', `0 0 ${width} ${height}`)
-    .attr('preserveAspectRatio', 'xMidYMid meet')
-    .classed('pie-svg', true);
-
-const svg = svgRoot.append('g')
-    .attr('transform', `translate(${width/2},${height/2})`);
-
-
-  // 6) pie & arc generators
-  const pie = d3.pie().value(d => d.count).sort(null);
-  const arc = d3.arc()
-    .innerRadius(radius * 0.5)
-    .outerRadius(radius * 0.9);
-
-  // 7) draw & animate slices
-  svg.selectAll('path.slice')
-    .data(pie(sorted))
-    .enter().append('path')
-      .attr('class', 'slice')
-      .attr('fill', d => color(d.data.label))
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 2)
-      // start each slice collapsed
-      .attr('d', d => arc({ startAngle: d.startAngle, endAngle: d.startAngle }))
-    .transition()
-      .delay((d,i) => i * 100)   // stagger by index
-      .duration(800)
-      .attrTween('d', function(d) {
-        const interpolate = d3.interpolate(
-          { startAngle: d.startAngle, endAngle: d.startAngle },
-          d
-        );
-        return t => arc(interpolate(t));
-      })
-      .attr('opacity', 1);
-
-  // 8) center total text
-  svg.append('text')
-      .attr('class', 'center-text label')
-      .attr('dy', '-0.4em')
-      .attr('text-anchor', 'middle')
-      .text('Total');
-  svg.append('text')
-      .attr('class', 'center-text total')
-      .attr('dy', '0.8em')
-      .attr('text-anchor', 'middle')
-      .text(total);
-
-  // 9) build legend to the right, auto 2 cols if >5
-  const legend = container.append('div')
-      .attr('class', 'chart-legend')
-      .style('column-count', sorted.length > 5 ? 2 : 1);
-
-  sorted.forEach(d => {
-    const pct = ((d.count / total) * 100).toFixed(1) + '%';
-    const item = legend.append('div')
-        .attr('class', 'legend-item');
-    item.append('div')
-        .attr('class', 'legend-swatch')
-        .style('background', color(d.label));
-    const textWrapper = item.append('div');
-    textWrapper.append('div')
-        .attr('class', 'legend-label')
-        .text(d.label);
-    textWrapper.append('div')
-        .attr('class', 'legend-stats')
-        .text(`${d.count} (${pct})`);
-  });
-}
-
-// Example usage:
-// drawPieChart([ {label:'Close-up', count:12}, {label:'Medium', count:8}, … ]);
-async function computeStats(category) {
-  statsContainer.innerHTML = ''; // clear previous
-
-  const movies = categoryMovies[category] || [];
-  const counts = await Promise.all(movies.map(async (m) => {
-    const files = await fetchImageManifest(category, m.key);
-    return { label: m.label, count: files ? files.length : 0 };
-  }));
-
-  const total = counts.reduce((sum, c) => sum + c.count, 0);
-  if (total === 0) {
-    // no data: show elegant placeholder
-    statsContainer.innerHTML = `
-      <div class="no-data-text">
-        <i class="bi bi-exclamation-circle"></i>
-        <p>No data available for this category.</p>
-      </div>`;
-    return;
-  }
-
-  drawPieChart(counts);
-}
-
-
-    </script>
+  </script>
 </body>
 
 </html>
