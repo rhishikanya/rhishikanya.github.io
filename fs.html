@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Film Shot Catalog</title>
   <meta content="A professional and elegant catalog of film shots, filterable by category and movie, with subtle animations." name="description" />
-  <meta content="Film Shots, Cinematography, Shot Catalog, Interactive Gallery, Elegant Design, Particle.js" name="keywords" />
+  <meta content="Film Shots, Cinematography, Shot Catalog, Interactive Gallery, Elegant Design, Particle.js, Tone.js" name="keywords" />
 
   <!-- Favicons -->
   <link href="rhi2.jpg" rel="icon" />
@@ -20,26 +20,30 @@
   <!-- Vendor CSS Files (Bootstrap Icons) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   
-  <!-- Libraries for Animations & Charts -->
+  <!-- Libraries for Animations, Charts & Sound -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+
 
   <style>
     /* ===================================================================
        Base & Typography
        =================================================================== */
     :root {
-      --bg-color: #10101a;
-      --card-bg: rgba(17, 24, 39, 0.3); /* Darker glass effect */
+      --bg-color: #0c0c14;
+      --card-bg: rgba(17, 24, 39, 0.4);
       --text-dark: #1f2937;
-      --text-light: #9ca3af;
-      --text-bright: #f0f0f0;
-      --primary-color: #0d6efd;
-      --accent-color: #8f44fd;
-      --border-color: rgba(255, 255, 255, 0.15); /* Slightly more visible border */
-      --dark-gallery-bg: #111827;
+      --text-light: #a0aec0;
+      --text-bright: #f7fafc;
+      --primary-color: #3b82f6;
+      --accent-color: #8b5cf6;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --dark-gallery-bg: #000000;
+      --glitch-color-1: #00ffff;
+      --glitch-color-2: #ff00ff;
     }
 
     body {
@@ -89,514 +93,170 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-bright);
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
       margin-bottom: 0.5rem;
       position: relative;
       display: inline-flex;
       align-items: center;
       gap: 1.5rem;
-    }
-    
-    .elegant-title .title-icon {
-        font-size: 0.7em;
-        color: var(--text-bright);
-        opacity: 0.7;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.1);
+      animation: text-flicker 5s linear infinite alternate;
     }
 
-    .elegant-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      border-radius: 2px;
-      opacity: 0.8;
-    }
-
-    .section-description {
-      color: var(--text-bright);
-      font-size: 1.1rem;
-      margin-top: 2.5rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      opacity: 0.9;
-    }
+    .elegant-title .title-text { position: relative; }
+    .elegant-title .title-text::before, .elegant-title .title-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); overflow: hidden; clip-path: inset(50% 0 50% 0); }
+    .elegant-title .title-text::before { left: -2px; text-shadow: -1px 0 var(--glitch-color-1); animation: glitch-anim-1 4s linear infinite alternate; }
+    .elegant-title .title-text::after { left: 2px; text-shadow: -1px 0 var(--glitch-color-2); animation: glitch-anim-2 5s linear infinite alternate; }
+    .elegant-title .title-text span { display: inline-block; opacity: 0; transform: translateY(-20px); animation: reveal-letter 0.5s forwards; }
+    .elegant-title .title-icon { font-size: 0.7em; color: var(--text-bright); opacity: 0.7; }
+    .elegant-title .line-decorator { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 100%; height: 2px; background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); border-radius: 2px; opacity: 0.8; }
+    .section-description { color: var(--text-bright); font-size: 1.1rem; margin-top: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 3px rgba(0,0,0,0.1); opacity: 0.9; }
     
+    @keyframes reveal-letter { to { opacity: 1; transform: translateY(0); } }
+    @keyframes text-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); } }
+    @keyframes glitch-anim-1 { 0%, 20%, 25%, 100% { clip-path: inset(50% 0 50% 0); } 21% { clip-path: inset(10% 0 85% 0); } 22% { clip-path: inset(80% 0 5% 0); } 23% { clip-path: inset(40% 0 42% 0); } 24% { clip-path: inset(60% 0 25% 0); } }
+    @keyframes glitch-anim-2 { 0%, 40%, 45%, 100% { clip-path: inset(50% 0 50% 0); } 41% { clip-path: inset(20% 0 75% 0); } 42% { clip-path: inset(70% 0 15% 0); } 43% { clip-path: inset(30% 0 52% 0); } 44% { clip-path: inset(50% 0 35% 0); } }
+
+    /* ===================================================================
+       Deep Galaxy Background
+       =================================================================== */
+    .gallery-parent-container { position: relative; margin-top: 3rem; background-color: #000; border-radius: 12px; padding: 2rem; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    #stars1, #stars2, #stars3 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-repeat: repeat; }
+    #stars1 { background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)), radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)), radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)), radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0)); background-size: 200px 200px; animation: move-twink-back 200s linear infinite; }
+    #stars2 { background-image: radial-gradient(1px 1px at 10px 90px, #eee, rgba(0,0,0,0)), radial-gradient(2px 2px at 30px 50px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 80px 30px, #ddd, rgba(0,0,0,0)), radial-gradient(1px 1px at 120px 140px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 170px 180px, #fff, rgba(0,0,0,0)); background-size: 250px 250px; animation: move-twink-back 150s linear infinite; }
+    #stars3 { background-image: radial-gradient(2px 2px at 5px 150px, #eee, rgba(0,0,0,0)), radial-gradient(1px 1px at 25px 60px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 100px 100px, #ddd, rgba(0,0,0,0)), radial-gradient(2px 2px at 130px 20px, #fff, rgba(0,0,0,0)); background-size: 300px 300px; animation: move-twink-back 100s linear infinite; }
+    @keyframes move-twink-back { from { background-position: 0 0; } to { background-position: -10000px 5000px; } }
+
     /* ===================================================================
        Buttons & Controls
        =================================================================== */
-    .initial-controls {
+    .initial-controls { text-align: center; padding: 2rem 0; margin-bottom: 2rem; position: relative; }
+    .initial-controls::before, .initial-controls::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 40%; max-width: 500px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); }
+    .initial-controls::before { top: 0; } .initial-controls::after { bottom: 0; }
+    #show-shots-container .bi-diamond-fill { color: rgba(255,255,255,0.3); margin: 0 1rem; font-size: 0.6rem; }
+
+    .controls-container { position: relative; background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); transition: all 0.4s ease; overflow: hidden; }
+    .controls-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at top left, hsla(214, 98%, 56%, 0.15), transparent 40%), radial-gradient(circle at bottom right, hsla(264, 91%, 64%, 0.15), transparent 40%); animation: aurora-anim 10s ease-in-out infinite alternate; z-index: -1; }
+    @keyframes aurora-anim { from { transform: rotate(0deg) scale(1.5); } to { transform: rotate(360deg) scale(1.5); } }
+    
+    #show-shots-btn, .btn { font-family: 'Poppins', sans-serif; font-weight: 500; padding: 0.8rem 2rem; border-radius: 50px; border: 2px solid transparent; transition: all 0.3s ease; cursor: pointer; }
+    #show-shots-btn { font-size: 1.1rem; color: #fff; background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3); align-self: center; }
+    #show-shots-btn:hover { transform: translateY(-3px); box-shadow: 0 7px 20px rgba(13, 110, 253, 0.4); }
+    
+    #category-container, #movie-container { opacity: 0; transform: translateY(-10px); transition: opacity 0.4s ease, transform 0.4s ease; display: none; margin-top: 1.5rem; }
+    #category-container.visible, #movie-container.visible { display: block; opacity: 1; transform: translateY(0); }
+
+    h3.control-title { font-weight: 600; color: var(--text-bright); margin-bottom: 1rem; font-size: 1.2rem; text-align: center;}
+    .category-buttons { text-align: center; }
+    .category-buttons .btn { background: rgba(255, 255, 255, 0.1); color: var(--text-bright); border-color: var(--border-color); margin: 0.3rem; }
+    .category-buttons .btn:hover { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+    .category-buttons .btn.active { background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); border-color: transparent; color: #fff; transform: scale(1.05); box-shadow: 0 0 15px var(--accent-color), 0 0 25px var(--primary-color); }
+
+    /* ===================================================================
+       Film Strip Navigator
+       =================================================================== */
+    #movie-container { padding: 1.5rem 0; }
+    .film-strip-container { position: relative; padding: 10px 40px; }
+    .film-strip-viewport { overflow-x: auto; scroll-behavior: smooth; padding-bottom: 20px; scrollbar-width: none; -ms-overflow-style: none; }
+    .film-strip-viewport::-webkit-scrollbar { display: none; }
+    .film-strip-track { display: flex; gap: 1.5rem; padding: 0 2rem; width: max-content; }
+    .film-strip-container::before, .film-strip-container::after { content: ''; position: absolute; left: 0; right: 0; height: 10px; background-image: repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(255,255,255,0.2) 4px, rgba(255,255,255,0.2) 8px); z-index: 1; }
+    .film-strip-container::before { top: 0; } .film-strip-container::after { bottom: 10px; }
+    .film-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(30, 30, 30, 0.7); color: #fff; border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; z-index: 2; }
+    .film-nav-btn:hover { background-color: rgba(0, 0, 0, 1); transform: translateY(-50%) scale(1.1); }
+    #film-strip-prev { left: 0; } #film-strip-next { right: 0; }
+
+    .film-frame { flex: 0 0 180px; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; cursor: pointer; transition: transform 0.3s ease; }
+    .film-frame:hover { transform: scale(1.05); }
+    .film-frame-image { width: 100%; height: 100px; background-color: #222; border: 2px solid var(--border-color); border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s; }
+    .film-frame-image img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .film-frame-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-light);
         text-align: center;
-        padding: 2rem 0;
-        margin-bottom: 2rem;
-        position: relative;
-    }
-    
-    .initial-controls::before,
-    .initial-controls::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40%;
-        max-width: 500px;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: color 0.3s;
+        width: 100%;
+        padding: 0.5em 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    .initial-controls::before { top: 0; }
-    .initial-controls::after { bottom: 0; }
-    
-    #show-shots-container .bi-diamond-fill {
-        color: rgba(255,255,255,0.3);
-        margin: 0 1rem;
-        font-size: 0.6rem;
-    }
-
-    .controls-container {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 2.5rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.4s ease;
-    }
-
-    #show-shots-btn,
-    .btn {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 500;
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    #show-shots-btn {
-      font-size: 1.1rem;
-      color: #fff;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
-      align-self: center;
-    }
-
-    #show-shots-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 7px 20px rgba(13, 110, 253, 0.4);
-    }
-    
-    #category-container,
-    #movie-container {
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        display: none;
-        margin-top: 1.5rem;
-    }
-
-    #category-container.visible,
-    #movie-container.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    h3.control-title {
-        font-weight: 600;
-        color: var(--text-bright); /* Changed for better contrast */
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-    }
-    
-    .category-buttons .btn,
-    .movie-buttons .btn {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text-bright);
-      border-color: var(--border-color);
-      margin: 0.3rem;
-    }
-
-    .category-buttons .btn:hover,
-    .movie-buttons .btn:hover {
-      background: var(--primary-color);
-      border-color: var(--primary-color);
-      color: #fff;
-    }
-
-    .category-buttons .btn.active,
-    .movie-buttons .btn.active {
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      border-color: transparent;
-      color: #fff;
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
-    }
+    .film-frame.active .film-frame-image { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(143, 68, 253, 0.6); }
+    .film-frame.active .film-frame-title { color: var(--text-bright); font-weight: 600; }
 
     /* ===================================================================
        Stats & Chart
        =================================================================== */
-    #stats-container {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem 3rem;
-      margin-top: 2.5rem;
-      padding: 1.5rem 0;
-      min-height: 250px;
-    }
-
-    .pie-svg {
-      width: 100%;
-      height: auto;
-      max-width: 250px;
-    }
-
-    .chart-legend {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .legend-swatch {
-      width: 14px;
-      height: 14px;
-      border-radius: 3px;
-    }
-
-    .legend-label {
-      font-weight: 500;
-      color: var(--text-bright);
-    }
-    
-    .legend-stats {
-      color: var(--text-light);
-      font-size: 0.85rem;
-    }
-    
-    path.slice {
-        transition: transform 0.3s ease;
-        cursor: pointer;
-    }
-    path.slice:hover {
-        transform: scale(1.05);
-    }
-    
-    text.center-text {
-        font-family: 'Poppins', sans-serif;
-    }
-    text.center-text.label {
-        font-size: 1rem;
-        fill: var(--text-light);
-    }
-    text.center-text.total {
-        font-size: 1.5rem;
-        font-weight: 600;
-        fill: var(--text-bright);
-    }
-    .no-data-text {
-      color: var(--text-light);
-      font-style: italic;
-    }
+    #stats-container { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem 3rem; margin-top: 2.5rem; padding: 1.5rem 0; min-height: 250px; }
+    .pie-svg { width: 100%; height: auto; max-width: 250px; }
+    .chart-legend { display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem; }
+    .legend-item { display: flex; align-items: center; gap: 0.6rem; }
+    .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+    .legend-label { font-weight: 500; color: var(--text-bright); }
+    .legend-stats { color: var(--text-light); font-size: 0.85rem; }
+    path.slice { transition: transform 0.3s ease; cursor: pointer; }
+    path.slice:hover { transform: scale(1.05); }
+    text.center-text { font-family: 'Poppins', sans-serif; }
+    text.center-text.label { font-size: 1rem; fill: var(--text-light); }
+    text.center-text.total { font-size: 1.5rem; font-weight: 600; fill: var(--text-bright); }
+    .no-data-text { color: var(--text-light); font-style: italic; }
 
     /* ===================================================================
-       Gallery & Particles
+       Gallery & Placeholders
        =================================================================== */
-    .gallery-parent-container {
-      position: relative;
-      margin-top: 3rem;
-      background: radial-gradient(circle, #333 0%, var(--dark-gallery-bg) 100%);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      height: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    
-    #gallery-placeholder {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      text-align: center;
-      width: 90%;
-      max-width: 600px;
-      pointer-events: none;
-    }
-    
-    #cinematic-quote {
-        font-family: 'Cinzel', serif;
-        letter-spacing: 0.05em;
-        font-size: clamp(1.2rem, 3vw, 1.8rem);
-        color: #fff;
-        text-shadow:
-            0 0 7px #fff,
-            0 0 10px #fff,
-            0 0 21px #fff,
-            0 0 42px var(--primary-color),
-            0 0 82px var(--primary-color),
-            0 0 92px var(--primary-color),
-            0 0 102px var(--primary-color),
-            0 0 151px var(--primary-color);
-    }
-
-
-    #shots-gallery {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      column-count: 4;
-      column-gap: 1.5rem;
-      overflow-y: auto;
-      padding-right: 15px; /* space for scrollbar */
-    }
-    
-    #shots-gallery::-webkit-scrollbar {
-      width: 8px;
-    }
-    #shots-gallery::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 4px;
-    }
-    #shots-gallery::-webkit-scrollbar-thumb {
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-    }
-    #shots-gallery::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(255, 255, 255, 0.5);
-    }
-    #shots-gallery { /* Firefox */
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
-    }
-
-    
-    .shot-item {
-      display: inline-block;
-      width: 100%;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      position: relative;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 0.5s forwards;
-    }
-
-    @keyframes fadeIn {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .shot-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .shot-item:hover .shot-img {
-      transform: scale(1.1);
-    }
-
-    .shot-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .shot-item:hover .shot-overlay {
-      opacity: 1;
-    }
-
-    .shot-overlay h4 {
-      font-weight: 500;
-      font-size: 1rem;
-      margin: 0;
-    }
-
-    .shot-overlay .view-icon {
-      font-size: 2rem;
-      margin-top: 0.5rem;
-    }
+    #gallery-placeholder { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; text-align: center; width: 90%; max-width: 600px; pointer-events: none; }
+    #cinematic-quote { font-family: 'Cinzel', serif; letter-spacing: 0.05em; font-size: clamp(1.2rem, 3vw, 1.8rem); color: #fff; text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px var(--primary-color), 0 0 82px var(--primary-color), 0 0 92px var(--primary-color), 0 0 102px var(--primary-color), 0 0 151px var(--primary-color); animation: pulse-quote 4s ease-in-out infinite; }
+    @keyframes pulse-quote { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.03); opacity: 1; } }
+    #shots-gallery { position: relative; z-index: 2; width: 100%; height: 100%; column-count: 4; column-gap: 1.5rem; overflow-y: auto; padding-right: 15px; }
+    #shots-gallery::-webkit-scrollbar { width: 8px; } #shots-gallery::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; } #shots-gallery::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.3); border-radius: 4px; } #shots-gallery::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.5); }
+    #shots-gallery { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05); }
+    .shot-item { display: inline-block; width: 100%; margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; cursor: pointer; opacity: 0; transform: translateY(20px); animation: fadeIn 0.5s forwards; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+    .shot-img { width: 100%; height: auto; display: block; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .shot-item:hover .shot-img { transform: scale(1.1); }
+    .shot-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%); color: #fff; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; text-align: center; padding: 1.5rem 1rem; transform: translateY(20px); }
+    .shot-item:hover .shot-overlay { opacity: 1; transform: translateY(0); box-shadow: inset 0 0 15px rgba(255,255,255,0.2); }
+    .shot-overlay h4 { font-weight: 500; font-size: 1rem; margin: 0; transform: translateY(10px); transition: transform 0.4s 0.1s ease; }
+    .shot-item:hover .shot-overlay h4 { transform: translateY(0); }
+    .shot-overlay .view-icon { font-size: 2rem; margin-bottom: 0.5rem; transform: translateY(10px); transition: transform 0.4s ease; }
+    .shot-item:hover .shot-overlay .view-icon { transform: translateY(0); }
 
     /* ===================================================================
        Modal
        =================================================================== */
-    #modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 22, 41, 0.8);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+    #modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 22, 41, 0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
+    #modal-overlay.visible { opacity: 1; }
+    #modal-content { position: relative; max-width: 85vw; max-height: 85vh; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.3s ease; }
+    #modal-overlay.visible #modal-content { transform: scale(1); }
+    #modal-content img { width: 100%; height: auto; max-height: 75vh; object-fit: contain; border-radius: 4px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+    #modal-title { color: #fff; text-align: center; padding-top: 1rem; font-size: 1.1rem; font-weight: 500; }
+    .modal-nav-btn { position: absolute; background-color: rgba(30, 30, 30, 0.7); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 0; font-size: 1.5rem; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; z-index: 11; }
+    .modal-nav-btn:hover { background-color: rgba(0, 0, 0, 1); transform: scale(1.1); }
+    #modal-close { top: -20px; right: -20px; font-size: 2rem; }
+    #modal-prev { left: -70px; top: 50%; transform: translateY(-50%); }
+    #modal-next { right: -70px; top: 50%; transform: translateY(-50%); }
     
-    #modal-overlay.visible {
-        opacity: 1;
-    }
-
-    #modal-content {
-      position: relative;
-      max-width: 85vw;
-      max-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      transform: scale(0.95);
-      transition: transform 0.3s ease;
-    }
-    
-    #modal-overlay.visible #modal-content {
-        transform: scale(1);
-    }
-
-    #modal-content img {
-      width: 100%;
-      height: auto;
-      max-height: 75vh;
-      object-fit: contain;
-      border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-    
-    #modal-title {
-      color: #fff;
-      text-align: center;
-      padding-top: 1rem;
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-    
-    .modal-nav-btn {
-      position: absolute;
-      background-color: rgba(30, 30, 30, 0.7);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0;
-      font-size: 1.5rem;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s;
-      z-index: 11;
-    }
-
-    .modal-nav-btn:hover {
-      background-color: rgba(0, 0, 0, 1);
-      transform: scale(1.1);
-    }
-
-    #modal-close {
-      top: -20px;
-      right: -20px;
-      font-size: 2rem;
-    }
-
-    #modal-prev {
-      left: -70px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    #modal-next {
-      right: -70px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+    /* ===================================================================
+       Footer
+       =================================================================== */
+    .footer { padding: 4rem 0 2rem 0; background-color: transparent; color: var(--text-light); text-align: center; border-top: 1px solid var(--border-color); margin-top: 4rem; }
+    .footer .social-links a { color: var(--text-light); font-size: 1.2rem; margin: 0 1rem; transition: color 0.3s, transform 0.3s; display: inline-block; }
+    .footer .social-links a:hover { color: var(--text-bright); transform: translateY(-3px); }
+    .footer .copyright { margin-top: 1.5rem; font-size: 0.9rem; }
+    .footer .copyright strong { color: var(--text-bright); font-weight: 500; }
+    .footer .credits { margin-top: 0.5rem; font-size: 0.85rem; }
+    .footer .credits a { color: var(--primary-color); text-decoration: none; transition: color 0.3s; }
+    .footer .credits a:hover { color: var(--accent-color); }
 
     /* ===================================================================
        Responsive Design
        =================================================================== */
-    @media (max-width: 1200px) {
-      #shots-gallery {
-        column-count: 3;
-      }
-    }
-
-    @media (max-width: 992px) {
-      #shots-gallery {
-        column-count: 2;
-      }
-      .container {
-        padding: 0 1rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .elegant-title {
-        font-size: 2rem;
-        gap: 1rem;
-      }
-      #modal-close {
-        top: 10px;
-        right: 10px;
-        background-color: rgba(0,0,0,0.5);
-      }
-      #modal-prev, #modal-next {
-        bottom: -60px;
-        top: auto;
-        transform: translateY(0);
-      }
-      #modal-prev { left: 30%; transform: translateX(-50%); }
-      #modal-next { right: 30%; transform: translateX(50%); }
-    }
-    
-    @media (max-width: 576px) {
-      #shots-gallery {
-        column-count: 1;
-      }
-      .controls-container {
-          padding: 1.5rem;
-      }
-    }
+    @media (max-width: 1200px) { #shots-gallery { column-count: 3; } }
+    @media (max-width: 992px) { #shots-gallery { column-count: 2; } .container { padding: 0 1rem; } }
+    @media (max-width: 768px) { .elegant-title { font-size: 2rem; gap: 1rem; } #modal-close { top: 10px; right: 10px; background-color: rgba(0,0,0,0.5); } #modal-prev, #modal-next { bottom: -60px; top: auto; transform: translateY(0); } #modal-prev { left: 30%; transform: translateX(-50%); } #modal-next { right: 30%; transform: translateX(50%); } }
+    @media (max-width: 576px) { #shots-gallery { column-count: 1; } .controls-container { padding: 1.5rem; } }
   </style>
 </head>
 
@@ -609,8 +269,9 @@
         <div class="section-header">
           <h2 class="elegant-title">
              <i class="bi bi-film title-icon"></i>
-             <span>Film Shot Catalog</span>
+             <span class="title-text">Film Shot Catalog</span>
              <i class="bi bi-film title-icon"></i>
+             <div class="line-decorator"></div>
           </h2>
           <p class="section-description">
             An interactive archive of cinematic shots from Assamese films.
@@ -638,14 +299,25 @@
               
               <div id="stats-container"></div>
               
-              <div id="movie-container" class="text-center">
+              <div id="movie-container">
                 <h3 class="control-title">Films in This Category</h3>
-                <div class="movie-buttons"></div>
+                <div class="film-strip-container">
+                    <button id="film-strip-prev" class="film-nav-btn"><i class="bi bi-chevron-left"></i></button>
+                    <div class="film-strip-viewport">
+                        <div class="film-strip-track">
+                            <!-- Film frames will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <button id="film-strip-next" class="film-nav-btn"><i class="bi bi-chevron-right"></i></button>
+                </div>
               </div>
             </div>
         </div>
 
         <div class="gallery-parent-container">
+          <div id="stars1"></div>
+          <div id="stars2"></div>
+          <div id="stars3"></div>
           <div id="gallery-placeholder">
             <span id="cinematic-quote"></span>
           </div>
@@ -655,6 +327,23 @@
     </section>
   </main>
   
+  <footer id="footer" class="footer">
+    <div class="container">
+        <div class="social-links">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Rhishikanya Batswa</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </div>
+  </footer>
+
   <div id="modal-overlay">
     <div id="modal-content">
       <button id="modal-close" class="modal-nav-btn">&times;</button>
@@ -668,48 +357,67 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       
-      // --- BACKGROUND PARTICLE.JS CONFIG ---
+      const titleElement = document.querySelector('.elegant-title .title-text');
+      if (titleElement) {
+          const titleText = titleElement.textContent;
+          titleElement.setAttribute('data-text', titleText);
+          titleElement.innerHTML = '';
+          titleText.split('').forEach((letter, index) => {
+              const span = document.createElement('span');
+              span.textContent = letter;
+              if (letter.trim() === '') { span.innerHTML = '&nbsp;'; }
+              span.style.animationDelay = `${index * 50}ms`;
+              titleElement.appendChild(span);
+          });
+      }
+
       particlesJS('page-background', {
-        particles: {
-          number: { value: 100, density: { enable: true, value_area: 800 } },
-          color: { value: ["#0d6efd", "#8f44fd", "#ffffff"] },
-          shape: { type: 'circle' },
-          opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
-          size: { value: 2, random: true, anim: { enable: true, speed: 2, size_min: 0.5, sync: false } },
-          line_linked: { enable: false },
-          move: { enable: true, speed: 1, direction: 'none', random: true, straight: false, out_mode: 'out' }
-        },
-        interactivity: {
-          detect_on: 'canvas',
-          events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: false } },
-           modes: { repulse: { distance: 60, duration: 0.4 } }
-        },
+        particles: { number: { value: 100, density: { enable: true, value_area: 800 } }, color: { value: ["#0d6efd", "#8f44fd", "#ffffff"] }, shape: { type: 'circle' }, opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } }, size: { value: 2, random: true, anim: { enable: true, speed: 2, size_min: 0.5, sync: false } }, line_linked: { enable: false }, move: { enable: true, speed: 1, direction: 'none', random: true, straight: false, out_mode: 'out' } },
+        interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: false } }, modes: { repulse: { distance: 60, duration: 0.4 } } },
         retina_detect: true
       });
       
-      // --- TYPED.JS (Cinematic Quotes) ---
       new Typed('#cinematic-quote', {
-        strings: [
-          '“Every frame tells a story.”',
-          '“Cinema is a matter of what\'s in the frame and what\'s out.”',
-          '“The lens is the painter\'s brush.”',
-          '“Filmmaking is a chance to live many lifetimes.”'
-        ],
-        typeSpeed: 50,
-        backSpeed: 25,
-        backDelay: 3000,
-        startDelay: 500,
-        loop: true,
-        showCursor: false,
+        strings: [ '“Every frame tells a story.”', '“Cinema is a matter of what\'s in the frame and what\'s out.”', '“The lens is the painter\'s brush.”', '“Filmmaking is a chance to live many lifetimes.”' ],
+        typeSpeed: 50, backSpeed: 25, backDelay: 3000, startDelay: 500, loop: true, showCursor: false,
       });
 
-      // --- DOM ELEMENT REFERENCES ---
+      // --- Sound Synthesis ---
+      let soundsReady = false;
+      const navClickSound = new Tone.MembraneSynth({
+        pitchDecay: 0.01,
+        octaves: 2,
+        envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.2 },
+      }).toDestination();
+
+      const modalOpenSound = new Tone.NoiseSynth({
+        noise: { type: 'white' },
+        envelope: { attack: 0.005, decay: 0.1, sustain: 0 },
+      }).toDestination();
+      
+      const categorySelectSound = new Tone.PluckSynth({
+          attackNoise: 0.5,
+          dampening: 4000,
+          resonance: 0.8
+      }).toDestination();
+
+      document.body.addEventListener('click', () => {
+        if (!soundsReady) {
+            Tone.start();
+            soundsReady = true;
+        }
+      }, { once: true });
+
+
       const showShotsBtn = document.getElementById('show-shots-btn');
       const showShotsContainer = document.getElementById('show-shots-container');
       const controlsWrapper = document.getElementById('controls-wrapper');
       const categoryContainer = document.getElementById('category-container');
       const movieContainer = document.getElementById('movie-container');
-      const movieButtonsContainer = movieContainer.querySelector('.movie-buttons');
+      const filmStripViewport = movieContainer.querySelector('.film-strip-viewport');
+      const filmStripTrack = movieContainer.querySelector('.film-strip-track');
+      const filmStripPrevBtn = document.getElementById('film-strip-prev');
+      const filmStripNextBtn = document.getElementById('film-strip-next');
       const shotsGallery = document.getElementById('shots-gallery');
       const galleryPlaceholder = document.getElementById('gallery-placeholder');
       const statsContainer = document.getElementById('stats-container');
@@ -721,33 +429,19 @@
       const modalNext = document.getElementById('modal-next');
       const modalClose = document.getElementById('modal-close');
 
-      // --- APP STATE ---
       let currentCategory = null;
       let currentMovie = null;
       let currentImageList = [];
       let currentImageNames = [];
       
-      // --- DATA ---
       const categoryMovies = {
-        closeup: [
-          { key: 'bulbul', label: 'Bulbul Can Sing' },
-          { key: 'Aamis', label: 'Aamis' },
-          { key: 'Bandhun', label: 'Bandhun' },
-          { key: 'Calendar', label: 'Calendar' },
-          { key: 'Maj Rati Keteki', label: 'Maj Rati Keteki' }
-        ],
-        medium: [
-          { key: 'vr', label: 'VR' },
-          { key: 'Kothanodi', label: 'Kothanodi' }
-        ],
-        long: [
-          { key: 'JPD', label: 'JPD' },
-          { key: 'VR', label: 'VR' }
-        ]
+        closeup: [ { key: 'bulbul', label: 'Bulbul Can Sing' }, { key: 'Aamis', label: 'Aamis' }, { key: 'Bandhun', label: 'Bandhun' }, { key: 'Calendar', label: 'Calendar' }, { key: 'Maj Rati Keteki', label: 'Maj Rati Keteki' } ],
+        medium: [ { key: 'vr', label: 'VR' }, { key: 'Kothanodi', label: 'Kothanodi' } ],
+        long: [ { key: 'JPD', label: 'JPD' }, { key: 'VR', label: 'VR' } ]
       };
       
-      // --- EVENT LISTENERS ---
       showShotsBtn.addEventListener('click', () => {
+        if(soundsReady) categorySelectSound.triggerAttack("C3");
         showShotsContainer.parentElement.style.display = 'none';
         controlsWrapper.style.display = 'block';
         categoryContainer.classList.add('visible');
@@ -755,6 +449,7 @@
 
       categoryContainer.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', async () => {
+          if(soundsReady) categorySelectSound.triggerAttack("C4");
           const category = btn.getAttribute('data-category');
           if (currentCategory === category) return;
           
@@ -771,14 +466,28 @@
         });
       });
       
+      filmStripPrevBtn.addEventListener('click', () => {
+        if(soundsReady) navClickSound.triggerAttackRelease("C1", "8n");
+        filmStripViewport.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+      filmStripNextBtn.addEventListener('click', () => {
+        if(soundsReady) navClickSound.triggerAttackRelease("C1", "8n");
+        filmStripViewport.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+
       modalClose.addEventListener('click', closeModal);
-      modalPrev.addEventListener('click', showPrevImage);
-      modalNext.addEventListener('click', showNextImage);
+      modalPrev.addEventListener('click', () => {
+        if(soundsReady) navClickSound.triggerAttackRelease("C1", "8n");
+        showPrevImage();
+      });
+      modalNext.addEventListener('click', () => {
+        if(soundsReady) navClickSound.triggerAttackRelease("C1", "8n");
+        showNextImage();
+      });
       modalOverlay.addEventListener('click', (e) => {
           if (e.target === modalOverlay) closeModal();
       });
 
-      // --- FUNCTIONS ---
       async function fetchImageManifest(category, movie) {
         const manifestUrl = `shots/${category}/${movie}/images.json`;
         try {
@@ -793,26 +502,38 @@
       }
 
       function populateMovies(category) {
-        movieButtonsContainer.innerHTML = '';
+        filmStripTrack.innerHTML = '';
         const movies = categoryMovies[category] || [];
         movies.forEach(movie => {
-          const mb = document.createElement('button');
-          mb.className = 'btn';
-          mb.textContent = movie.label;
-          mb.addEventListener('click', async () => {
+          const filmFrame = document.createElement('div');
+          filmFrame.className = 'film-frame';
+          filmFrame.dataset.movieKey = movie.key;
+
+          const placeholderImgUrl = `https://placehold.co/180x100/0c0c14/a0aec0?text=${movie.label.replace(/\s/g, '+')}`;
+          
+          filmFrame.innerHTML = `
+            <div class="film-frame-image">
+                <img src="${placeholderImgUrl}" alt="${movie.label} Poster" loading="lazy">
+            </div>
+            <div class="film-frame-title">${movie.label}</div>
+          `;
+
+          filmFrame.addEventListener('click', async () => {
+            if(soundsReady) navClickSound.triggerAttackRelease("G2", "8n");
             const movieKey = movie.key;
             if (currentMovie === movieKey) {
               clearGallery();
               currentMovie = null;
-              mb.classList.remove('active');
+              filmFrame.classList.remove('active');
             } else {
-              movieButtonsContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-              mb.classList.add('active');
+              filmStripTrack.querySelectorAll('.film-frame').forEach(f => f.classList.remove('active'));
+              filmFrame.classList.add('active');
               currentMovie = movieKey;
+              filmFrame.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
               await displayShots(category, movieKey);
             }
           });
-          movieButtonsContainer.appendChild(mb);
+          filmStripTrack.appendChild(filmFrame);
         });
       }
 
@@ -837,14 +558,17 @@
           shotItem.style.animationDelay = `${idx * 50}ms`;
 
           shotItem.innerHTML = `
-            <img src="${src}" alt="${movie} shot ${filename}" class="shot-img">
+            <img src="${src}" alt="${movie} shot ${filename}" class="shot-img" loading="lazy">
             <div class="shot-overlay">
               <div class="view-icon"><i class="bi bi-arrows-fullscreen"></i></div>
               <h4>${filename}</h4>
             </div>
           `;
 
-          shotItem.addEventListener('click', () => openModal(idx));
+          shotItem.addEventListener('click', () => {
+            if(soundsReady) modalOpenSound.triggerAttackRelease("8n");
+            openModal(idx);
+          });
           shotsGallery.appendChild(shotItem);
         });
       }
@@ -901,42 +625,18 @@
       }
 
       function drawDonutChart(data) {
-        // Sort data descending
         data.sort((a,b) => b.count - a.count);
-        
         const width = 250, height = 250, radius = Math.min(width, height) / 2;
         const color = d3.scaleOrdinal().domain(data.map(d => d.label)).range(d3.quantize(t => d3.interpolateCool(t * 0.8 + 0.1), data.length));
-        
         d3.select('#stats-container').selectAll('*').remove();
-        
-        const svgRoot = d3.select('#stats-container').append('svg')
-          .attr('viewBox', `0 0 ${width} ${height}`)
-          .attr('preserveAspectRatio', 'xMidYMid meet')
-          .classed('pie-svg', true);
-        
+        const svgRoot = d3.select('#stats-container').append('svg').attr('viewBox', `0 0 ${width} ${height}`).attr('preserveAspectRatio', 'xMidYMid meet').classed('pie-svg', true);
         const svg = svgRoot.append('g').attr('transform', `translate(${width / 2},${height / 2})`);
-        
-        const pie = d3.pie().value(d => d.count).sort(null); // sort(null) to respect original array order
+        const pie = d3.pie().value(d => d.count).sort(null);
         const arc = d3.arc().innerRadius(radius * 0.6).outerRadius(radius * 0.9);
-
-        svg.selectAll('path.slice')
-          .data(pie(data))
-          .enter().append('path')
-          .attr('class', 'slice')
-          .attr('fill', d => color(d.data.label))
-          .attr('stroke', '#fff')
-          .attr('stroke-width', 2)
-          .attr('d', d => arc({ ...d, startAngle: d.startAngle, endAngle: d.startAngle }))
-          .transition().duration(800).delay((d, i) => i * 80)
-          .attrTween('d', d => {
-            const interpolate = d3.interpolate({ startAngle: d.startAngle, endAngle: d.startAngle }, d);
-            return t => arc(interpolate(t));
-          });
-          
+        svg.selectAll('path.slice').data(pie(data)).enter().append('path').attr('class', 'slice').attr('fill', d => color(d.data.label)).attr('stroke', '#fff').attr('stroke-width', 2).attr('d', d => arc({ ...d, startAngle: d.startAngle, endAngle: d.startAngle })).transition().duration(800).delay((d, i) => i * 80).attrTween('d', d => { const interpolate = d3.interpolate({ startAngle: d.startAngle, endAngle: d.startAngle }, d); return t => arc(interpolate(t)); });
         const total = d3.sum(data, d => d.count);
         svg.append('text').attr('class', 'center-text label').attr('dy', '-0.4em').attr('text-anchor', 'middle').text('Total Shots').style('fill', 'var(--text-light)');
         svg.append('text').attr('class', 'center-text total').attr('dy', '0.8em').attr('text-anchor', 'middle').text(total).style('fill', 'var(--text-bright)');
-
         const legend = d3.select('#stats-container').append('div').attr('class', 'chart-legend');
         data.forEach(d => {
           const pct = total > 0 ? (d.count / total * 100).toFixed(1) + '%' : '0.0%';
