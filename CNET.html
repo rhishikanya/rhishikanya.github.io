@@ -287,10 +287,16 @@
         <div class="movie-buttons text-center mb-3">
           <button class="btn btn-outline-primary" data-movie="bulbul">Bulbul Can Sing</button>
           <button class="btn btn-outline-primary" data-movie="vr">Village Rockstar</button>
-          <button class="btn btn-outline-primary" data-movie="beautiful">Adomyo</button>
-          <button class="btn btn-outline-primary" data-movie="mission_china">Kothanodi</button>
-          <button class="btn btn-outline-primary" data-movie="local_kung_fu">Jetuka Pator Dore</button>
-          <button class="btn btn-outline-primary" data-movie="qatl_e_aam">Calendar</button>
+          <button class="btn btn-outline-primary" data-movie="adomyo">Adomyo</button>
+          <button class="btn btn-outline-primary" data-movie="kothanodi">Kothanodi</button>
+          <button class="btn btn-outline-primary" data-movie="Jetuka Pator Dore">Jetuka Pator Dore</button>
+          <button class="btn btn-outline-primary" data-movie="Calendar">Calendar</button>
+<button class="btn btn-outline-primary" data-movie="Cactus">Cactus</button>
+<button class="btn btn-outline-primary" data-movie="Antareen">Antareen</button>
+<button class="btn btn-outline-primary" data-movie="Aamis">Aamis</button>
+
+
+
         </div>
 
         <!-- Controls Panel -->
@@ -735,10 +741,44 @@
       if (movie === 'bulbul') {
         centralityFile = 'Data/Bulbul/bulbul_centrality.csv';
         edgeFile = 'Data/Bulbul/Bulbul.csv';
+
       } else if (movie === 'vr') {
         centralityFile = 'Data/VR/vr_centrality.csv';
         edgeFile = 'Data/VR/vr.csv';
+
+ } else if (movie === 'adomyo') {
+        centralityFile = 'Data/Adomya/Adomya(degree).csv';
+        edgeFile = 'Data/Adomya/Adomya.csv';
+
       } 
+else if (movie === 'kothanodi') {
+        centralityFile = 'Data/Kothanodi/Kothanodi(degree).csv';
+        edgeFile = 'Data/Kothanodi/Kothanodi.csv';
+
+      } 
+else if (movie === 'Jetuka Pator Dore') {
+        centralityFile = 'Data/Jetuka Pator Dore/Jetuka Pator Dore (degree).csv';
+        edgeFile = 'Data/Jetuka Pator Dore/Jetuka Pator Dore.csv';
+
+      }
+else if (movie === 'Calendar') {
+        centralityFile = 'Data/Calendar/Calendar (degree).csv';
+        edgeFile = 'Data/Calendar/Calendar.csv';
+}
+else if (movie === 'Cactus') {
+        centralityFile = 'Data/Cactus/Cactus (degree).csv';
+        edgeFile = 'Data/Cactus/Cactus.csv';
+}
+else if (movie === 'Antareen') {
+        centralityFile = 'Data/Antareen/Antareen(degree).csv';
+        edgeFile = 'Data/Calendar/Calendar.csv';
+}
+else if (movie === 'Aamis') {
+        centralityFile = 'Data/Aamis/Aamis(degree).csv';
+        edgeFile = 'Data/Aamis/Aamis.csv';
+
+      }
+
       else {
         d3.json(`data/${movie}.json`).then(graph => {
           graph.nodes.forEach(n => {
