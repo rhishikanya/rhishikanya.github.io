@@ -1,0 +1,28 @@
+Characters A,Characters B,Role (Characters A),Role (Characters B),Weight
+Neela,Auto Rickshaw Driver 1,PROTAGONIST,MINOR,1
+Neela,Akash,PROTAGONIST,PROTAGONIST,39
+Neela,Anuradha,PROTAGONIST,DEUTERAGONIST,50
+Neela,Neela's Mother,PROTAGONIST,MINOR,3
+Neela,Ajay,PROTAGONIST,FLAT/STATIC,6
+Neela,Boss,PROTAGONIST,FLAT/STATIC,20
+Neela,Neela's Father,PROTAGONIST,FLAT/STATIC,6
+Neela,Neela's Sister,PROTAGONIST,MINOR,6
+Anuradha,Man 1,DEUTERAGONIST,MINOR,2
+Anuradha,Anuradha's Husband,DEUTERAGONIST,MINOR,10
+Anuradha's Husband,Engineer,MINOR,MINOR,3
+Neela's Father, Pension Officer 1,MINOR,MINOR,6
+Neela's Father, Pension Officer 2,MINOR,MINOR,6
+Neela's Father,Neela's Mother,FLAT/STATIC,MINOR,1
+Ajay,Neela's Mother,FLAT/STATIC,MINOR,3
+Akash,Passenger 1,PROTAGONIST,MINOR,2
+Akash,Passenger 2,PROTAGONIST,MINOR,2
+Akash,Passenger 3,PROTAGONIST,MINOR,4
+Akash,Passenger 4,PROTAGONIST,MINOR,3
+Akash,Passenger 5,PROTAGONIST,MINOR,2
+Akash,Passenger 6,PROTAGONIST,MINOR,2
+Akash,Girlfriend,PROTAGONIST,MINOR,3
+Akash,Police,PROTAGONIST,MINOR,1
+Akash,Transgender,PROTAGONIST,MINOR,2
+Akash,Auto Rickshaw Driver 1,PROTAGONIST,MINOR,33
+Young Akash,Neighbour,TERTIARY,TERTIARY,1
+Passenger 3,Passenger 4,MINOR,MINOR,14

@@ -1,0 +1,40 @@
+Characters A,Characters B,Role (Characters A),Role (Characters B),Weight
+Devinath,Tejimola,Deuteragonist,Deuteragonist,10
+Devinath,Senehi,Deuteragonist,Protagonist/Anti Hero,3
+Devinath,Keteki,Deuteragonist,Protagonist,43
+Devinath,Bhodiya,Deuteragonist,Static or Flat,14
+Devinath,Village Woman,Deuteragonist,Minor,3
+Tejimola,Senehi,Deuteragonist,Protagonist/Anti Hero,52
+Tejimola,Bonolotika,Deuteragonist,Static or Flat,21
+Tejimola,Phaguni,Deuteragonist,Minor,3
+Dhoneshwari,Bhadoi,Protagonist/Anti Hero,Static or Flat,5
+Dhoneshwari,Man with Duck,Protagonist/Anti Hero,Minor,2
+Dhoneshwari,Budheshwar,Protagonist/Anti Hero,Minor,14
+Dhoneshwari,Jagannath,Protagonist/Anti Hero,Deuteragonist,10
+Dhoneshwari,Rupeshwari,Protagonist/Anti Hero,Static or Flat,1
+Dhoneshwari,Bonolotika,Protagonist/Anti Hero,Static or Flat,13
+Dhoneshwari,Python,Protagonist/Anti Hero,Minor,2
+Dhoneshwari,"Servant (1,2)",Protagonist/Anti Hero,Minor,6
+Dhoneshwari,Priest,Protagonist/Anti Hero,Minor,3
+Jagannath,Rupeshwari,Deuteragonist,Static or Flat,10
+Jagannath,Punai,Deuteragonist,Deuteragonist,6
+Jagannath,Bhadoi,Deuteragonist,Static or Flat,3
+Jagannath,Servant,Deuteragonist,Minor,3
+Jagannath,Budheshwar,Deuteragonist,Minor,6
+Jagannath,Keteki's Husband,Deuteragonist,Minor,1
+Jagannath,Priest,Deuteragonist,Minor,7
+Senehi,Phaguni,Protagonist/Anti Hero,Minor,1
+Senehi,The Jackal,Protagonist/Anti Hero,Antagonist,10
+Senehi,Bhadoi,Protagonist/Anti Hero,Static or Flat,8
+Bonolotika,Tejimola,Static or Flat,Deuteragonist,21
+Bonolotika,Bhadoi,Static or Flat,Static or Flat,3
+Keteki,Bhodiya,Protagonist,Minor,9
+Keteki,Keteki's Husband,Protagonist,Minor,5
+Maloti,Punai,Protagonist,Deuteragonist,21
+Maloti,Pomila,Protagonist,Static or Flat,14
+Punai,Keteki's Husband ,Deuteragonist,Minor,3
+Priest,Budheshwar,Minor,Minor,1
+Punai's Father,Young Punai,Tertiary,Tertiary,1
+Rupeshwari,Champawati,Static or Flat,Static or Flat,1
+Tawoi,Maloti,Static or Flat,Protagonist,2
+Tawoi,Punai,Static or Flat,Deuteragonist,2
