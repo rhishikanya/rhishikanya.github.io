@@ -1,0 +1,46 @@
+Characters A,Characters B,Role (Characters A),Role (Characters B),Weight
+Mandira ,Shopkeeper,Protagonist (Round or Dynamic),Minor (Flat),4
+Mandira ,Matilal,Protagonist (Round or Dynamic),Minor (Flat),2
+Mandira ,Nurse,Protagonist (Round or Dynamic),Minor (Flat),2
+Mandira ,Medhi,Protagonist (Round or Dynamic),Minor (Flat),1
+Mandira ,Rashmi,Protagonist (Round or Dynamic),Minor (Mirror),38
+Mandira ,Praneswar,Protagonist (Round or Dynamic),Minor (Flat),10
+Mandira ,Abhijit,Protagonist (Round or Dynamic),Deutarogonist (Mirror),96
+Mandira ,Abhi,Protagonist (Round or Dynamic),Minor (Mirror),27
+Mandira ,Jayram,Protagonist (Round or Dynamic),Minor (Flat),1
+Mandira ,Mrs. Baruah,Protagonist (Round or Dynamic),Minor (Flat),7
+Mandira ,Reema,Protagonist (Round or Dynamic),Minor (Flat),10
+Mandira ,Mandira's Mother,Protagonist (Round or Dynamic),Minor (Foil),38
+Mandira ,House Help,Protagonist (Round or Dynamic),Minor (Flat),7
+Mandira ,Malati,Protagonist (Round or Dynamic),Minor (Flat),4
+Mandira ,Mandira's Uncle ,Protagonist (Round or Dynamic),Minor (Mirror),29
+Mandira ,Orpahanage Worker,Protagonist (Round or Dynamic),Minor (Flat),4
+Mandira ,Chakravartti,Protagonist (Round or Dynamic),Minor (Flat),27
+Mandira ,Rajani,Protagonist (Round or Dynamic),Minor (Flat),2
+Mandira ,Dey Babu,Protagonist (Round or Dynamic),Minor (Flat),33
+Mandira ,Tiwari,Protagonist (Round or Dynamic),Minor (Flat),16
+Mandira ,Rajiv,Protagonist (Round or Dynamic),Deutarogonist (Mirror),52
+Mandira ,Noor,Protagonist (Round or Dynamic),Minor (Flat),3
+Mandira ,Rajiv's Adoptive Mother,Protagonist (Round or Dynamic),Minor (Flat),20
+Mandira ,Gogoi,Protagonist (Round or Dynamic),Minor (Flat),4
+Mandira ,Group of Women,Protagonist (Round or Dynamic),Minor (Flat),7
+Abhijit,Abhi,Deutarogonist (Mirror),Minor (Mirror),26
+Abhijit,Rashmi,Deutarogonist (Mirror),Minor (Mirror),7
+Abhijit,Jayram,Deutarogonist (Mirror),Minor (Flat),9
+Rajiv,Noor,Deutarogonist (Mirror),Minor (Flat),1
+Rajiv,Dey Babu,Deutarogonist (Mirror),Minor (Flat),10
+Rajiv,Mechnique,Deutarogonist (Mirror),Minor (Flat),8
+Rajiv,Rajiv's Adoptive Mother,Deutarogonist (Mirror),Minor (Flat),11
+Rajiv,Gogoi,Deutarogonist (Mirror),Minor (Flat),5
+Rashmi ,Abhi,Minor (Mirror),Minor (Mirror),19
+Rashmi ,Chinmay,Minor (Mirror),Minor (Flat),3
+Mandira's Mother,Mandira's Father,Minor (Foil),Minor (Foil),8
+Mandira's Mother,Mandira's Uncle ,Minor (Foil),Minor (Mirror),11
+Mandira's Mother,Mrs. Kakoti,Minor (Foil),Minor (Flat),7
+Mandira's Mother,Rajani,Minor (Foil),Minor (Flat),10
+Mandira's Mother,Lily,Minor (Foil),Minor (Flat),2
+Dey Babu,Noor,Minor (Flat),Minor (Flat),6
+Dey Babu,Matilal,Minor (Flat),Minor (Flat),9
+Doctor 1,Nurse,Minor (Flat),Minor (Flat),8
+Doctor 1,Doctor 2,Minor (Flat),Minor (Flat),10
+Mandira's Uncle ,Malati,Minor (Mirror),Minor (Flat),3
