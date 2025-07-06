@@ -774,6 +774,29 @@
         centralityFile = 'Data/VR/vr_centrality.csv';
         edgeFile = 'Data/VR/vr.csv';
       } 
+        else if (movie === 'Cactus') {
+        centralityFile = 'Data/Cactus/Cactus (degree).csv';
+        edgeFile = 'Data/Cactus/Cactus.csv';
+}
+else if (movie === 'Antareen') {
+        centralityFile = 'Data/Antareen/Antareen(degree).csv';
+        edgeFile = 'Data/Antareen/Antareen.csv';
+}
+else if (movie === 'Aamis') {
+        centralityFile = 'Data/Aamis/Aamis(degree).csv';
+        edgeFile = 'Data/Aamis/Aamis.csv';
+
+    }
+else if (movie === 'Kaaneen') {
+        centralityFile = 'Data/Kaaneen/k.csv';
+        edgeFile = 'Data/Kaaneen/Kaaneen.csv';
+}
+else if (movie === 'Sonar Baran Pakhi') {
+        centralityFile = 'Data/Sonar Baran Pakhi/Sonar Baran Pakhi (degree).csv';
+        edgeFile = 'Data/Sonar Baran Pakhi/Sonar Baran Pakhi.csv';
+
+    }
+
       else {
         d3.json(`data/${movie}.json`).then(graph => {
           graph.nodes.forEach(n => {
