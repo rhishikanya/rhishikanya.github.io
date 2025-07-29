@@ -1,4 +1,4 @@
-Name,Local Degree,Degree Centrality,Betweenness Centrality,Closeness Centrality,Eigenvector Centrality
+Character,Local Degree,Degree Centrality,Betweenness Centrality,Closeness Centrality,Eigenvector Centrality
 Mandira ,25,0.7575757575757576,0.9109848484848485,0.7674418604651163,0.6466122837017705
 Shopkeeper,1,0.030303030303030304,0.0,0.44,0.11371588654159723
 Matilal,2,0.06060606060606061,0.0,0.44594594594594594,0.15221878797027558
