@@ -1,4 +1,5 @@
-Name,Local Degree,Degree Centrality,Betweenness Centrality,Closeness Centrality,Eigenvector Centrality
+Character,	Local Degree,	Degree Centrality,	Betweenness Centrality,	Closeness Centrality,	Eigenvector Centrality
+
 Nirmali,8,0.727272727,0.345454545,0.785714286,0.474540357
 Sumon,8,0.727272727,0.427272727,0.785714286,0.458586475
 Jumi,6,0.545454545,0.227272727,0.6875,0.403566077
