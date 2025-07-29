@@ -1,0 +1,21 @@
+Characters A,Characters B,Role (Characters A),Role (Characters B),Weight
+Nirmali,Sumon,Protagonist (Round or Dynamic),Protagonist (Round or Dynamic),128
+Nirmali,Jumi,Protagonist (Round or Dynamic),Deutarogonist (Flat),64
+Nirmali,Bora Daa,Protagonist (Round or Dynamic),Minor (Flat),5
+Nirmali,Dilip,Protagonist (Round or Dynamic),Minor (Flat),25
+Nirmali,Piku,Protagonist (Round or Dynamic),Minor (Flat),7
+Nirmali,Edi,Protagonist (Round or Dynamic),Minor (Flat),2
+Nirmali,Mina,Protagonist (Round or Dynamic),Minor (Flat),14
+Nirmali,Rajesh,Protagonist (Round or Dynamic),Minor (Flat),4
+Sumon,Elyas,Protagonist (Round or Dynamic),Deutarogonist (Flat),75
+Sumon,Bora Daa,Protagonist (Round or Dynamic),Minor (Flat),14
+Sumon,Professor Bezbaruah,Protagonist (Round or Dynamic),Minor (Flat),5
+Sumon,Piku,Protagonist (Round or Dynamic),Minor (Flat),2
+Sumon,Jumi,Protagonist (Round or Dynamic),Deutarogonist (Flat),4
+Sumon,Dilip,Protagonist (Round or Dynamic),Minor (Flat),9
+Sumon,Mina,Protagonist (Round or Dynamic),Minor (Flat),1
+Jumi,Mina,Deutarogonist (Flat),Minor (Flat),2
+Jumi,Dilip,Deutarogonist (Flat),Minor (Flat),4
+Jumi,Rakesh,Deutarogonist (Flat),Minor (Flat),1
+Jumi,Edi,Deutarogonist (Flat),Minor (Flat),2
+Mina,Dilip,Minor (Flat),Minor (Flat),2
