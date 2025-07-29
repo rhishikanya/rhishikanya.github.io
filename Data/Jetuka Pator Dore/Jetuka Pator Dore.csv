@@ -1,0 +1,55 @@
+Characters A,Characters B,Role (Characters A),Role (Characters B),Weight
+Rajat,Dehiram,PROTAGONIST (Round or Dynamic),MINOR,2
+Rajat,Dehiram's Wife,PROTAGONIST (Round or Dynamic),STATIC OR FLAT ,4
+Rajat,Dambaru,PROTAGONIST (Round or Dynamic),FOIL,15
+Rajat,Naren,PROTAGONIST (Round or Dynamic),MINOR,11
+Rajat,Mahidhar,PROTAGONIST (Round or Dynamic),ANTAGONIST,4
+Rajat,Hemadhar,PROTAGONIST (Round or Dynamic),DEUTERAGONIST,15
+Rajat,Heramba,PROTAGONIST (Round or Dynamic),MINOR,10
+Rajat,Mubarak,PROTAGONIST (Round or Dynamic),DEUTERAGONIST,13
+Rajat,Friends,PROTAGONIST (Round or Dynamic),MINOR,10
+Rajat,Radha,PROTAGONIST (Round or Dynamic),PROTAGONIST (Round or Dynamic),84
+Mubarak,Konlora,DEUTERAGONIST,FLAT,14
+Mubarak,Hemadhar,DEUTERAGONIST,DEUTERAGONIST,21
+Mubarak,Radha,DEUTERAGONIST,PROTAGONIST,4
+Hemadhar,Konlora,DEUTERAGONIST (Round or Dynamic),FLAT,2
+Hemadhar,Dambaru,DEUTERAGONIST (Round or Dynamic),FOIL,4
+Hemadhar,Radha,DEUTERAGONIST (Round or Dynamic),PROTAGONIST,27
+Hemadhar,Village Boys,DEUTERAGONIST (Round or Dynamic),MINOR,1
+Hemadhar,Jamuna,DEUTERAGONIST (Round or Dynamic),ANTAGONIST,6
+Hemadhar,Nakul,DEUTERAGONIST (Round or Dynamic),MINOR,8
+Dambaru,Dambaru's Wife,Foil,STATIC OR FLAT ,6
+Dambaru,Radha,Foil,PROTAGONIST,8
+Dambaru,Village Boys,Foil,MINOR,3
+Namghariya,Bikhoya,STATIC OR FLAT ,MINOR,1
+Namghariya,Rajat,STATIC OR FLAT ,PROTAGONIST,1
+Dehiram,Bikhoya,STATIC OR FLAT ,MINOR,3
+Dehiram,Dehiram's Wife,STATIC OR FLAT ,MINOR,3
+Dehiram's Son-in-Law,Rajat,MINOR,PROTAGONIST,1
+Mahidhar,School Boys,ANTAGONIST,MINOR,2
+Mahidhar,Radha,ANTAGONIST,PROTAGONIST,18
+Mahidhar,Jamuna,ANTAGONIST,ANTAGONIST,12
+Mahidhar,Naren,ANTAGONIST,MINOR,4
+Mahidhar,Saikia Engineer,ANTAGONIST,MINOR,4
+Jagannath Mahanta,Radha,STATIC OR FLAT ,PROTAGONIST,35
+Naren Dutta,Radha,STATIC OR FLAT ,PROTAGONIST,17
+Naren Dutta,Boys(Haidar-Dambaru),STATIC OR FLAT ,MINOR,1
+Jamuna,Jamuna's Wife,ANTAGONIST,MINOR,7
+Jamuna,Saikia Engineer,ANTAGONIST,MINOR,3
+Jamuna,MLA,ANTAGONIST,STATIC OR FLAT,4
+Jamuna,Haidar,ANTAGONIST,MINOR,3
+Rabin-Muhan,Dambaru's Wife,STATIC OR FLAT ,STATIC OR FLAT ,1
+Nakul,Radha,STATIC OR FLAT ,PROTAGONIST,8
+Jadav Chakravarty,Peashanta Trivedi,MINOR,MINOR,5
+Radha,Dambaru's Wife,PROTAGONIST (Round or Dynamic),STATIC OR FLAT,8
+Radha,MLA,PROTAGONIST (Round or Dynamic),STATIC OR FLAT,8
+Radha,Naren,PROTAGONIST (Round or Dynamic),MINOR,2
+Radha,Heramba,PROTAGONIST (Round or Dynamic),MINOR,4
+Radha,Engineer,PROTAGONIST (Round or Dynamic),MINOR,2
+Radha,Saikia Engineer,PROTAGONIST (Round or Dynamic),MINOR,4
+Radha,Haidar,PROTAGONIST (Round or Dynamic),MINOR,3
+Radha,Jadav Chakravarty,PROTAGONIST (Round or Dynamic),MINOR,1
+Radha,Peashanta Trivedi,PROTAGONIST (Round or Dynamic),MINOR,1
+Radha,Friends,PROTAGONIST (Round or Dynamic),MINOR,3
+Haidar,Saikia Engineer,MINOR,MINOR,3
+Balubhadra Das,Balubhadra Das's Wfe,TERTIARY,TERTIARY,3
