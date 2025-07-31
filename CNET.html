@@ -288,7 +288,7 @@
           <button class="btn btn-outline-primary" data-movie="bulbul">Bulbul Can Sing</button>
           <button class="btn btn-outline-primary" data-movie="vr">Village Rockstar</button>
           <button class="btn btn-outline-primary" data-movie="Adomyo">Adomyo</button>
-          <button class="btn btn-outline-primary" data-movie="Kothanodi">Kothanodi</button>
+          <button class="btn btn-outline-primary" data-movie="kothanodi">Kothanodi</button>
           <button class="btn btn-outline-primary" data-movie="Jetuka Pator Dore">Jetuka Pator Dore</button>
           <button class="btn btn-outline-primary" data-movie="Calendar">Calendar</button>
 <button class="btn btn-outline-primary" data-movie="Cactus">Cactus</button>
@@ -834,8 +834,10 @@ else if (movie === 'Sonar Baran Pakhi') {
       // CSV-based loader
       d3.csv(centralityFile).then(nodeRows => {
         const centralityMap = new Map();
+        const characterColumnName = nodeRows.columns[0];
         nodeRows.forEach(r => {
-          centralityMap.set(r['Character'], {
+          const characterName = r[characterColumnName];
+          centralityMap.set(characterName, {
             'Degree Centrality': r['Degree Centrality'],
             'Betweenness Centrality': r['Betweenness Centrality'],
             'Closeness Centrality': r['Closeness Centrality'],
