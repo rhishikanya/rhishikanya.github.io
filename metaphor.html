@@ -1,0 +1,2751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Metaphors in Assamese Cinema - AI Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #e94560;
+            --text-light: #f5f5f5;
+            --text-dark: #333;
+            --gold: #ffd700;
+            --glass-bg: rgba(255, 255, 255, 0.05); /* NEW: Made it slightly more transparent */
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            /* MODIFIED: Restore default cursor */
+            cursor: auto; 
+        }
+
+        /* REMOVED: Custom Cursor Styles */
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 75%, #e94560 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Navigation */
+        /* Enhanced Navigation */
+/* Ultra Elegant Navigation */
+/* Ultra Elegant Navigation with Custom Color Palette */
+
+/* Option 1: Emerald & Sapphire Theme */
+:root {
+    --nav-primary: #0f172a;      /* Deep slate */
+    --nav-secondary: #1e293b;    /* Slate 800 */
+    --nav-accent: #10b981;       /* Emerald 500 */
+    --nav-gold: #3b82f6;         /* Blue 500 */
+    --nav-tertiary: #8b5cf6;     /* Violet 500 */
+    --nav-text: #f1f5f9;         /* Slate 100 */
+}
+
+/* Option 2: Sunset Theme (uncomment to use) */
+/*
+:root {
+    --nav-primary: #1a1625;      
+    --nav-secondary: #2d1b4e;    
+    --nav-accent: #f97316;       
+    --nav-gold: #eab308;         
+    --nav-tertiary: #ec4899;     
+    --nav-text: #fef3c7;         
+}
+*/
+
+/* Option 3: Ocean Theme (uncomment to use) */
+/*
+:root {
+    --nav-primary: #0c1426;      
+    --nav-secondary: #1e2a4a;    
+    --nav-accent: #06b6d4;       
+    --nav-gold: #14b8a6;         
+    --nav-tertiary: #3b82f6;     
+    --nav-text: #e0f2fe;         
+}
+*/
+
+/* Option 4: Forest Theme (uncomment to use) */
+/*
+:root {
+    --nav-primary: #0f1419;      
+    --nav-secondary: #1c2e1c;    
+    --nav-accent: #22c55e;       
+    --nav-gold: #84cc16;         
+    --nav-tertiary: #65a30d;     
+    --nav-text: #f0fdf4;         
+}
+*/
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    z-index: 1000;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+    
+    /* Custom gradient border */
+    background-image: 
+        linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)),
+        linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, rgba(139, 92, 246, 0.3) 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border: 2px solid transparent;
+    border-radius: 0 0 20px 20px;
+}
+
+nav.scrolled {
+    padding: 0.75rem 5%;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(25px) saturate(200%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 15px 15px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    
+    background: rgba(241, 245, 249, 0.02);
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+/* Enhanced brand with new colors */
+.nav-brand {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--nav-accent) 0%, var(--nav-gold) 50%, var(--nav-tertiary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    letter-spacing: -0.02em;
+}
+
+.nav-brand::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--nav-accent), var(--nav-gold), var(--nav-tertiary));
+    border-radius: 12px;
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.nav-brand:hover::before {
+    opacity: 0.3;
+}
+
+.nav-brand:hover {
+    transform: scale(1.05) rotate(-1deg);
+    filter: brightness(1.3) drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+}
+
+/* Navigation menu with new color scheme */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    
+    background: 
+        linear-gradient(135deg, rgba(241, 245, 249, 0.05) 0%, rgba(241, 245, 249, 0.02) 100%),
+        radial-gradient(ellipse at top, rgba(16, 185, 129, 0.05), transparent),
+        radial-gradient(ellipse at bottom, rgba(59, 130, 246, 0.05), transparent);
+    
+    border-radius: 30px;
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 
+        inset 0 1px 0 rgba(241, 245, 249, 0.1),
+        0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    color: var(--nav-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 0.025em;
+    overflow: hidden;
+}
+
+/* Sophisticated hover background with new colors */
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(16, 185, 129, 0.1),
+        rgba(59, 130, 246, 0.1),
+        transparent
+    );
+    transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+}
+
+nav a:hover::before {
+    left: 100%;
+}
+
+/* Elegant glow effect with new colors */
+nav a::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+        circle,
+        rgba(16, 185, 129, 0.3) 0%,
+        rgba(59, 130, 246, 0.2) 50%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+}
+
+/* Active state with new color scheme */
+nav a.active {
+    color: var(--nav-accent);
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.15));
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    box-shadow: 
+        inset 0 1px 0 rgba(241, 245, 249, 0.1),
+        0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+nav a.active::after {
+    width: 100%;
+    height: 100%;
+}
+
+/* Enhanced hover states */
+nav a:hover {
+    color: var(--nav-accent);
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+}
+
+nav a:hover::after {
+    width: 120%;
+    height: 120%;
+}
+
+/* Mobile toggle with new colors */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-toggle:hover {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2));
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--nav-accent), var(--nav-gold));
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+    background: linear-gradient(90deg, var(--nav-gold), var(--nav-accent));
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+    background: linear-gradient(90deg, var(--nav-gold), var(--nav-accent));
+}
+
+/* Progress indicator with new gradient */
+.nav-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        var(--nav-accent) 0%,
+        var(--nav-gold) 50%,
+        var(--nav-tertiary) 100%
+    );
+    background-size: 200% 100%;
+    animation: progressGlow 3s ease-in-out infinite;
+    border-radius: 0 2px 0 0;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes progressGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+nav ul {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Brand particle effect */
+.nav-brand::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+}
+
+.nav-brand:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Enhanced mobile styles */
+@media (max-width: 768px) {
+    nav ul.active {
+        background: 
+            linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 41, 59, 0.98) 100%),
+            radial-gradient(ellipse at center, rgba(16, 185, 129, 0.1), transparent),
+            radial-gradient(ellipse at top right, rgba(59, 130, 246, 0.05), transparent);
+        
+        box-shadow: 
+            inset 0 1px 0 rgba(241, 245, 249, 0.1),
+            0 0 50px rgba(0, 0, 0, 0.5);
+    }
+    
+    nav a {
+        font-size: 1.1rem;
+        padding: 1.2rem 2rem;
+        margin: 0.5rem 0;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(16, 185, 129, 0.1);
+    }
+}
+
+/* Advanced border animations */
+nav ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 30px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: source-out;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+nav ul:hover::before {
+    opacity: 1;
+}
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh; /* NEW: Use min-height for flexibility */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem); /* NEW: Slightly larger max size */
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        /* NEW: Staggered letter animation styles */
+        .hero h1 span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            animation: letter-rise 0.5s ease forwards;
+        }
+        
+        @keyframes letter-rise {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            opacity: 0;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.5s forwards; /* NEW: Delayed to start after title */
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Glass Card Design */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px); /* NEW: Slightly more blur */
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* NEW: For aurora effect */
+            overflow: hidden; /* NEW: For aurora effect */
+        }
+
+        /* NEW: Aurora glow effect */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: var(--y, 0);
+            left: var(--x, 0);
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.2), transparent, transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 5%; /* NEW: Increased padding */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem; /* NEW: Increased size */
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.1), rgba(255, 215, 0, 0.1));
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-color), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Metaphor Gallery */
+        .metaphor-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metaphor-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .metaphor-card:hover {
+            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+        }
+        
+        .metaphor-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metaphor-image::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .metaphor-card:hover .metaphor-image::after {
+            animation: shimmer 0.5s ease;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .metaphor-info {
+            padding: 1.5rem;
+        }
+
+        .metaphor-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .metaphor-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* NEW: Generic scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .reveal-left.visible, .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Analysis Results */
+        .results-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Accuracy Bars */
+        .accuracy-bar {
+            margin: 1rem 0;
+        }
+
+        .accuracy-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            font-weight: bold;
+            transition: width 1.5s ease;
+            position: relative;
+            overflow: hidden;
+            width: 0;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: loading 2s linear infinite;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(233, 69, 96, 0.2);
+            font-weight: bold;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Performance Badges */
+        .performance-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .performance-high {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+        }
+
+        .performance-medium {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .performance-low {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+
+        /* Case Studies */
+        .case-study {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .case-study-title {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-color), var(--gold));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0; /* NEW: Remove padding, apply to inner card */
+            width: calc(50% - 4rem); /* NEW: Adjust width */
+            margin-bottom: 4rem; /* NEW: Increased margin */
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: calc(50% + 4rem); /* NEW: Adjust position */
+        }
+        
+        .timeline-item .glass-card {
+            margin: 0; /* NEW: Reset margin for card inside */
+        }
+        
+        .timeline-item:nth-child(odd) .glass-card {
+            text-align: right; /* NEW: Text alignment for context */
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            top: 1.5rem; /* NEW: Adjust position */
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -5rem; /* NEW: Adjust position */
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -5rem; /* NEW: Adjust position */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: rgba(233, 69, 96, 0.2);
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(233, 69, 96, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            margin: 5% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 20px;
+            animation: slideIn 0.3s ease;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: var(--text-light);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover {
+            color: var(--accent-color);
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-color), var(--gold));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 1rem;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 3rem); /* NEW: Adjust */
+                left: 3rem !important;
+                margin-bottom: 2rem;
+            }
+            
+             .timeline-item .glass-card {
+                 text-align: left !important;
+             }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: -2rem !important; /* NEW: Adjust */
+                top: 1.5rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--glass-border);
+            border-top-color: var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+		
+		/* Image Explorer Styles */
+/* Scrollable Image Explorer Section */
+#image-explorer {
+    min-height: auto; /* Override the 100vh */
+    max-height: 90vh; /* Limit the height */
+    padding: 4rem 5%;
+    display: flex;
+    align-items: flex-start; /* Change from center to flex-start */
+}
+
+.glass-card1 {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    padding: 2rem; /* Reduced padding */
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto; /* Remove top/bottom margin */
+    max-height: 80vh; /* Limit card height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Aurora effect remains the same */
+.glass-card1::before {
+    content: '';
+    position: absolute;
+    top: var(--y, 0);
+    left: var(--x, 0);
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(233, 69, 96, 0.2), transparent, transparent);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.glass-card1:hover::before {
+    opacity: 1;
+}
+
+.glass-card1:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Fixed header area */
+.explorer-header {
+    flex-shrink: 0; /* Prevent shrinking */
+    z-index: 10;
+    position: relative;
+    background: var(--glass-bg);
+    border-radius: 20px 20px 0 0;
+    padding-bottom: 1rem;
+}
+
+.section-title {
+    font-size: 2.2rem; /* Slightly smaller */
+    text-align: center;
+    margin-bottom: 2rem; /* Reduced margin */
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    color: var(--text-light);
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; /* Smaller underline */
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem; /* Reduced margin */
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-size: 1rem; /* Slightly smaller */
+    font-weight: 600;
+    color: var(--text-light);
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+#metaphor-filter {
+    background-color: var(--secondary-color);
+    border: 2px solid var(--glass-border);
+    color: var(--text-light);
+    padding: 0.8rem 2.5rem 0.8rem 1.2rem; /* Reduced padding */
+    border-radius: 12px; /* Slightly smaller radius */
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    min-width: 280px; /* Smaller width */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f5f5f5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+}
+
+#metaphor-filter:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 20px rgba(233, 69, 96, 0.3);
+    transform: translateY(-1px);
+}
+
+#metaphor-filter:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.2), 0 6px 20px rgba(233, 69, 96, 0.3);
+}
+
+/* Scrollable content area */
+.explorer-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+    margin-right: -0.5rem;
+}
+
+/* Custom scrollbar */
+.explorer-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.explorer-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.explorer-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--accent-color), var(--gold));
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.explorer-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #ff6b8a, #ffed4a);
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+}
+
+/* Firefox scrollbar */
+.explorer-content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) rgba(255, 255, 255, 0.05);
+}
+
+.explorer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly smaller cards */
+    gap: 1.5rem; /* Reduced gap */
+    padding-bottom: 1rem;
+}
+
+.explorer-card {
+    background-color: var(--secondary-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--glass-border);
+    position: relative;
+    height: fit-content; /* Ensure proper height */
+}
+
+.explorer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(233, 69, 96, 0.1), rgba(255, 215, 0, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.explorer-card:hover {
+    transform: translateY(-4px); /* Reduced hover lift */
+    box-shadow: 0 12px 30px rgba(233, 69, 96, 0.3);
+    border-color: var(--accent-color);
+}
+
+.explorer-card:hover::before {
+    opacity: 1;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+    height: 180px; /* Reduced height */
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.explorer-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.explorer-card:hover img {
+    transform: scale(1.03); /* Reduced scale */
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    display: flex;
+    gap: 0.4rem;
+    z-index: 2;
+}
+
+.card-content {
+    padding: 1.5rem; /* Reduced padding */
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; /* Reduced gap */
+    position: relative;
+    z-index: 2;
+}
+
+.card-title {
+    font-size: 1.1rem; /* Reduced size */
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+}
+
+.card-description {
+    color: var(--text-light);
+    font-size: 0.85rem; /* Reduced size */
+    opacity: 0.8;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+}
+
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem; /* Reduced gap */
+    margin-bottom: 0.8rem;
+}
+
+.tag {
+    font-size: 0.7rem; /* Reduced size */
+    padding: 0.4rem 0.8rem; /* Reduced padding */
+    border-radius: 9999px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+}
+
+.tag:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tag-original {
+    background-color: var(--gold);
+    color: var(--text-dark);
+    box-shadow: 0 3px 8px rgba(255, 215, 0, 0.3);
+}
+
+.tag-augmented {
+    background-color: #60a5fa;
+    color: #1e3a8a;
+    box-shadow: 0 3px 8px rgba(96, 165, 250, 0.3);
+}
+
+.prediction-status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem; /* Reduced padding */
+    border-radius: 0.6rem;
+    font-weight: 600;
+    font-size: 0.85rem; /* Reduced size */
+    margin-top: 0.3rem;
+    border: 1px solid transparent;
+}
+
+.pred-correct {
+    background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(52, 211, 153, 0.1));
+    color: #34d399;
+    border-color: rgba(52, 211, 153, 0.3);
+}
+
+.pred-incorrect {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1));
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.status-icon {
+    width: 1.1rem; /* Reduced size */
+    height: 1.1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.pred-correct .status-icon {
+    background: #34d399;
+    color: var(--text-dark);
+}
+
+.pred-incorrect .status-icon {
+    background: #ef4444;
+    color: white;
+}
+
+.stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0; /* Reduced padding */
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.8rem; /* Reduced size */
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+.confidence-score {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem; /* Reduced padding */
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+.empty-state h3 {
+    font-size: 1.3rem; /* Reduced size */
+    margin-bottom: 0.8rem;
+    color: var(--gold);
+}
+
+/* Loading Animation */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px; /* Reduced height */
+}
+
+.spinner {
+    width: 2.5rem; /* Reduced size */
+    height: 2.5rem;
+    border: 3px solid var(--glass-border);
+    border-top: 3px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Responsive Design for Explorer */
+@media (max-width: 768px) {
+    #image-explorer {
+        max-height: 85vh;
+        padding: 2rem 1rem;
+    }
+    
+    .glass-card1 {
+        padding: 1.5rem;
+        border-radius: 15px;
+        max-height: 75vh;
+    }
+
+    .explorer-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .filter-container {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    #metaphor-filter {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loader">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="bg-animation"></div>
+
+    <nav>
+    <div class="nav-container">
+        <!-- Brand/Logo Section -->
+        <a href="#home" class="nav-brand">AssameseMetaphor</a>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- Navigation Menu -->
+        <ul>
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#overview" class="nav-link">Overview</a></li>
+            <li><a href="#metaphors" class="nav-link">Metaphors</a></li>
+            <li><a href="#analysis" class="nav-link">Analysis</a></li>
+            <li><a href="#image-explorer" class="nav-link">Explorer</a></li>
+            <li><a href="#results" class="nav-link">Results</a></li>
+            <li><a href="#insights" class="nav-link">Insights</a></li>
+        </ul>
+        
+        <!-- Progress indicator -->
+        <div class="nav-progress"></div>
+    </div>
+</nav>
+    <section id="home" class="hero">
+        <h1>Visual Metaphors in Assamese Cinema</h1>
+        <p class="subtitle">An AI-Powered Semiotic Analysis of Cultural Symbolism</p>
+        <div class="glass-card" style="max-width: 800px;">
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                Exploring the rich tapestry of visual storytelling in Assamese films through 
+                cutting-edge machine learning and computer vision techniques. This research bridges 
+                traditional film semiotics with modern AI to decode cultural metaphors.
+            </p>
+            <a href="#overview" class="download-btn">Explore Research</a>
+        </div>
+    </section>
+
+    <section id="overview">
+        <h2 class="section-title reveal">Project Overview</h2>
+        
+        <div class="metrics-grid">
+            <div class="metric-card reveal">
+                <div class="metric-value" data-target="13">0</div>
+                <div class="metric-label">Unique Metaphors Analyzed</div>
+            </div>
+            <div class="metric-card reveal" style="transition-delay: 0.1s;">
+                <div class="metric-value" data-target="51">0%</div>
+                <div class="metric-label">Zero-Shot Accuracy</div>
+            </div>
+            <div class="metric-card reveal" style="transition-delay: 0.2s;">
+                <div class="metric-value" data-target="100">0%</div>
+                <div class="metric-label">Ensemble Model Accuracy</div>
+            </div>
+            <div class="metric-card reveal" style="transition-delay: 0.3s;">
+                <div class="metric-value" data-target="5">0</div>
+                <div class="metric-label">AI Models Deployed</div>
+            </div>
+        </div>
+
+        <div class="glass-card reveal">
+            <h3 style="margin-bottom: 1rem;">Research Methodology</h3>
+            <p>
+                Our analysis employs a multi-modal approach combining state-of-the-art vision-language models 
+                (CLIP, BLIP) with traditional computer vision techniques. We extract semantic, visual, and 
+                cultural features from film frames containing metaphorical representations, then apply both 
+                zero-shot and supervised learning paradigms to understand how AI interprets culturally-specific 
+                visual metaphors.
+            </p>
+        </div>
+    </section>
+
+    <section id="metaphors">
+        <h2 class="section-title reveal">Metaphor Gallery</h2>
+        
+        <div class="metaphor-gallery">
+            <div class="metaphor-card reveal" onclick="openModal('Bhauna', 'Traditional theatrical performance representing the interplay between reality and performance, sacred and secular. Perfect 100% recognition by Zero-Shot model.')">
+                <div class="metaphor-image">🎭</div>
+                <div class="metaphor-info">
+                    <div class="metaphor-title">Bhauna</div>
+                    <div class="metaphor-description">
+                        Traditional theatrical performance with perfect AI recognition (100%). 
+                        Represents the interplay between reality and performance.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metaphor-card reveal" onclick="openModal('River', 'The Brahmaputra as life journey - symbolizing flow, change, and renewal. Another metaphor with perfect 100% recognition.')">
+                <div class="metaphor-image">🌊</div>
+                <div class="metaphor-info">
+                    <div class="metaphor-title">River</div>
+                    <div class="metaphor-description">
+                        The Brahmaputra as life's journey - 100% AI recognition accuracy. 
+                        Symbolizes eternal cycle of destruction and renewal.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metaphor-card reveal" onclick="openModal('Mirror Shot', 'Self-reflection and duality metaphor. Despite being universal, achieved 0% Zero-Shot accuracy, confused with Mental Blockage.')">
+                <div class="metaphor-image">🪞</div>
+                <div class="metaphor-info">
+                    <div class="metaphor-title">Mirror Shot</div>
+                    <div class="metaphor-description">
+                        Surprisingly challenging for AI (0% Zero-Shot). Represents self-reflection 
+                        and duality, often confused with Mental Blockage.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metaphor-card reveal" onclick="openModal('Sound of Dheki', 'Traditional rice husking tool - the most challenging metaphor with 0% Zero-Shot accuracy, consistently confused with Bhauna.')">
+                <div class="metaphor-image">🔨</div>
+                <div class="metaphor-info">
+                    <div class="metaphor-title">Sound of Dheki</div>
+                    <div class="metaphor-description">
+                        Most challenging metaphor (0% Zero-Shot). The rhythmic pounding evokes 
+                        rural life but AI confuses it with Bhauna performances.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metaphor-card reveal" onclick="openModal('Golden Colour', 'Prosperity and divinity symbolism. 0% Zero-Shot accuracy, confused with Sound of Dheki.')">
+                <div class="metaphor-image">✨</div>
+                <div class="metaphor-info">
+                    <div class="metaphor-title">Golden Colour</div>
+                    <div class="metaphor-description">
+                        Symbol of prosperity and divinity (0% Zero-Shot). AI struggles with 
+                        color-based metaphors, confusing with Sound of Dheki.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metaphor-card reveal" onclick="openModal('Rainbow', 'Hope and diversity symbol with perfect 100% recognition across all models.')">
+                <div class="metaphor-image">🌈</div>
+                <div class="metaphor-info">
+                    <div class="metaphor-title">Rainbow</div>
+                    <div class="metaphor-description">
+                        Universal symbol of hope (100% accuracy). One of the few metaphors 
+                        perfectly recognized by all AI models.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="metaphorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription" style="margin-top: 1rem;"></p>
+            <div class="case-study" style="margin-top: 2rem;">
+                <div class="case-study-title">AI Interpretation Analysis</div>
+                <p>This metaphor presents unique challenges for AI recognition systems. Our analysis reveals how different models interpret these cultural symbols through their training biases.</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="analysis">
+        <h2 class="section-title reveal">Model Performance Analysis</h2>
+        
+        <div class="glass-card reveal">
+            <h3 class="chart-title">Performance by Metaphor</h3>
+            <div style="overflow-x:auto;"> <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Metaphor</th>
+                            <th>Zero-Shot Accuracy</th>
+                            <th>Ensemble Accuracy</th>
+                            <th>Most Common Confusion</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>BHAUNA</td>
+                            <td>100.0%</td>
+                            <td>100.0%</td>
+                            <td>-</td>
+                            <td><span class="performance-badge performance-high">Perfect</span></td>
+                        </tr>
+                        <tr>
+                            <td>RAINBOW</td>
+                            <td>100.0%</td>
+                            <td>100.0%</td>
+                            <td>-</td>
+                            <td><span class="performance-badge performance-high">Perfect</span></td>
+                        </tr>
+                        <tr>
+                            <td>RIVER</td>
+                            <td>100.0%</td>
+                            <td>100.0%</td>
+                            <td>-</td>
+                            <td><span class="performance-badge performance-high">Perfect</span></td>
+                        </tr>
+                        <tr>
+                            <td>TRAIN</td>
+                            <td>100.0%</td>
+                            <td>100.0%</td>
+                            <td>-</td>
+                            <td><span class="performance-badge performance-high">Perfect</span></td>
+                        </tr>
+                        <tr>
+                            <td>FOOTSTEPS ON SAND</td>
+                            <td>80.0%</td>
+                            <td>100.0%</td>
+                            <td>BHAUNA</td>
+                            <td><span class="performance-badge performance-high">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td>GHOSTLY CHARACTER</td>
+                            <td>80.0%</td>
+                            <td>100.0%</td>
+                            <td>SOUND OF DHEKI</td>
+                            <td><span class="performance-badge performance-high">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td>RIVER AND BOAT</td>
+                            <td>80.0%</td>
+                            <td>100.0%</td>
+                            <td>RIVER</td>
+                            <td><span class="performance-badge performance-high">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td>RED COLOURED FLOWER</td>
+                            <td>20.0%</td>
+                            <td>100.0%</td>
+                            <td>BHAUNA</td>
+                            <td><span class="performance-badge performance-medium">Moderate</span></td>
+                        </tr>
+                        <tr>
+                            <td>GOLDEN COLOUR</td>
+                            <td>0.0%</td>
+                            <td>100.0%</td>
+                            <td>SOUND OF DHEKI</td>
+                            <td><span class="performance-badge performance-low">Challenging</span></td>
+                        </tr>
+                        <tr>
+                            <td>MENTAL BLOCKAGE</td>
+                            <td>0.0%</td>
+                            <td>100.0%</td>
+                            <td>BHAUNA</td>
+                            <td><span class="performance-badge performance-low">Challenging</span></td>
+                        </tr>
+                        <tr>
+                            <td>MIRROR SHOT</td>
+                            <td>0.0%</td>
+                            <td>100.0%</td>
+                            <td>MENTAL BLOCKAGE</td>
+                            <td><span class="performance-badge performance-low">Challenging</span></td>
+                        </tr>
+                        <tr>
+                            <td>SILVER BANGLE</td>
+                            <td>0.0%</td>
+                            <td>100.0%</td>
+                            <td>RIVER</td>
+                            <td><span class="performance-badge performance-low">Challenging</span></td>
+                        </tr>
+                        <tr>
+                            <td>SOUND OF DHEKI</td>
+                            <td>0.0%</td>
+                            <td>100.0%</td>
+                            <td>BHAUNA</td>
+                            <td><span class="performance-badge performance-low">Challenging</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal-left">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <h3>Data Collection & Preparation</h3>
+                    <p>Curated dataset of 13 unique metaphorical scenes from Assamese films. 
+                    Applied culturally-aware augmentation to balance classes while respecting semantic constraints.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal-right">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <h3>Feature Extraction</h3>
+                    <p>Multi-modal feature extraction using CLIP (768-dim semantic), ResNet-50 (2048-dim visual), 
+                    YOLO (object detection), and Haralick textures (6-dim texture features).</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal-left">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <h3>Zero-Shot Classification</h3>
+                    <p>Achieved 50.8% overall accuracy. Perfect recognition for universal metaphors (River, Rainbow, Train) 
+                    but complete failure on culturally-specific ones (Dheki, Golden Colour).</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal-right">
+                <div class="timeline-dot"></div>
+                <div class="glass-card">
+                    <h3>Ensemble Learning</h3>
+                    <p>Random Forest with LOOCV achieved perfect 100% accuracy by combining all features, 
+                    demonstrating the power of multi-modal fusion for cultural understanding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="section" id="image-explorer">
+    <div class="glass-card1">
+        <!-- Fixed Header Area -->
+        <div class="explorer-header">
+            <h2 class="section-title">Image Explorer</h2>
+            <div class="filter-container">
+                <label class="filter-label" for="metaphor-filter">Filter by:</label>
+                <select id="metaphor-filter">
+                    <option value="all">View All Metaphors</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Scrollable Content Area -->
+        <div class="explorer-content">
+            <div id="explorer-grid" class="explorer-grid">
+                <!-- Images will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+</section>
+    <section id="results">
+        <h2 class="section-title reveal">Results & Performance</h2>
+        
+        <div class="results-container">
+            <div class="chart-container reveal">
+                <h3 class="chart-title">Model Performance Comparison</h3>
+                <div class="accuracy-bar">
+                    <div class="accuracy-label">
+                        <span>Zero-Shot CLIP</span>
+                        <span>50.8%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="50.8%">50.8%</div>
+                    </div>
+                </div>
+                <div class="accuracy-bar">
+                    <div class="accuracy-label">
+                        <span>Ensemble Classifier</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="100%">100%</div>
+                    </div>
+                </div>
+                <div class="accuracy-bar">
+                    <div class="accuracy-label">
+                        <span>Improvement Gain</span>
+                        <span>+49.2%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="49.2%">+49.2%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container reveal" style="transition-delay: 0.2s;">
+                <h3 class="chart-title">Zero-Shot Performance Distribution</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem; margin: 0.5rem 0;">
+                        <div class="accuracy-label">
+                            <span>Perfect Recognition (100%)</span>
+                            <span style="color: #4caf50;">4 metaphors</span>
+                        </div>
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.5rem 0;">
+                        <div class="accuracy-label">
+                            <span>Good Recognition (80%)</span>
+                            <span style="color: #4caf50;">3 metaphors</span>
+                        </div>
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.5rem 0;">
+                        <div class="accuracy-label">
+                            <span>Poor Recognition (20%)</span>
+                            <span style="color: #ffc107;">1 metaphor</span>
+                        </div>
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.5rem 0;">
+                        <div class="accuracy-label">
+                            <span>Complete Failure (0%)</span>
+                            <span style="color: #f44336;">5 metaphors</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass-card reveal">
+            <h3 style="margin-bottom: 1rem;">Key Findings</h3>
+            <ul style="line-height: 2; padding-left: 1.5rem;">
+                <li><strong>Perfect Ensemble Performance:</strong> 100% accuracy achieved through multi-modal feature fusion</li>
+                <li><strong>Cultural Blind Spots:</strong> 5 metaphors (38.5%) completely failed in Zero-Shot, all culturally-specific</li>
+                <li><strong>Universal vs Cultural:</strong> Universal metaphors (River, Rainbow, Train) achieved 100% Zero-Shot accuracy</li>
+                <li><strong>Confusion Patterns:</strong> BHAUNA was the most common confusion target, appearing 4 times</li>
+                <li><strong>Color Metaphors Struggle:</strong> Golden Colour and Red Flower achieved 0% and 20% respectively</li>
+            </ul>
+        </div>
+
+        <div class="glass-card reveal" style="margin-top: 2rem;">
+            <h3 style="text-align:center; margin-bottom: 2rem;">Classification Reports</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h4 style="text-align:center; margin-bottom: 1rem; color: var(--gold);">Zero-Shot Model</h4>
+                    <img src="zero.png" alt="Zero-Shot Report" style="width:100%; border-radius:15px;">
+                </div>
+                <div>
+                    <h4 style="text-align:center; margin-bottom: 1rem; color: var(--gold);">Ensemble Model</h4>
+                    <img src="ensem.png" alt="Ensemble Report" style="width:100%; border-radius:15px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="insights">
+        <h2 class="section-title reveal">Semiotic Insights</h2>
+        
+        <div class="glass-card reveal">
+            <h3>Universal vs Cultural Metaphors</h3>
+            <p style="margin: 1rem 0;">
+                Our analysis reveals a stark divide in AI's ability to interpret visual metaphors. The 50.8% Zero-Shot 
+                accuracy masks a binary reality: perfect recognition of universal symbols versus complete failure on 
+                culturally-embedded metaphors unique to Assamese cinema.
+            </p>
+            
+            <div class="case-study">
+                <div class="case-study-title">Case Study 1: The Sound of Dheki Paradox</div>
+                <p>
+                    The "Sound of Dheki" metaphor achieved 0% Zero-Shot accuracy, consistently misclassified as "Bhauna". 
+                    This reveals a fundamental challenge in AI interpretation:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>The Dheki (traditional rice husking tool) has no representation in Western datasets</li>
+                    <li>Visual similarity in traditional attire causes confusion with theatrical performances</li>
+                    <li>AI maps unfamiliar cultural artifacts to nearest known concepts, erasing specificity</li>
+                </ul>
+            </div>
+            
+            <div class="case-study">
+                <div class="case-study-title">Case Study 2: The Mirror Shot Surprise</div>
+                <p>
+                    Despite being a universal cinematic metaphor, Mirror Shot achieved 0% Zero-Shot accuracy, 
+                    confused with Mental Blockage. This unexpected failure suggests:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>Context matters more than universal symbols in specific cultural narratives</li>
+                    <li>Assamese cinema may use mirror shots differently than Western conventions</li>
+                    <li>The ensemble model's perfect correction shows the value of multi-modal analysis</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <div class="case-study-title">Success Story: Perfect Ensemble Performance</div>
+                <p>
+                    The ensemble model's 100% accuracy demonstrates that cultural understanding is possible through AI, 
+                    but requires:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li><strong>Multi-modal fusion:</strong> Combining semantic, visual, and object features</li>
+                    <li><strong>Local training:</strong> Learning from culturally-specific examples</li>
+                    <li><strong>Feature diversity:</strong> Low-level features (color, texture) provide crucial context</li>
+                </ul>
+            </div>
+            
+            <h4 style="margin: 1.5rem 0 1rem; color: var(--gold);">Implications for Film Studies</h4>
+            <p>
+                This research reveals that AI systems trained on Western data exhibit significant cultural bias, 
+                achieving only 50.8% accuracy on Assamese metaphors. However, the perfect performance of ensemble 
+                models shows that culturally-aware AI is achievable through appropriate training and multi-modal approaches.
+            </p>
+        </div>
+
+        <div class="glass-card reveal" style="margin-top: 2rem;">
+            <h3>Future Research</h3>
+            <ol style="line-height: 2; padding-left: 1.5rem;">
+                <li><strong>Develop Regional Datasets:</strong> Create Assamese-specific visual datasets for better representation</li>
+                <li><strong>Cross-Cultural Studies:</strong> Compare metaphor recognition across different regional cinemas</li>
+                <li><strong>Temporal Analysis:</strong> Incorporate video sequences rather than static frames</li>
+                <li><strong>Audience Validation:</strong> Verify AI interpretations with domain expert studies</li>
+                <li><strong>Semiotic Annotation:</strong> Add Peircean classifications (icon/index/symbol) to training data</li>
+            </ol>
+        </div>
+    </section>
+
+    <footer>
+        <h3 style="margin-bottom: 1rem;">Technologies Used</h3>
+        <div class="tech-stack">
+            <span class="tech-badge">CLIP Vision-Language Model</span>
+            <span class="tech-badge">BLIP Captioning</span>
+            <span class="tech-badge">ResNet-50</span>
+            <span class="tech-badge">YOLOv8</span>
+            <span class="tech-badge">Random Forest</span>
+            <span class="tech-badge">SHAP Analysis</span>
+            <span class="tech-badge">PyTorch</span>
+            <span class="tech-badge">Scikit-learn</span>
+        </div>
+        <div style="margin-top: 2rem;">
+            <a href="#" class="download-btn">Download Full Report (PDF)</a>
+            <a href="#" class="download-btn">Access Dataset</a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.8;">
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">Rhishikanya</strong> <span>All Rights Reserved</span></p>
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Remove loading overlay after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500); // NEW: Reduced delay
+            
+            // NEW: Staggered title animation
+            const title = document.querySelector('.hero h1');
+            const text = title.textContent;
+            const letters = text.split('');
+            title.innerHTML = '';
+            letters.forEach((letter, index) => {
+                const span = document.createElement('span');
+                span.textContent = letter === ' ' ? '\u00A0' : letter;
+                span.style.animationDelay = `${index * 0.03}s`;
+                title.appendChild(span);
+            });
+        });
+
+        // Animate progress bars when they come into view
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressFills = entry.target.querySelectorAll('.progress-fill');
+                    progressFills.forEach(fill => {
+                        const targetWidth = fill.getAttribute('data-width');
+                        setTimeout(() => {
+                            fill.style.width = targetWidth;
+                        }, 100);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const resultsSection = document.querySelector('#results');
+        if (resultsSection) {
+            progressObserver.observe(resultsSection);
+        }
+
+        // Animate metric values on scroll
+        const animateValue = (element, start, end, duration, suffix = '') => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        const metricsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const metricValues = entry.target.querySelectorAll('.metric-value');
+                    metricValues.forEach(value => {
+                        const target = parseInt(value.getAttribute('data-target'));
+                        const text = value.getAttribute('data-target');
+                        const suffix = text.includes('%') ? '%' : '';
+                        animateValue(value, 0, target, 1500, suffix);
+                    });
+                    metricsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const metricsGrid = document.querySelector('.metrics-grid');
+        if (metricsGrid) {
+            metricsObserver.observe(metricsGrid);
+        }
+
+        // Modal functions
+        function openModal(title, description) {
+            const modal = document.getElementById('metaphorModal');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDescription').textContent = description;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('metaphorModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('metaphorModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // --- NEW: All new animations below ---
+        
+        // REMOVED: Custom Cursor script
+        
+        // 2. Nav bar shrink on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 3. Scroll reveal animations
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // 4. 3D Card Tilt and Aurora Effect
+        const cards = document.querySelectorAll('.glass-card, .metric-card, .metaphor-card');
+        cards.forEach(card => {
+            card.style.transformStyle = 'preserve-3d';
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const { width, height } = rect;
+                const rotateX = (y / height - 0.5) * -15; // Invert for natural feel
+                const rotateY = (x / width - 0.5) * 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                
+                // For aurora effect on glass-card
+                if (card.classList.contains('glass-card')) {
+                   card.style.setProperty('--x', `${x}px`);
+                   card.style.setProperty('--y', `${y}px`);
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        console.log('🎬 Assamese Film Metaphor Analysis Website Loaded with new animations!');
+    </script>
+	<script>
+    // Your analysis data
+const analysisData = [
+    {"Filename":"Picture1.png","True Metaphor":"RIVER","Type":"Original","AI Caption":"arafed view of a boat on a lake at night","Detected Objects":"","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"54.0%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture1_aug0.png","True Metaphor":"RIVER","Type":"Augmented","AI Caption":"arafed view of a boat on a lake at night","Detected Objects":"","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"53.2%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture1_aug1.png","True Metaphor":"RIVER","Type":"Augmented","AI Caption":"there is a boat that is going down the river at night","Detected Objects":"","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"59.5%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture1_aug2.png","True Metaphor":"RIVER","Type":"Augmented","AI Caption":"there is a picture of a boat in the water at night","Detected Objects":"","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"82.9%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture1_aug3.png","True Metaphor":"RIVER","Type":"Augmented","AI Caption":"arafed view of a boat on a lake at night","Detected Objects":"","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"53.2%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture2.png","True Metaphor":"SOUND OF DHEKI","Type":"Original","AI Caption":"there are two women standing in a room with a cross on the wall","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"83.5%","Zero-Shot Correct":"No","Ensemble Prediction":"SOUND OF DHEKI","Ensemble Correct":"Yes"},
+    {"Filename":"Picture2_aug0.png","True Metaphor":"SOUND OF DHEKI","Type":"Augmented","AI Caption":"there are two women standing in a room with a cross on the wall","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"88.0%","Zero-Shot Correct":"No","Ensemble Prediction":"SOUND OF DHEKI","Ensemble Correct":"Yes"},
+    {"Filename":"Picture2_aug1.png","True Metaphor":"SOUND OF DHEKI","Type":"Augmented","AI Caption":"there are two women standing in a room with a cross on the wall","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"80.3%","Zero-Shot Correct":"No","Ensemble Prediction":"SOUND OF DHEKI","Ensemble Correct":"Yes"},
+    {"Filename":"Picture2_aug2.png","True Metaphor":"SOUND OF DHEKI","Type":"Augmented","AI Caption":"there are two women standing in a room with a cross on the wall","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"88.0%","Zero-Shot Correct":"No","Ensemble Prediction":"SOUND OF DHEKI","Ensemble Correct":"Yes"},
+    {"Filename":"Picture2_aug3.png","True Metaphor":"SOUND OF DHEKI","Type":"Augmented","AI Caption":"there are two women standing in a room with a cross on the wall","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"88.0%","Zero-Shot Correct":"No","Ensemble Prediction":"SOUND OF DHEKI","Ensemble Correct":"Yes"},
+    {"Filename":"Picture3.jpg","True Metaphor":"SILVER BANGLE","Type":"Original","AI Caption":"someone is holding a knife in their hand and a piece of wood is in the background","Detected Objects":"person","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"28.1%","Zero-Shot Correct":"No","Ensemble Prediction":"SILVER BANGLE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture3_aug0.png","True Metaphor":"SILVER BANGLE","Type":"Augmented","AI Caption":"someone is holding a knife in their hand and a piece of wood is in the background","Detected Objects":"person","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"22.4%","Zero-Shot Correct":"No","Ensemble Prediction":"SILVER BANGLE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture3_aug1.png","True Metaphor":"SILVER BANGLE","Type":"Augmented","AI Caption":"someone is holding a knife in their hand and a piece of wood is in the background","Detected Objects":"person","Zero-Shot Prediction":"SILVER BANGLE","Zero-Shot Confidence":"20.3%","Zero-Shot Correct":"Yes","Ensemble Prediction":"SILVER BANGLE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture3_aug2.png","True Metaphor":"SILVER BANGLE","Type":"Augmented","AI Caption":"someone is holding a knife in their hand and a piece of wood is in the background","Detected Objects":"person","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"25.3%","Zero-Shot Correct":"No","Ensemble Prediction":"SILVER BANGLE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture3_aug3.png","True Metaphor":"SILVER BANGLE","Type":"Augmented","AI Caption":"someone is holding a knife in their hand and a piece of wood is in the background","Detected Objects":"person","Zero-Shot Prediction":"RIVER","Zero-Shot Confidence":"22.4%","Zero-Shot Correct":"No","Ensemble Prediction":"SILVER BANGLE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture4.png","True Metaphor":"GHOSTLY CHARACTER","Type":"Original","AI Caption":"a woman with long hair and a creepy face in a dark room","Detected Objects":"person","Zero-Shot Prediction":"GHOSTLY CHARACTER","Zero-Shot Confidence":"65.1%","Zero-Shot Correct":"Yes","Ensemble Prediction":"GHOSTLY CHARACTER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture4_aug0.png","True Metaphor":"GHOSTLY CHARACTER","Type":"Augmented","AI Caption":"a woman with long hair and a creepy face in a dark room","Detected Objects":"person","Zero-Shot Prediction":"GHOSTLY CHARACTER","Zero-Shot Confidence":"63.9%","Zero-Shot Correct":"Yes","Ensemble Prediction":"GHOSTLY CHARACTER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture4_aug1.png","True Metaphor":"GHOSTLY CHARACTER","Type":"Augmented","AI Caption":"a woman with long hair and a creepy face in a dark room","Detected Objects":"person","Zero-Shot Prediction":"GHOSTLY CHARACTER","Zero-Shot Confidence":"57.2%","Zero-Shot Correct":"Yes","Ensemble Prediction":"GHOSTLY CHARACTER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture4_aug2.png","True Metaphor":"GHOSTLY CHARACTER","Type":"Augmented","AI Caption":"a woman with long hair and a creepy face in a dark room","Detected Objects":"person","Zero-Shot Prediction":"GHOSTLY CHARACTER","Zero-Shot Confidence":"63.7%","Zero-Shot Correct":"Yes","Ensemble Prediction":"GHOSTLY CHARACTER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture4_aug3.png","True Metaphor":"GHOSTLY CHARACTER","Type":"Augmented","AI Caption":"a woman with long hair and a creepy face in a dark room","Detected Objects":"person","Zero-Shot Prediction":"GHOSTLY CHARACTER","Zero-Shot Confidence":"63.9%","Zero-Shot Correct":"Yes","Ensemble Prediction":"GHOSTLY CHARACTER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture5.png","True Metaphor":"MENTAL BLOCKAGE","Type":"Original","AI Caption":"they are sitting at a table eating food together","Detected Objects":"person, dining table","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"93.7%","Zero-Shot Correct":"No","Ensemble Prediction":"MENTAL BLOCKAGE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture6.png","True Metaphor":"MENTAL BLOCKAGE","Type":"Original","AI Caption":"someone is eating a plate of food with a fork and a glass of water","Detected Objects":"person, fork, bowl","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"88.9%","Zero-Shot Correct":"No","Ensemble Prediction":"MENTAL BLOCKAGE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture5_aug0.png","True Metaphor":"MENTAL BLOCKAGE","Type":"Augmented","AI Caption":"they are sitting at a table eating food together","Detected Objects":"person, dining table","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"93.7%","Zero-Shot Correct":"No","Ensemble Prediction":"MENTAL BLOCKAGE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture6_aug1.png","True Metaphor":"MENTAL BLOCKAGE","Type":"Augmented","AI Caption":"someone is eating a plate of food with a fork and a glass of water","Detected Objects":"person, fork, bowl","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"89.8%","Zero-Shot Correct":"No","Ensemble Prediction":"MENTAL BLOCKAGE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture5_aug2.png","True Metaphor":"MENTAL BLOCKAGE","Type":"Augmented","AI Caption":"they are sitting at a table eating food together","Detected Objects":"person, dining table","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"92.3%","Zero-Shot Correct":"No","Ensemble Prediction":"MENTAL BLOCKAGE","Ensemble Correct":"Yes"},
+    {"Filename":"Picture7.jpg","True Metaphor":"BHAUNA","Type":"Original","AI Caption":"there is a woman in a red dress holding a child","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"85.2%","Zero-Shot Correct":"Yes","Ensemble Prediction":"BHAUNA","Ensemble Correct":"Yes"},
+    {"Filename":"Picture7_aug0.png","True Metaphor":"BHAUNA","Type":"Augmented","AI Caption":"there is a woman in a red dress holding a child","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"85.0%","Zero-Shot Correct":"Yes","Ensemble Prediction":"BHAUNA","Ensemble Correct":"Yes"},
+    {"Filename":"Picture7_aug1.png","True Metaphor":"BHAUNA","Type":"Augmented","AI Caption":"there is a woman in a red dress holding a child","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"79.4%","Zero-Shot Correct":"Yes","Ensemble Prediction":"BHAUNA","Ensemble Correct":"Yes"},
+    {"Filename":"Picture7_aug2.png","True Metaphor":"BHAUNA","Type":"Augmented","AI Caption":"there is a woman in a red dress holding a child","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"80.0%","Zero-Shot Correct":"Yes","Ensemble Prediction":"BHAUNA","Ensemble Correct":"Yes"},
+    {"Filename":"Picture7_aug3.png","True Metaphor":"BHAUNA","Type":"Augmented","AI Caption":"there is a woman in a red dress holding a child","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"85.0%","Zero-Shot Correct":"Yes","Ensemble Prediction":"BHAUNA","Ensemble Correct":"Yes"},
+    {"Filename":"Picture8.jpg","True Metaphor":"TRAIN","Type":"Original","AI Caption":"there is a train that is going over a bridge on the tracks","Detected Objects":"train","Zero-Shot Prediction":"TRAIN","Zero-Shot Confidence":"48.2%","Zero-Shot Correct":"Yes","Ensemble Prediction":"TRAIN","Ensemble Correct":"Yes"},
+    {"Filename":"Picture8_aug0.png","True Metaphor":"TRAIN","Type":"Augmented","AI Caption":"there is a train that is going over a bridge on the tracks","Detected Objects":"train","Zero-Shot Prediction":"TRAIN","Zero-Shot Confidence":"53.8%","Zero-Shot Correct":"Yes","Ensemble Prediction":"TRAIN","Ensemble Correct":"Yes"},
+    {"Filename":"Picture8_aug1.png","True Metaphor":"TRAIN","Type":"Augmented","AI Caption":"there is a train that is going over a bridge on the tracks","Detected Objects":"train","Zero-Shot Prediction":"TRAIN","Zero-Shot Confidence":"39.4%","Zero-Shot Correct":"Yes","Ensemble Prediction":"TRAIN","Ensemble Correct":"Yes"},
+    {"Filename":"Picture8_aug2.png","True Metaphor":"TRAIN","Type":"Augmented","AI Caption":"there is a train on the tracks going over a bridge","Detected Objects":"train","Zero-Shot Prediction":"TRAIN","Zero-Shot Confidence":"51.0%","Zero-Shot Correct":"Yes","Ensemble Prediction":"TRAIN","Ensemble Correct":"Yes"},
+    {"Filename":"Picture8_aug3.png","True Metaphor":"TRAIN","Type":"Augmented","AI Caption":"there is a train that is going over a bridge on the tracks","Detected Objects":"train","Zero-Shot Prediction":"TRAIN","Zero-Shot Confidence":"53.8%","Zero-Shot Correct":"Yes","Ensemble Prediction":"TRAIN","Ensemble Correct":"Yes"},
+    {"Filename":"Picture9.png","True Metaphor":"RIVER AND BOAT","Type":"Original","AI Caption":"there is a person in a boat on a lake in the fog","Detected Objects":"boat","Zero-Shot Prediction":"RIVER AND BOAT","Zero-Shot Confidence":"47.9%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER AND BOAT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture9_aug0.png","True Metaphor":"RIVER AND BOAT","Type":"Augmented","AI Caption":"there is a person in a boat on a lake in the fog","Detected Objects":"boat","Zero-Shot Prediction":"RIVER AND BOAT","Zero-Shot Confidence":"50.9%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER AND BOAT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture9_aug1.png","True Metaphor":"RIVER AND BOAT","Type":"Augmented","AI Caption":"there is a man in a boat on a lake in the fog","Detected Objects":"boat","Zero-Shot Prediction":"RIVER AND BOAT","Zero-Shot Confidence":"53.3%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER AND BOAT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture9_aug2.png","True Metaphor":"RIVER AND BOAT","Type":"Augmented","AI Caption":"there is a person in a boat on a lake in the fog","Detected Objects":"boat","Zero-Shot Prediction":"RIVER AND BOAT","Zero-Shot Confidence":"56.0%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER AND BOAT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture9_aug3.png","True Metaphor":"RIVER AND BOAT","Type":"Augmented","AI Caption":"there is a person in a boat on a lake in the fog","Detected Objects":"boat","Zero-Shot Prediction":"RIVER AND BOAT","Zero-Shot Confidence":"50.9%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RIVER AND BOAT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture10.png","True Metaphor":"FOOTSTEPS ON SAND","Type":"Original","AI Caption":"arafed image of a person standing in the middle of a desert","Detected Objects":"person","Zero-Shot Prediction":"FOOTSTEPS ON SAND","Zero-Shot Confidence":"52.1%","Zero-Shot Correct":"Yes","Ensemble Prediction":"FOOTSTEPS ON SAND","Ensemble Correct":"Yes"},
+    {"Filename":"Picture10_aug0.png","True Metaphor":"FOOTSTEPS ON SAND","Type":"Augmented","AI Caption":"arafed image of a person standing in the middle of a desert","Detected Objects":"person","Zero-Shot Prediction":"FOOTSTEPS ON SAND","Zero-Shot Confidence":"57.9%","Zero-Shot Correct":"Yes","Ensemble Prediction":"FOOTSTEPS ON SAND","Ensemble Correct":"Yes"},
+    {"Filename":"Picture10_aug1.png","True Metaphor":"FOOTSTEPS ON SAND","Type":"Augmented","AI Caption":"arafed image of a person standing in the middle of a desert","Detected Objects":"person","Zero-Shot Prediction":"FOOTSTEPS ON SAND","Zero-Shot Confidence":"57.3%","Zero-Shot Correct":"Yes","Ensemble Prediction":"FOOTSTEPS ON SAND","Ensemble Correct":"Yes"},
+    {"Filename":"Picture10_aug2.png","True Metaphor":"FOOTSTEPS ON SAND","Type":"Augmented","AI Caption":"arafed image of a person standing in the middle of a desert","Detected Objects":"person","Zero-Shot Prediction":"FOOTSTEPS ON SAND","Zero-Shot Confidence":"57.5%","Zero-Shot Correct":"Yes","Ensemble Prediction":"FOOTSTEPS ON SAND","Ensemble Correct":"Yes"},
+    {"Filename":"Picture10_aug3.png","True Metaphor":"FOOTSTEPS ON SAND","Type":"Augmented","AI Caption":"arafed image of a person standing in the middle of a desert","Detected Objects":"person","Zero-Shot Prediction":"FOOTSTEPS ON SAND","Zero-Shot Confidence":"57.9%","Zero-Shot Correct":"Yes","Ensemble Prediction":"FOOTSTEPS ON SAND","Ensemble Correct":"Yes"},
+    {"Filename":"Picture11.png","True Metaphor":"GOLDEN COLOUR","Type":"Original","AI Caption":"there are two people standing on a beach at sunset","Detected Objects":"person","Zero-Shot Prediction":"SOUND OF DHEKI","Zero-Shot Confidence":"83.7%","Zero-Shot Correct":"No","Ensemble Prediction":"GOLDEN COLOUR","Ensemble Correct":"Yes"},
+    {"Filename":"Picture12.png","True Metaphor":"GOLDEN COLOUR","Type":"Original","AI Caption":"there are two girls sitting on the beach watching the sun set","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"63.4%","Zero-Shot Correct":"No","Ensemble Prediction":"GOLDEN COLOUR","Ensemble Correct":"Yes"},
+    {"Filename":"Picture11_aug0.png","True Metaphor":"GOLDEN COLOUR","Type":"Augmented","AI Caption":"there are two people standing on a beach at sunset","Detected Objects":"person","Zero-Shot Prediction":"SOUND OF DHEKI","Zero-Shot Confidence":"82.1%","Zero-Shot Correct":"No","Ensemble Prediction":"GOLDEN COLOUR","Ensemble Correct":"Yes"},
+    {"Filename":"Picture12_aug1.png","True Metaphor":"GOLDEN COLOUR","Type":"Augmented","AI Caption":"there are two girls sitting on the beach watching the sun set","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"52.9%","Zero-Shot Correct":"No","Ensemble Prediction":"GOLDEN COLOUR","Ensemble Correct":"Yes"},
+    {"Filename":"Picture11_aug2.png","True Metaphor":"GOLDEN COLOUR","Type":"Augmented","AI Caption":"there are two people standing on a beach at sunset","Detected Objects":"person","Zero-Shot Prediction":"SOUND OF DHEKI","Zero-Shot Confidence":"83.1%","Zero-Shot Correct":"No","Ensemble Prediction":"GOLDEN COLOUR","Ensemble Correct":"Yes"},
+    {"Filename":"Picture13.png","True Metaphor":"RAINBOW","Type":"Original","AI Caption":"there is a rainbow in the sky with a rainbow in the background","Detected Objects":"","Zero-Shot Prediction":"RAINBOW","Zero-Shot Confidence":"99.3%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RAINBOW","Ensemble Correct":"Yes"},
+    {"Filename":"Picture13_aug0.png","True Metaphor":"RAINBOW","Type":"Augmented","AI Caption":"there is a rainbow in the sky with a rainbow in the background","Detected Objects":"","Zero-Shot Prediction":"RAINBOW","Zero-Shot Confidence":"99.2%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RAINBOW","Ensemble Correct":"Yes"},
+    {"Filename":"Picture13_aug1.png","True Metaphor":"RAINBOW","Type":"Augmented","AI Caption":"there is a rainbow in the sky with a rainbow in the background","Detected Objects":"","Zero-Shot Prediction":"RAINBOW","Zero-Shot Confidence":"99.4%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RAINBOW","Ensemble Correct":"Yes"},
+    {"Filename":"Picture13_aug2.png","True Metaphor":"RAINBOW","Type":"Augmented","AI Caption":"there is a rainbow in the sky with a rainbow in the background","Detected Objects":"","Zero-Shot Prediction":"RAINBOW","Zero-Shot Confidence":"99.3%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RAINBOW","Ensemble Correct":"Yes"},
+    {"Filename":"Picture13_aug3.png","True Metaphor":"RAINBOW","Type":"Augmented","AI Caption":"there is a rainbow in the sky with a rainbow in the background","Detected Objects":"","Zero-Shot Prediction":"RAINBOW","Zero-Shot Confidence":"99.2%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RAINBOW","Ensemble Correct":"Yes"},
+    {"Filename":"Picture14.png","True Metaphor":"RED COLOURED FLOWER","Type":"Original","AI Caption":"there is a small flower that is on the ground next to a man","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"71.8%","Zero-Shot Correct":"No","Ensemble Prediction":"RED COLOURED FLOWER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture14_aug0.png","True Metaphor":"RED COLOURED FLOWER","Type":"Augmented","AI Caption":"there is a small flower that is on the bed","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"70.2%","Zero-Shot Correct":"No","Ensemble Prediction":"RED COLOURED FLOWER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture14_aug1.png","True Metaphor":"RED COLOURED FLOWER","Type":"Augmented","AI Caption":"there is a small flower on the bed with a man's shirt","Detected Objects":"person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"64.7%","Zero-Shot Correct":"No","Ensemble Prediction":"RED COLOURED FLOWER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture14_aug2.png","True Metaphor":"RED COLOURED FLOWER","Type":"Augmented","AI Caption":"there is a small doll that is on a purple and white blanket","Detected Objects":"bed, person","Zero-Shot Prediction":"RED COLOURED FLOWER","Zero-Shot Confidence":"71.4%","Zero-Shot Correct":"Yes","Ensemble Prediction":"RED COLOURED FLOWER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture14_aug3.png","True Metaphor":"RED COLOURED FLOWER","Type":"Augmented","AI Caption":"there is a small flower on the bed with a man's shirt","Detected Objects":"bed, person","Zero-Shot Prediction":"BHAUNA","Zero-Shot Confidence":"74.0%","Zero-Shot Correct":"No","Ensemble Prediction":"RED COLOURED FLOWER","Ensemble Correct":"Yes"},
+    {"Filename":"Picture15.png","True Metaphor":"MIRROR SHOT","Type":"Original","AI Caption":"there is a woman looking at herself in the mirror","Detected Objects":"person","Zero-Shot Prediction":"MENTAL BLOCKAGE","Zero-Shot Confidence":"81.0%","Zero-Shot Correct":"No","Ensemble Prediction":"MIRROR SHOT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture15_aug0.png","True Metaphor":"MIRROR SHOT","Type":"Augmented","AI Caption":"there is a woman looking at herself in the mirror","Detected Objects":"person","Zero-Shot Prediction":"MENTAL BLOCKAGE","Zero-Shot Confidence":"75.3%","Zero-Shot Correct":"No","Ensemble Prediction":"MIRROR SHOT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture15_aug1.png","True Metaphor":"MIRROR SHOT","Type":"Augmented","AI Caption":"there is a woman looking at herself in the mirror","Detected Objects":"person","Zero-Shot Prediction":"MENTAL BLOCKAGE","Zero-Shot Confidence":"82.9%","Zero-Shot Correct":"No","Ensemble Prediction":"MIRROR SHOT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture15_aug2.png","True Metaphor":"MIRROR SHOT","Type":"Augmented","AI Caption":"there is a woman looking at herself in the mirror","Detected Objects":"person","Zero-Shot Prediction":"MENTAL BLOCKAGE","Zero-Shot Confidence":"77.4%","Zero-Shot Correct":"No","Ensemble Prediction":"MIRROR SHOT","Ensemble Correct":"Yes"},
+    {"Filename":"Picture15_aug3.png","True Metaphor":"MIRROR SHOT","Type":"Augmented","AI Caption":"there is a woman looking at herself in the mirror","Detected Objects":"person","Zero-Shot Prediction":"MENTAL BLOCKAGE","Zero-Shot Confidence":"75.3%","Zero-Shot Correct":"No","Ensemble Prediction":"MIRROR SHOT","Ensemble Correct":"Yes"}
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const filter = document.getElementById('metaphor-filter');
+    const grid = document.getElementById('explorer-grid');
+    const glassCard = document.querySelector('.glass-card1');
+
+    // Mouse tracking for aurora effect on glass card
+    if (glassCard) {
+        glassCard.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            this.style.setProperty('--x', x + 'px');
+            this.style.setProperty('--y', y + 'px');
+        });
+    }
+
+    // Populate filter dropdown with unique metaphors and additional filter options
+    function populateFilter() {
+        // Clear existing options except the first one
+        filter.innerHTML = '<option value="all">View All Metaphors</option>';
+        
+        // Add type-based filters
+        const typeFilters = [
+            { value: 'original', text: 'Original Images' },
+            { value: 'augmented', text: 'Augmented Images' },
+            { value: 'zero-shot-correct', text: 'Zero-Shot Correct' },
+            { value: 'zero-shot-incorrect', text: 'Zero-Shot Incorrect' },
+            { value: 'ensemble-correct', text: 'Ensemble Correct' },
+            { value: 'ensemble-incorrect', text: 'Ensemble Incorrect' }
+        ];
+        
+        typeFilters.forEach(filterItem => {
+            const option = document.createElement('option');
+            option.value = filterItem.value;
+            option.textContent = filterItem.text;
+            filter.appendChild(option);
+        });
+
+        // Add separator
+        const separator = document.createElement('option');
+        separator.disabled = true;
+        separator.textContent = '─── By Metaphor ───';
+        filter.appendChild(separator);
+        
+        // Add unique metaphors
+        const uniqueMetaphors = [...new Set(analysisData.map(d => d['True Metaphor']))].sort();
+        uniqueMetaphors.forEach(metaphor => {
+            const option = document.createElement('option');
+            option.value = `metaphor-${metaphor}`;
+            option.textContent = metaphor;
+            filter.appendChild(option);
+        });
+    }
+
+    // Render cards based on filter
+    function renderCards(filterValue) {
+        grid.innerHTML = '';
+        
+        let filteredData = analysisData;
+        
+        // Apply filters
+        switch(filterValue) {
+            case 'original':
+                filteredData = analysisData.filter(d => d.Type === 'Original');
+                break;
+            case 'augmented':
+                filteredData = analysisData.filter(d => d.Type === 'Augmented');
+                break;
+            case 'zero-shot-correct':
+                filteredData = analysisData.filter(d => d['Zero-Shot Correct'] === 'Yes');
+                break;
+            case 'zero-shot-incorrect':
+                filteredData = analysisData.filter(d => d['Zero-Shot Correct'] === 'No');
+                break;
+            case 'ensemble-correct':
+                filteredData = analysisData.filter(d => d['Ensemble Correct'] === 'Yes');
+                break;
+            case 'ensemble-incorrect':
+                filteredData = analysisData.filter(d => d['Ensemble Correct'] === 'No');
+                break;
+            default:
+                if (filterValue.startsWith('metaphor-')) {
+                    const metaphor = filterValue.replace('metaphor-', '');
+                    filteredData = analysisData.filter(d => d['True Metaphor'] === metaphor);
+                }
+        }
+
+        // Create cards
+        filteredData.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'explorer-card';
+            
+            // Determine confidence level
+            const confidence = parseFloat(item['Zero-Shot Confidence'].replace('%', ''));
+            let confidenceLevel = 'Low';
+            if (confidence >= 70) confidenceLevel = 'High';
+            else if (confidence >= 40) confidenceLevel = 'Medium';
+            
+            card.innerHTML = `
+                <div class="image-container">
+                    <img src="prepared_data/${item.Filename}" alt="${item['True Metaphor']}" 
+                         onerror="this.src='https://placehold.co/400x240/1a1a2e/f5f5f5?text=Image+Not+Found'">
+                    <div class="image-overlay">
+                        <span class="tag ${item.Type === 'Original' ? 'tag-original' : 'tag-augmented'}">${item.Type}</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${item['True Metaphor']}</h3>
+                    <p class="card-description">"${item['AI Caption']}"</p>
+                    <div class="tag-container">
+                        <span class="tag ${item.Type === 'Original' ? 'tag-original' : 'tag-augmented'}">${item.Filename}</span>
+                        ${item['Detected Objects'] ? `<span class="tag tag-original">Objects: ${item['Detected Objects']}</span>` : ''}
+                    </div>
+                    <div class="prediction-status ${item['Zero-Shot Correct'] === 'Yes' ? 'pred-correct' : 'pred-incorrect'}">
+                        <div class="status-icon">${item['Zero-Shot Correct'] === 'Yes' ? '✓' : '✗'}</div>
+                        <span>Zero-Shot: ${item['Zero-Shot Prediction']}</span>
+                    </div>
+                    <div class="prediction-status ${item['Ensemble Correct'] === 'Yes' ? 'pred-correct' : 'pred-incorrect'}">
+                        <div class="status-icon">${item['Ensemble Correct'] === 'Yes' ? '✓' : '✗'}</div>
+                        <span>Ensemble: ${item['Ensemble Prediction']}</span>
+                    </div>
+                    <div class="stats-bar">
+                        <span>Confidence: ${item['Zero-Shot Confidence']}</span>
+                        <span class="confidence-score">Level: ${confidenceLevel}</span>
+                    </div>
+                </div>
+            `;
+            
+            // Add staggered animation
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            grid.appendChild(card);
+            
+            // Animate in with delay
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+
+        // Show empty state if no results
+        if (filteredData.length === 0) {
+            grid.innerHTML = `
+                <div class="empty-state">
+                    <h3>No images found</h3>
+                    <p>No images match the selected filter criteria.</p>
+                </div>
+            `;
+        }
+    }
+
+    // Filter functionality
+    if (filter && grid) {
+        filter.addEventListener('change', function() {
+            const selectedFilter = this.value;
+            renderCards(selectedFilter);
+        });
+    }
+
+    // Initialize
+    populateFilter();
+    renderCards('all');
+});
+</script>
+<script>
+// Ultra Elegant Navigation JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.querySelector('nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('nav ul');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navProgress = document.querySelector('.nav-progress');
+    const navBrand = document.querySelector('.nav-brand');
+    
+    // Advanced scroll effects with momentum
+    let scrollTimeout;
+    let lastScrollY = 0;
+    let scrollDirection = 'down';
+    
+    function handleAdvancedScroll() {
+        const currentScrollY = window.pageYOffset;
+        
+        // Determine scroll direction
+        if (currentScrollY > lastScrollY) {
+            scrollDirection = 'down';
+        } else {
+            scrollDirection = 'up';
+        }
+        
+        // Enhanced nav styling based on scroll
+        if (currentScrollY > 50) {
+            nav.classList.add('scrolled');
+            
+            // Add slight rotation based on scroll direction
+            if (scrollDirection === 'down') {
+                nav.style.transform = 'translateY(0) rotateX(0.5deg)';
+            } else {
+                nav.style.transform = 'translateY(0) rotateX(-0.5deg)';
+            }
+        } else {
+            nav.classList.remove('scrolled');
+            nav.style.transform = 'translateY(0) rotateX(0)';
+        }
+        
+        // Reset transform after scroll stops
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            nav.style.transform = 'translateY(0) rotateX(0)';
+        }, 150);
+        
+        lastScrollY = currentScrollY;
+    }
+    
+    // Sophisticated progress bar with easing
+    function updateProgressBar() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollProgress = (scrollTop / scrollHeight) * 100;
+        
+        if (navProgress) {
+            // Smooth progress update with easing
+            navProgress.style.width = `${Math.min(scrollProgress, 100)}%`;
+            
+            // Dynamic glow based on progress
+            const glowIntensity = Math.min(scrollProgress / 100, 1);
+            navProgress.style.boxShadow = `0 0 ${10 + glowIntensity * 20}px rgba(233, 69, 96, ${0.3 + glowIntensity * 0.4})`;
+        }
+    }
+    
+    // Particle trail effect for mouse movement
+    function createParticleTrail(e) {
+        if (nav.contains(e.target)) {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'radial-gradient(circle, rgba(255, 215, 0, 0.8), transparent)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '999';
+            particle.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.style.transform = 'scale(0) translateY(-20px)';
+                particle.style.opacity = '0';
+            }, 50);
+            
+            setTimeout(() => {
+                document.body.removeChild(particle);
+            }, 650);
+        }
+    }
+    
+    // Enhanced mobile menu with staggered animations
+    function toggleMobileMenu() {
+        if (navToggle && navMenu) {
+            const isActive = navToggle.classList.contains('active');
+            
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Staggered link animations
+            if (!isActive) {
+                navLinks.forEach((link, index) => {
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateX(30px)';
+                    
+                    setTimeout(() => {
+                        link.style.opacity = '1';
+                        link.style.transform = 'translateX(0)';
+                    }, 100 * (index + 1));
+                });
+            }
+            
+            // Body scroll control
+            document.body.style.overflow = isActive ? '' : 'hidden';
+        }
+    }
+    
+    // Intersection Observer for precise section detection
+    function setupAdvancedObserver() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '-15% 0px -70% 0px',
+            threshold: [0, 0.25, 0.5, 0.75, 1]
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.getAttribute('id');
+                    
+                    // Smooth active state transition
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        link.style.transform = 'scale(1)';
+                    });
+                    
+                    const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                        activeLink.style.transform = 'scale(1.05)';
+                        
+                        // Brief pulse effect
+                        setTimeout(() => {
+                            activeLink.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        const sections = document.querySelectorAll('section[id]');
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    }
+    
+    // Enhanced smooth scrolling with custom easing
+    function smoothScrollTo(target, duration = 1000) {
+        const targetPosition = target.offsetTop - 80;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let start = null;
+        
+        function animation(currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const progress = Math.min(timeElapsed / duration, 1);
+            
+            // Custom easing function (ease-out-cubic)
+            const ease = 1 - Math.pow(1 - progress, 3);
+            
+            window.scrollTo(0, startPosition + distance * ease);
+            
+            if (timeElapsed < duration) {
+                requestAnimationFrame(animation);
+            }
+        }
+        
+        requestAnimationFrame(animation);
+    }
+    
+    // Navigation link click handler with enhanced effects
+    function handleNavClick(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        
+        if (targetId.startsWith('#')) {
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Add click ripple effect
+                const ripple = document.createElement('div');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                
+                ripple.style.position = 'absolute';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.background = 'radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+                ripple.style.transition = 'transform 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.transform = 'translate(-50%, -50%) scale(1)';
+                }, 0);
+                
+                setTimeout(() => {
+                    this.removeChild(ripple);
+                }, 600);
+                
+                // Smooth scroll to target
+                smoothScrollTo(targetSection);
+                
+                // Close mobile menu
+                if (navMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+                
+                // Update active state immediately
+                navLinks.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            }
+        }
+    }
+    
+    // Brand logo interaction effects
+    function setupBrandEffects() {
+        if (navBrand) {
+            let brandTimeout;
+            
+            navBrand.addEventListener('mouseenter', () => {
+                clearTimeout(brandTimeout);
+                navBrand.style.filter = 'brightness(1.3) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)) hue-rotate(10deg)';
+            });
+            
+            navBrand.addEventListener('mouseleave', () => {
+                brandTimeout = setTimeout(() => {
+                    navBrand.style.filter = 'brightness(1) drop-shadow(0 0 0px transparent) hue-rotate(0deg)';
+                }, 100);
+            });
+            
+            // Click effect
+            navBrand.addEventListener('click', (e) => {
+                e.preventDefault();
+                navBrand.style.transform = 'scale(0.95) rotate(-2deg)';
+                
+                setTimeout(() => {
+                    navBrand.style.transform = 'scale(1.05) rotate(1deg)';
+                }, 100);
+                
+                setTimeout(() => {
+                    navBrand.style.transform = 'scale(1) rotate(0deg)';
+                }, 200);
+                
+                // Scroll to top
+                smoothScrollTo(document.body);
+            });
+        }
+    }
+    
+    // Performance-optimized scroll listener
+    let ticking = false;
+    function optimizedScrollHandler() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                handleAdvancedScroll();
+                updateProgressBar();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+    
+    // Particle trail (throttled for performance)
+    let particleTimeout;
+    document.addEventListener('mousemove', (e) => {
+        clearTimeout(particleTimeout);
+        particleTimeout = setTimeout(() => createParticleTrail(e), 50);
+    });
+    
+    if (navToggle) {
+        navToggle.addEventListener('click', toggleMobileMenu);
+    }
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', handleNavClick);
+        
+        // Enhanced hover effects
+        link.addEventListener('mouseenter', function() {
+            this.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.textShadow = 'none';
+        });
+    });
+    
+    // Close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+        if (navMenu && navMenu.classList.contains('active') && !nav.contains(e.target)) {
+            toggleMobileMenu();
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            toggleMobileMenu();
+        }
+    });
+    
+    // Initialize all features
+    handleAdvancedScroll();
+    updateProgressBar();
+    setupAdvancedObserver();
+    setupBrandEffects();
+    
+    // Handle initial hash in URL
+    if (window.location.hash) {
+        setTimeout(() => {
+            const targetSection = document.querySelector(window.location.hash);
+            if (targetSection) {
+                smoothScrollTo(targetSection);
+            }
+        }, 500);
+    }
+    
+    // Add loading animation
+    nav.style.opacity = '0';
+    nav.style.transform = 'translateY(-20px)';
+    
+    setTimeout(() => {
+        nav.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        nav.style.opacity = '1';
+        nav.style.transform = 'translateY(0)';
+    }, 100);
+});
+</script>
+</body>
+</html>
