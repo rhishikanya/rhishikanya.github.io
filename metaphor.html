@@ -22,6 +22,8 @@
             --glass-border: rgba(255, 255, 255, 0.2);
         }
 
+        html, body { overflow-x: hidden; }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -560,7 +562,7 @@ nav ul:hover::before {
         /* Metrics Grid */
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
@@ -596,7 +598,7 @@ nav ul:hover::before {
         /* Metaphor Gallery */
         .metaphor-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
@@ -998,6 +1000,17 @@ nav ul:hover::before {
                 left: 3rem !important;
                 margin-bottom: 2rem;
             }
+
+            /* Reveal animations slide in horizontally; on phones that overhang
+               widens the page before the observer fires. Slide vertically instead. */
+            .reveal-left, .reveal-right {
+                transform: translateY(30px);
+            }
+            .reveal-left.visible, .reveal-right.visible {
+                transform: translateY(0);
+            }
+
+            .nav-container { max-width: 100%; box-sizing: border-box; }
             
              .timeline-item .glass-card {
                  text-align: left !important;
@@ -1223,7 +1236,7 @@ nav ul:hover::before {
 
 .explorer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly smaller cards */
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); /* Slightly smaller cards */
     gap: 1.5rem; /* Reduced gap */
     padding-bottom: 1rem;
 }

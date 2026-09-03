@@ -177,7 +177,7 @@
                 
                 .info-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
                     gap: 25px;
                     margin: 30px 0;
                 }
@@ -270,7 +270,7 @@
                 
                 .figure-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+                    grid-template-columns: repeat(auto-fit, minmax(min(450px, 100%), 1fr));
                     gap: 30px;
                     margin: 30px 0;
                 }
@@ -307,7 +307,7 @@
                 
                 .individual-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+                    grid-template-columns: repeat(auto-fill, minmax(min(500px, 100%), 1fr));
                     gap: 25px;
                     margin: 30px 0;
                 }
@@ -373,6 +373,51 @@
                     .main-content { margin-left: 250px; padding: 20px; }
                     .container { padding: 30px; }
                     h1 { font-size: 2.2em; }
+                }
+
+                /* --- Mobile Responsive Menu --- */
+                .mobile-menu-toggle {
+                    display: none; position: fixed; top: 1rem; right: 1rem;
+                    width: 44px; height: 44px; background: #2c3e50;
+                    border: 1px solid #4a627a; border-radius: 8px;
+                    z-index: 1001; cursor: pointer; padding: 0;
+                }
+                .mobile-menu-toggle .bar {
+                    width: 20px; height: 2px; background: #ecf0f1;
+                    margin: 4px auto; transition: all 0.3s ease;
+                }
+                .mobile-overlay {
+                    display: none; position: fixed; top: 0; left: 0;
+                    width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999;
+                }
+
+                @media (max-width: 768px) {
+                    .sidebar {
+                        width: 260px;
+                        transform: translateX(-100%);
+                        transition: transform 0.3s ease;
+                    }
+                    .sidebar:hover { width: 260px; }
+                    .sidebar.is-open { transform: translateX(0); }
+
+                    .main-content { margin-left: 0; padding: 16px; }
+                    .container { padding: 20px; border-radius: 10px; }
+
+                    h1 { font-size: 1.6em; padding-right: 48px; }
+                    .subtitle { font-size: 1em; }
+
+                    .mobile-menu-toggle { display: block; }
+                    .mobile-overlay.is-active { display: block; }
+                    .mobile-menu-toggle.is-open .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+                    .mobile-menu-toggle.is-open .bar:nth-child(2) { opacity: 0; }
+                    .mobile-menu-toggle.is-open .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+                }
+
+                /* --- Keep wide content inside the viewport --- */
+                .main-content img { max-width: 100%; height: auto; }
+                .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+                @media (max-width: 768px) {
+                    .info-grid { grid-template-columns: 1fr; }
                 }
 				.figure-full img {
     width: 100%;
@@ -506,7 +551,7 @@
 
 #overview .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     gap: 30px;
 }
 
@@ -561,7 +606,12 @@
 	</style>
         </head>
         <body>
-            <div class="sidebar">
+            <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </button>
+            <div class="mobile-overlay" id="mobile-overlay"></div>
+
+            <div class="sidebar" id="sidebar">
                 <div class="sidebar-header">
                     <h2>🎬 Analysis Navigation</h2>
                     <p>Assamese Cinema Study</p>
@@ -638,7 +688,7 @@
                     
                     <section id="performance" class="section">
                         <h2>🎯 Quantitative Performance Comparison</h2>
-                        <table class='metrics-table'><thead><tr><th>Metric</th><th>EfficientNet-B0</th><th>VGG16-BN</th><th>ResNet34</th></tr></thead><tbody><tr><td><strong>🎯 Accuracy</strong></td><td class=''><div class='progress-bar'>
+                        <div class="table-scroll"><table class='metrics-table'><thead><tr><th>Metric</th><th>EfficientNet-B0</th><th>VGG16-BN</th><th>ResNet34</th></tr></thead><tbody><tr><td><strong>🎯 Accuracy</strong></td><td class=''><div class='progress-bar'>
                         <div class='progress-fill' style='width: 9.04%'></div>
                         <span class='progress-text'>0.5104</span>
                     </div></td><td class=''><div class='progress-bar'>
@@ -665,7 +715,7 @@
                     </div></td><td class=''><div class='progress-bar'>
                         <div class='progress-fill' style='width: 9.71%'></div>
                         <span class='progress-text'>0.4971</span>
-                    </div></td></tr></tbody></table>
+                    </div></td></tr></tbody></table></div>
                         <div class="discussion">
                             <h4>💡 Key Findings</h4>
                             <p><strong>ResNet34</strong> emerged as the superior architecture. This indicates optimal balance between precision and recall, suggesting its effectiveness in capturing the nuanced visual semantics of Assamese film posters. The model successfully identifies cultural motifs, color symbolism, and compositional patterns characteristic of regional cinema.</p>
@@ -1003,6 +1053,34 @@
                 }, observerOptions);
                 
                 document.querySelectorAll('.metrics-table').forEach(table => observer.observe(table));
+            </script>
+            <script>
+                // --- Mobile Menu Logic ---
+                document.addEventListener('DOMContentLoaded', function () {
+                    const menuToggle = document.getElementById('menu-toggle');
+                    const sidebar = document.getElementById('sidebar');
+                    const overlay = document.getElementById('mobile-overlay');
+                    if (!menuToggle || !sidebar || !overlay) return;
+
+                    function closeMenu() {
+                        sidebar.classList.remove('is-open');
+                        menuToggle.classList.remove('is-open');
+                        overlay.classList.remove('is-active');
+                    }
+
+                    menuToggle.addEventListener('click', () => {
+                        sidebar.classList.toggle('is-open');
+                        menuToggle.classList.toggle('is-open');
+                        overlay.classList.toggle('is-active');
+                    });
+
+                    overlay.addEventListener('click', closeMenu);
+                    document.querySelectorAll('.sidebar nav a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            if (!link.parentElement.classList.contains('has-submenu')) closeMenu();
+                        });
+                    });
+                });
             </script>
         </body>
         </html>
